@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="719b2bd6-38e6-40b4-92a6-f5d12cc68363" name="Default Changelist" comment="Added Database implementation">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bedrohungsidentifizierungssystem/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Bedrohungsidentifizierungssystem/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bedrohungsidentifizierungssystem/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Bedrohungsidentifizierungssystem/src/main/resources/templates/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="719b2bd6-38e6-40b4-92a6-f5d12cc68363" name="Default Changelist" comment="Einrichtung &amp; Konfiguration des Projekts abgeschlossen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +123,7 @@
       <workItem from="1621376313823" duration="197000" />
       <workItem from="1621376527973" duration="12000" />
       <workItem from="1621376754934" duration="360000" />
-      <workItem from="1621528197505" duration="1422000" />
+      <workItem from="1621528197505" duration="1896000" />
     </task>
     <task id="LOCAL-00001" summary="Added Database implementation">
       <created>1621330600632</created>
@@ -138,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621330600632</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Einrichtung &amp; Konfiguration des Projekts abgeschlossen">
+      <created>1621529903574</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621529903574</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,7 +159,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Database implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Database implementation" />
+    <MESSAGE value="Einrichtung &amp; Konfiguration des Projekts abgeschlossen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Einrichtung &amp; Konfiguration des Projekts abgeschlossen" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SopraGruppe03$Bedrohungsidentifizierungssystem__bootRun_.ic" NAME="Bedrohungsidentifizierungssystem [bootRun] Coverage Results" MODIFIED="1621529568693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
