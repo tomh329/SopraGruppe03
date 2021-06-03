@@ -15,7 +15,7 @@ public class Process {
 
     private String protectionLevel;
 
-    private Component component;
+    //private Component component;
 
 
     public Process() {
@@ -46,6 +46,7 @@ public class Process {
         this.protectionLevel = protectionLevel;
     }
 
+    /*
     public Component getComponent() {
         return component;
     }
@@ -53,4 +54,5 @@ public class Process {
     public void setComponent(Component component) {
         this.component = component;
     }
+     */
 }
