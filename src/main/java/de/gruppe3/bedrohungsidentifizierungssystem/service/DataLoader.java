@@ -27,10 +27,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         // Initialisieren Sie Beispielobjekte und speichern Sie diese über Ihre Services
 
-        Process normalProcess = new Process();
-        normalProcess.setProcessName("NormalProzess");
-        normalProcess.setProtectionLevel("Hoch");
-        processService.saveProcess(normalProcess);
+        Process testProcess1 = new Process("Test1", 3);
+        Process testProcess2 = new Process("Test2", 1);
+        processService.saveProcess(testProcess1);
+        processService.saveProcess(testProcess2);
 
     }
 }
