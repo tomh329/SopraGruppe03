@@ -8,5 +8,5 @@ Bedrohungsidentifizierungssystem
 3. Wähle ein Directory in dem das Projekt gespeichert wird.
 4. Clone das master repository in GitDesktop.
 5. Um das Projekt zu öffnen wähle in IntelliJ 'open Project' und wähle den Ordner SopraGruppe3 aus.
-6. Das Projekt sollte nun korrekt geöffnet sein. Falls es dennoch zu Fehlermeldungen kommt bitte mitteilen.
+6. Das Projekt sollte nun korrekt geöffnet sein. Ab jetzt kann auch direkt in der IDE commited werden. Falls es dennoch zu Fehlermeldungen kommt bitte mitteilen.
 
