@@ -1,8 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.*;
 
 
@@ -15,16 +13,18 @@ public class Process {
     @Id
     @GeneratedValue
     private int processId;
-
     private String processName;
     private int protectionLevel;
+    @JoinTable
+    private int componentId;
     private static List<Component> components;
 
 
-    public Process(String processName, int protectionLevel) {
+    public Process(String processName, int protectionLevel, int componentId) {
         // empty constructor for Hibernate
         this.processName = processName;
         this.protectionLevel = protectionLevel;
+        this.componentId = componentId;
         components = new ArrayList<Component>();
     }
 
@@ -89,7 +89,7 @@ public class Process {
         System.out.println("Geben Sie die Gefahrenstufe ein: ");
         int protectionLevel = sc.nextInt();
 
-        Process process = new Process(name, protectionLevel);
+        Process process = new Process(name, protectionLevel, componentId);
 
         System.out.println("Wie viele Komponenten möchten Sie hinzufügen? ");
         int amount = sc.nextInt();

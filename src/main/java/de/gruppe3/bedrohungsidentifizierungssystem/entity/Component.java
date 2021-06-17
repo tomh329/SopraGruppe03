@@ -1,12 +1,13 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+import jdk.jfr.Enabled;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Entity
 public class Component {
 
 
@@ -18,17 +19,21 @@ public class Component {
 
     private String componentName;
     private int priority;
-    private Date lastAttack;
+    private String lastAttack;
     private int occurrence;
     private static List<Requirement> requirements;
 
-    public Component(String componentName, int priority, Date lastAttack, int occurrence) {
+    public Component(String componentName, int priority, String lastAttack, int occurrence) {
 
         this.componentName = componentName;
         this.priority = priority;
         this.lastAttack = lastAttack;
         this.occurrence = occurrence;
         requirements = new ArrayList<Requirement>();
+    }
+
+    public Component() {
+
     }
 
 
@@ -46,7 +51,9 @@ public class Component {
         String name = sc.nextLine();
         System.out.println("Geben Sie die Priorität ein: ");
         int priority = sc.nextInt();
-        Date lastAttack = new Date();
+//        Date lastAttack = new Date();
+        System.out.println("Geben Sie den letzten Angriff an: ");
+        String lastAttack = sc.nextLine();
         System.out.println("Geben Sie das Aufkommen an: ");
         int occurrence = sc.nextInt();
 
