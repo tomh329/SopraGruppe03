@@ -53,7 +53,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 
         /*
-        ether you start with a component that to add to a process
+        ether you start with a component and add that to a process you pick
         or you start with a process and pick the component you want to add
          */
 //        testComponent1.setProcess(testProcess1);
