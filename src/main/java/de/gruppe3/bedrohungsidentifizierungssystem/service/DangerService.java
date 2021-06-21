@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Severity;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,16 @@ public class DangerService {
     public Danger saveDanger(Danger danger) {
 
         return dangerRepository.save(danger);
+    }
+
+
+    public Danger createDanger(String dangerName, Enum<Severity> dangerLevel){
+        Danger danger = new Danger(dangerName, dangerLevel);
+        return dangerRepository.save(danger);
+    }
+
+    public void deleteDanger(Danger danger){
+        dangerRepository.delete(danger);
     }
 
 

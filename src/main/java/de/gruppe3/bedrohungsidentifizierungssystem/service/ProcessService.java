@@ -35,6 +35,11 @@ public class ProcessService {
 //    }
 
 
+    public Process createProcess(String processName, int protectionLevel){
+        Process process = new Process(processName, protectionLevel);
+        return processRepository.save(process);
+    }
+
     public void deleteProcess(Process process){
 
         processRepository.delete(process);

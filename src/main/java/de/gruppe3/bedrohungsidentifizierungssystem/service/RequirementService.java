@@ -17,6 +17,16 @@ public class RequirementService {
         return requirementRepository.save(requirement);
     }
 
+
+    public Requirement createRequirement(String requirementName){
+        Requirement requirement = new Requirement(requirementName);
+        return requirementRepository.save(requirement);
+    }
+
+    public void deleteRequirement(Requirement requirement){
+        requirementRepository.delete(requirement);
+    }
+
     public List<Requirement> findAllRequirements() {
 
         return requirementRepository.findAll();
