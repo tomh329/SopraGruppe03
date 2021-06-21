@@ -12,15 +12,17 @@ import java.util.*;
 public class Process {
 
 
-    static Scanner sc = new Scanner(System.in);
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int processId;
     private String processName;
     private int protectionLevel;
+
     @OneToMany(targetEntity = Component.class, mappedBy = "process")
     private List<Component> components;
+
+
+
 
 
     public Process(String processName, int protectionLevel) {
@@ -69,6 +71,7 @@ public class Process {
 
 
     public void addComponent(Component component){
+
         component.setProcess(this);
     }
 

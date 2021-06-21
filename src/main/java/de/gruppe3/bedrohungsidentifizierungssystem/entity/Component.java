@@ -10,9 +10,6 @@ import java.util.*;
 @Entity
 public class Component {
 
-
-    static Scanner sc = new Scanner(System.in);
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int componentId;
@@ -26,8 +23,12 @@ public class Component {
     @JoinColumn(name = "process_id")
     private Process process;
 
-
+    @OneToMany(targetEntity = Requirement.class, mappedBy = "component")
     private static List<Requirement> requirements;
+
+
+
+
 
     public Component(String componentName, int priority, String lastAttack, int occurrence) {
 
@@ -57,6 +58,12 @@ public class Component {
     public void setProcess(Process process) {
         this.process = process;
     }
+
+
+    public void addRequirement(Requirement requirement){
+        requirement.setComponent(this);
+    }
+
 
 /*
         used to create a new component without requirements
