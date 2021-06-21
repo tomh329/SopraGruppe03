@@ -14,13 +14,19 @@ public class Component {
     static Scanner sc = new Scanner(System.in);
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int componentId;
 
     private String componentName;
     private int priority;
     private String lastAttack;
     private int occurrence;
+
+    @ManyToOne
+    @JoinColumn(name = "process_id")
+    private Process process;
+
+
     private static List<Requirement> requirements;
 
     public Component(String componentName, int priority, String lastAttack, int occurrence) {
@@ -29,7 +35,6 @@ public class Component {
         this.priority = priority;
         this.lastAttack = lastAttack;
         this.occurrence = occurrence;
-        requirements = new ArrayList<Requirement>();
     }
 
     public Component() {
@@ -41,26 +46,37 @@ public class Component {
         return componentId;
     }
 
-
-    /*
-    used to create a new component without requirements
-    needs html connection
-     */
-    public void createComponent() {
-        System.out.println("Geben Sie den Namen ein: ");
-        String name = sc.nextLine();
-        System.out.println("Geben Sie die Priorität ein: ");
-        int priority = sc.nextInt();
-//        Date lastAttack = new Date();
-        System.out.println("Geben Sie den letzten Angriff an: ");
-        String lastAttack = sc.nextLine();
-        System.out.println("Geben Sie das Aufkommen an: ");
-        int occurrence = sc.nextInt();
-
-        Component component = new Component(name, priority, lastAttack, occurrence);
-
-        System.out.println("Komponente erstellt");
-        ComponentList.componentList.add(component);
+    public void setComponentId(int componentId) {
+        this.componentId = componentId;
     }
+
+    public Process getProcess() {
+        return process;
+    }
+
+    public void setProcess(Process process) {
+        this.process = process;
+    }
+
+/*
+        used to create a new component without requirements
+        needs html connection
+         */
+//    public void createComponent() {
+//        System.out.println("Geben Sie den Namen ein: ");
+//        String name = sc.nextLine();
+//        System.out.println("Geben Sie die Priorität ein: ");
+//        int priority = sc.nextInt();
+////        Date lastAttack = new Date();
+//        System.out.println("Geben Sie den letzten Angriff an: ");
+//        String lastAttack = sc.nextLine();
+//        System.out.println("Geben Sie das Aufkommen an: ");
+//        int occurrence = sc.nextInt();
+//
+//        Component component = new Component(name, priority, lastAttack, occurrence);
+//
+//        System.out.println("Komponente erstellt");
+//        ComponentList.componentList.add(component);
+//    }
 
 }

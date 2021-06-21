@@ -32,18 +32,34 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         // Initialisieren Sie Beispielobjekte und speichern Sie diese über Ihre Services
 
-        Process testProcess1 = new Process("Test1", 3, 1);
-        Process testProcess2 = new Process("Test2", 1, 1);
-        processService.saveProcess(testProcess1);
-        processService.saveProcess(testProcess2);
 
         Requirement testReq1 = new Requirement("testReq1");
-        requirementService.saveRequirement(testReq1);
 
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp", 2, "Date", 5);
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "Date", 5);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "Date", 3);
+
+
+        Process testProcess1 = new Process("Test1", 3);
+        Process testProcess2 = new Process("Test2", 1);
+        testProcess1.setProcessName("ÄnderungsTest");
+
+        /*
+        ether you start with a component that to add to a process
+        or you start with a process and pick the component you want to add
+         */
+//        testComponent1.setProcess(testProcess1);
+//        testComponent2.setProcess(testProcess1);
+        testProcess1.addComponent(testComponent1);
+        testProcess1.addComponent(testComponent2);
+
+        processService.saveProcess(testProcess1);
+        processService.saveProcess(testProcess2);
         componentService.saveComponent(testComponent1);
+        componentService.saveComponent(testComponent2);
+        requirementService.saveRequirement(testReq1);
 
     }
 }

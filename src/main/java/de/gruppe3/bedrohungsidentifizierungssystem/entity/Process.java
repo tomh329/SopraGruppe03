@@ -1,5 +1,9 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.service.DataLoader;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,27 +15,32 @@ public class Process {
     static Scanner sc = new Scanner(System.in);
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int processId;
     private String processName;
     private int protectionLevel;
-    @JoinTable
-    private int componentId;
-    private static List<Component> components;
+    @OneToMany(targetEntity = Component.class, mappedBy = "process")
+    private List<Component> components;
 
 
-    public Process(String processName, int protectionLevel, int componentId) {
-        // empty constructor for Hibernate
+    public Process(String processName, int protectionLevel) {
+
         this.processName = processName;
         this.protectionLevel = protectionLevel;
-        this.componentId = componentId;
-        components = new ArrayList<Component>();
     }
 
     public Process() {
 
     }
 
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
 
     public Integer getProcessId() {
         return processId;
@@ -57,70 +66,10 @@ public class Process {
         this.protectionLevel = protectionLevel;
     }
 
-    public List<Component> getComponents() {
-        return components;
-    }
-
-    public void setComponents(Component newComponent) {
-        components.add(newComponent);
-    }
 
 
-    public void addComponent() {
-
-        System.out.println("Geben Sie die ID des Komponenten an den Sie hinzufügen wollen: ");
-        int idComponent = sc.nextInt();
-
-        for (Component component : ComponentList.componentList) {
-            if (idComponent == component.getComponentId()) {
-                setComponents(component);
-            }
-        }
-    }
-
-
-    /*
-    used to create a new process with components
-    needs html connection
-     */
-    public void createProcess() {
-        System.out.println("Geben Sie den Namen ein: ");
-        String name = sc.nextLine();
-        System.out.println("Geben Sie die Gefahrenstufe ein: ");
-        int protectionLevel = sc.nextInt();
-
-        Process process = new Process(name, protectionLevel, componentId);
-
-        System.out.println("Wie viele Komponenten möchten Sie hinzufügen? ");
-        int amount = sc.nextInt();
-
-        for (int i = 0; i < amount; i++) {
-            process.addComponent();
-        }
-
-        System.out.println("Prozess erstellt!");
-        ProcessList.processList.add(process);
-    }
-
-    public void editProcessName(){
-        System.out.println("Geben Sie den neuen Namen ein: ");
-        String newName = sc.nextLine();
-
-        setProcessName(newName);
-    }
-
-    public void editProcessProtectionLevel(){
-        System.out.println("Geben Sie den neuen Schutzbedarf ein: ");
-        int newProtectionLevel = sc.nextInt();
-
-        setProtectionLevel(newProtectionLevel);
-    }
-
-    public void deleteProcess(){
-
-        int deleteId = getProcessId();
-
-        ProcessList.processList.removeIf(process -> deleteId == process.getProcessId());
+    public void addComponent(Component component){
+        component.setProcess(this);
     }
 
 }
