@@ -1,25 +1,47 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.DataLoader;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
+import java.util.*;
+
 
 @Entity
 public class Process {
 
+
     @Id
-    @GeneratedValue
-    private Integer processId;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int processId;
     private String processName;
+    private int protectionLevel;
 
-    private String protectionLevel;
+    @OneToMany(targetEntity = Component.class, mappedBy = "process")
+    private List<Component> components;
 
-    //private Component component;
 
+
+
+
+    public Process(String processName, int protectionLevel) {
+
+        this.processName = processName;
+        this.protectionLevel = protectionLevel;
+    }
 
     public Process() {
-        // empty constructor for Hibernate
+
+    }
+
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 
     public Integer getProcessId() {
@@ -38,21 +60,19 @@ public class Process {
         this.processName = processName;
     }
 
-    public String getProtectionLevel() {
+    public int getProtectionLevel() {
         return protectionLevel;
     }
 
-    public void setProtectionLevel(String protectionLevel) {
+    public void setProtectionLevel(int protectionLevel) {
         this.protectionLevel = protectionLevel;
     }
 
-    /*
-    public Component getComponent() {
-        return component;
+
+
+    public void addComponent(Component component){
+
+        component.setProcess(this);
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
-    }
-     */
 }
