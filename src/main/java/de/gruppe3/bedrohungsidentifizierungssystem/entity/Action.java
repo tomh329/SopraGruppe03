@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Scanner;
 import java.util.*;
 
@@ -16,12 +20,15 @@ public class Action {
     @Id
     @GeneratedValue
     private int actionId;
+    @NotBlank(message = "Die Maßnahme braucht einen Namen.")
     private String actionName;
-    private String actionDueDate;
+    @FutureOrPresent(message = "Das Datum darf nicht in der Vergangenheit liegen.")
+    private Date actionDueDate;
+    @NotBlank(message = "Es muss ein Wert eingetragen werden.")
     private String protectionNeeds;
 
   
-    public Action(String actionName, String actionDueDate, String protectionNeeds) {
+    public Action(String actionName, Date actionDueDate, String protectionNeeds) {
         this.actionName = actionName;
         this.actionDueDate = actionDueDate;
         this.protectionNeeds = protectionNeeds;
@@ -47,11 +54,11 @@ public class Action {
         this.actionName = actionName;
     }
 
-    public String getActionDueDate() {
+    public Date getActionDueDate() {
         return actionDueDate;
     }
 
-    public void setActionDueDate(String actionDueDate) {
+    public void setActionDueDate(Date actionDueDate) {
         this.actionDueDate = actionDueDate;
     }
 
