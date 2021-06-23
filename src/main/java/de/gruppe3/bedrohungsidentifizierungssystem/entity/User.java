@@ -19,7 +19,7 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_actions",
+            name = "user_components",
             joinColumns = @JoinColumn(name = "username"),
             inverseJoinColumns = @JoinColumn(name = "componentId"))
     private List<Component> components;
