@@ -1,9 +1,15 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Scanner;
+import java.util.*;
 
+
+@Entity
 public class Action {
 
     Scanner scA = new Scanner(System.in);
@@ -15,7 +21,9 @@ public class Action {
     private String actionDueDate;
     private String protectionNeeds;
 
-
+     @ManyToMany
+    public List<User> users;
+  
     public Action(String actionName, String actionDueDate, String protectionNeeds) {
         this.actionName = actionName;
         this.actionDueDate = actionDueDate;

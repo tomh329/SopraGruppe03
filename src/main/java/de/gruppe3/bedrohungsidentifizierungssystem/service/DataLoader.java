@@ -1,15 +1,16 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Severity;
+
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.util.LinkedList;
+
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -25,6 +26,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private RequirementService requirementService;
     @Autowired
     private DangerService dangerService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ActionService actionService;
 
     /**
      * Diese Methode wird zum Aufsetzen von Testdaten für die Datenbank verwendet werden. Die Methode wird immer dann
@@ -69,6 +76,18 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         componentService.saveComponent(testComponent2);
         requirementService.saveRequirement(testReq1);
         dangerService.saveDanger(testDanger1);
+
+        User testAdmin = new User();
+        testAdmin.setUsername("Max");
+        testAdmin.setPassword("1234");
+        testAdmin.setActions(new LinkedList<Action>());
+        userService.saveUser(testAdmin);
+
+        User normalEmployee = new User();
+        normalEmployee.setUsername("Paule");
+        normalEmployee.setPassword("2345");
+        normalEmployee.setActions(new LinkedList<Action>());
+        userService.saveUser(normalEmployee);
 
     }
 }
