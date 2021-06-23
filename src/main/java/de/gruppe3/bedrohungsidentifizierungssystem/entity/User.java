@@ -1,5 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,6 +13,8 @@ public class User {
 
     private String password;
 
+    @ManyToOne()
+    @JoinColumn(name = "FK_USERROLE", insertable = false, updatable = false)
     private Role role;
 
     @ManyToMany

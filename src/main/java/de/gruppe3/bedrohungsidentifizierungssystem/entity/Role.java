@@ -1,8 +1,24 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
-public enum Role {
-    EMPLOYEE,
-    DEPARTMENT_MANAGER,
-    IT_SECRUITY_OFFICER,
-    ADMINISTRATOR
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+public class Role {
+    @Id
+    private String role;
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @OneToMany(targetEntity = User.class, mappedBy = "role")
+    private List<User> user;
+
+
+    public String getRole() {
+        return role;
+    }
 }
