@@ -32,6 +32,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private ActionService actionService;
 
     /**
@@ -78,17 +81,28 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(testReq1);
         dangerService.saveDanger(testDanger1);
 
+        Role testRole = new Role();
+        testRole.setRole("ADMIN");
+
+
+
         User testAdmin = new User();
         testAdmin.setUsername("Max");
-        testAdmin.setPassword("1234");
+        testAdmin.setPassword("12345");
+        testAdmin.setRole(testRole);
         testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
+        testRole.getUser().add(testAdmin); // Für Testzwecke ohne Kapslung bearbeitet
         userService.saveUser(testAdmin);
-
+        roleService.saveRole(testRole);
+        /*
         User normalEmployee = new User();
-        normalEmployee.setUsername("Paule");
-        normalEmployee.setPassword("2345");
+        normalEmployee.setUsername("Maxe");
+        normalEmployee.setPassword("23456");
         normalEmployee.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
         userService.saveUser(normalEmployee);
+        */
+
+
 
     }
 }

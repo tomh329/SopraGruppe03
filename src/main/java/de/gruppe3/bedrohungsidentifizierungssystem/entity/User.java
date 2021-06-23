@@ -2,7 +2,13 @@ package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 
 
+import net.bytebuddy.implementation.bind.annotation.Empty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 import java.util.*;
 
 @Entity
@@ -11,8 +17,12 @@ public class User {
     @Id
     private String username;
 
+
+    @Size(min = 5, max = 25, message = "Das Passwort muss zwischen 5 und 25 Zeichen lang sein.")
+    @NotBlank(message = "Das Passwort darf nicht nur Leerzeichen beinhalten")
     private String password;
 
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "FK_USERROLE", insertable = false, updatable = false)
     private Role role;
