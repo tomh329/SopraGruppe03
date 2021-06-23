@@ -12,7 +12,6 @@ import java.util.*;
 @Entity
 public class Action {
 
-    Scanner scA = new Scanner(System.in);
 
     @Id
     @GeneratedValue
@@ -21,13 +20,15 @@ public class Action {
     private String actionDueDate;
     private String protectionNeeds;
 
-     @ManyToMany
-    public List<User> users;
   
     public Action(String actionName, String actionDueDate, String protectionNeeds) {
         this.actionName = actionName;
         this.actionDueDate = actionDueDate;
         this.protectionNeeds = protectionNeeds;
+    }
+
+    public Action() {
+
     }
 
     public int getActionId() {
@@ -62,15 +63,20 @@ public class Action {
         this.protectionNeeds = protectionNeeds;
     }
 
-    public void createAction() {
-        System.out.println("Geben sie den Namen der Maßnahme an: ");
-        String name = scA.nextLine();
-        System.out.println("Geben sie das Umsetzungsdatum in der Form 'TT.MM.YYYY' an: ");
-        String date = scA.nextLine();
-        System.out.println("Geben sie den Schutzbedarf an: ");
-        String protectionNeeds = scA.nextLine();
 
-        Action action = new Action(name, date, protectionNeeds);
 
-    }
+    /*
+    needs to be in the actionService class
+     */
+//    public void createAction() {
+//        System.out.println("Geben sie den Namen der Maßnahme an: ");
+//        String name = scA.nextLine();
+//        System.out.println("Geben sie das Umsetzungsdatum in der Form 'TT.MM.YYYY' an: ");
+//        String date = scA.nextLine();
+//        System.out.println("Geben sie den Schutzbedarf an: ");
+//        String protectionNeeds = scA.nextLine();
+//
+//        Action action = new Action(name, date, protectionNeeds);
+//
+//    }
 }

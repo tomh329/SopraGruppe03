@@ -26,7 +26,8 @@ public class Component {
     @OneToMany(targetEntity = Requirement.class, mappedBy = "component")
     private static List<Requirement> requirements;
 
-
+    @ManyToMany
+    public List<User> users;
 
 
 

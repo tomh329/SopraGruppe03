@@ -21,8 +21,8 @@ public class User {
     @JoinTable(
             name = "user_actions",
             joinColumns = @JoinColumn(name = "username"),
-            inverseJoinColumns = @JoinColumn(name = "actionId"))
-    private List<Action> actions;
+            inverseJoinColumns = @JoinColumn(name = "componentId"))
+    private List<Component> components;
 
     public User(){
     }
@@ -51,11 +51,11 @@ public class User {
         this.role = role;
     }
 
-    public List<Action> getActions() {
-        return actions;
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void setActions(List<Action> actions) {
-        this.actions = actions;
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 }

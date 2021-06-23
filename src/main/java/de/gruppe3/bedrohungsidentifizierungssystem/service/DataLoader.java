@@ -2,6 +2,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,13 +81,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User testAdmin = new User();
         testAdmin.setUsername("Max");
         testAdmin.setPassword("1234");
-        testAdmin.setActions(new LinkedList<Action>());
+        testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
         userService.saveUser(testAdmin);
 
         User normalEmployee = new User();
         normalEmployee.setUsername("Paule");
         normalEmployee.setPassword("2345");
-        normalEmployee.setActions(new LinkedList<Action>());
+        normalEmployee.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
         userService.saveUser(normalEmployee);
 
     }
