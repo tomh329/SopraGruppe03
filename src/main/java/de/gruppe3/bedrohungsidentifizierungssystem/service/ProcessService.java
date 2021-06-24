@@ -18,6 +18,25 @@ public class ProcessService {
     @Autowired
     private ComponentRepository componentRepository;
 
+
+    public Process updateProcess(int processId, String processName, int protectionLevel, int componentId) {
+
+        Process process = processRepository.findByProcessId(processId);
+        process.setProcessName(processName);
+        process.setProtectionLevel(protectionLevel);
+        List<Component> compList = componentRepository.findAll();
+        for (Component component : compList) {
+
+            if (componentId == component.getComponentId()) {
+
+                process.addComponent(component);
+            }
+        }
+        return processRepository.save(process);
+    }
+
+
+
     public Process saveProcess(Process process) {
 
         return processRepository.save(process);
@@ -67,4 +86,6 @@ public class ProcessService {
     public Process findProcessWithId(Integer processId) {
         return processRepository.findByProcessId(processId);
     }
+
+
 }

@@ -19,6 +19,10 @@
                 margin: 100px;
                 text-align: center;
             }
+            .selectComponent{
+                width: 100px;
+                text-align: center;
+            }
         </style>
     </head>
 
@@ -60,7 +64,15 @@
             <form th:action="@{/editProcess}" method="post" >
                 <p>Name: <input name="processName" type="text" th:value="${editProcessId.getProcessName()}"/></p>
                 <p>Level: <input name="protectionLevel" type="text" th:value="${editProcessId.getProtectionLevel()}"/></p>
-                <p>ComponentId: <input name="componentId" type="text" th:value="${editProcessId.getComponents()}"/></p>
+                <form>
+                    <label>ComponentId:</label>
+                    <select class="selectComponent">
+                        <option th:each="component : ${editProcessId.getComponents()}"
+                                th:value="${component.getComponentId()}"
+                                th:text="${component.getComponentId()}">
+                        </option>
+                    </select>
+                </form>
                 <p><input type="submit" value="Prozess speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>

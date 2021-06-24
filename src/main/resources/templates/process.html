@@ -70,6 +70,7 @@
                         <th scope="col">Process ID</th>
                         <th scope="col">Process Name</th>
                         <th scope="col">Protection Level</th>
+                        <th scope="col">Component Ids</th>
                         <th scope="col">Aktionen</th>
                     </tr>
                 </thead>
@@ -78,6 +79,11 @@
                         <td th:text="${process.processId}" />
                         <td th:text="${process.processName}" />
                         <td th:text="${process.protectionLevel}" />
+                        <td>
+                            <p th:each="component : ${process.getComponents()}">
+                                <span th:text="${component.getComponentId()}"></span>
+                            </p>
+                        </td>
                         <td> <form th:action="@{/process/{path}(path=${process.processId})}" method="post" >
                         <button th:type="submit" class="btn btn-primary" > Edit
                         </button>
