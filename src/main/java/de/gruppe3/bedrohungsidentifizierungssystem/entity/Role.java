@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +16,7 @@ public class Role {
 
 
 
-    @OneToMany(targetEntity = User.class, mappedBy = "role")
+    @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.EAGER)
     private List<User> user;
 
     public void setUser(List<User> user){

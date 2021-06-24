@@ -1,8 +1,9 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Role;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.RoleService;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,35 +11,19 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
 
-
-    @Autowired
-    private ProcessService processService;
-    @Autowired
-    private ComponentService componentService;
-    @Autowired
-    private RequirementService requirementService;
-    @Autowired
-    private DangerService dangerService;
-
     @Autowired
     private UserService userService;
 
     @Autowired
     private RoleService roleService;
-
-    @Autowired
-    private ActionService actionService;
 
     /**
      * Diese Methode wird zum Aufsetzen von Testdaten für die Datenbank verwendet werden. Die Methode wird immer dann
@@ -50,69 +35,36 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         // Initialisieren Sie Beispielobjekte und speichern Sie diese über Ihre Services
 
+        //creation of Role admin
+        Role adminRole = new Role();
+        adminRole.setRole("ADMIN");
+        List<User> adminUsers = new LinkedList<>();
+        adminRole.setUser(adminUsers);
+        roleService.saveRole(adminRole);
+        //creation of Role Employee
+        Role employeeRole = new Role();
+        employeeRole.setRole("EMPLOYEE");
+        List<User> employeeUsers = new LinkedList<>();
+        employeeRole.setUser(employeeUsers);
+        roleService.saveRole(employeeRole);
 
-
-        Process testProcess1 = new Process("Test1", 3);
-        Process testProcess2 = new Process("Test2", 1);
-        testProcess1.setProcessName("ÄnderungsTest");
-
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "Date", 5);
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "Date", 3);
-
-        Requirement testReq1 = new Requirement("testReq1");
-
-        Danger testDanger1 = new Danger("testDanger1", Severity.THREE);
-
-
-        /*
-        ether you start with a component and add that to a process you pick
-        or you start with a process and pick the component you want to add
-         */
-//        testComponent1.setProcess(testProcess1);
-//        testComponent2.setProcess(testProcess1);
-        testProcess1.addComponent(testComponent1);
-        testProcess1.addComponent(testComponent2);
-        testComponent1.addRequirement(testReq1);
-        testReq1.addDanger(testDanger1);
-
-        processService.saveProcess(testProcess1);
-        processService.saveProcess(testProcess2);
-        componentService.saveComponent(testComponent1);
-        componentService.saveComponent(testComponent2);
-        requirementService.saveRequirement(testReq1);
-        dangerService.saveDanger(testDanger1);
-
-        Role testRole = new Role();
-        testRole.setRole("ADMIN");
-        //LinkedList<User> users = new LinkedList<User>();
-        //testRole.setUserList(users);
-        roleService.saveRole(testRole);
-
-
-        User testAdmin = new User();
-        testAdmin.setUsername("Max");
-        testAdmin.setPassword("12345");
-        testAdmin.setRole(testRole);
-        testRole.addUser(testAdmin);
-        testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
-
-        userService.saveUser(testAdmin);
-        //  roleService.saveRole(testRole);
-
-
-        User normalEmployee = new User();
-        normalEmployee.setUsername("Maxe");
-        normalEmployee.setPassword("23456");
-        normalEmployee.setRole(testRole);
-        testRole.addUser(normalEmployee);
-        normalEmployee.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
-        userService.saveUser(normalEmployee);
-        //roleService.saveRole(testRole);
-
-
-
-
+        //Creation of user Max
+        User userMax = new User();
+        userMax.setUsername("Max");
+        userMax.setPassword("12345");
+        userMax.setRole(adminRole);
+        userService.saveUser(userMax);
+        //Creation of user Paula
+        User userPaula = new User();
+        userPaula.setUsername("Paula");
+        userPaula.setPassword("12345");
+        userPaula.setRole(adminRole);
+        userService.saveUser(userPaula);
+        //Creation of user Paule
+        User userPaule = new User();
+        userPaule.setUsername("Paule");
+        userPaule.setPassword("23456");
+        userPaule.setRole(employeeRole);
+        userService.saveUser(userPaule);
     }
 }
