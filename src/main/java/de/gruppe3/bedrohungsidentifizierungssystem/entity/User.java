@@ -23,7 +23,7 @@ public class User {
 
     @NotNull(message = "Dem Benutzer muss eine Rolle zugewiesen werden.")
     @ManyToOne()
-    @JoinColumn(name = "FK_USERROLE", insertable = true, updatable = true)
+    @JoinColumn(name = "FK_USERROLE", nullable = false)
     private Role role;
 
     @ManyToMany
