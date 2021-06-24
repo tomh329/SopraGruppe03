@@ -39,4 +39,11 @@ public class ProcessController {
     public String add(){
         return "redirect:/addComponent";
     }
+
+    @PostMapping({"/process/{processId}"})
+    public String showEditProcess(Model model, @PathVariable String processId) {
+        model.addAttribute("editProcessId", processService.findProcessWithId(Integer.parseInt(processId)));
+        return "editProcess";
+    }
+
 }
