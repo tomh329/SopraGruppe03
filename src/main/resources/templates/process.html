@@ -62,9 +62,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th th:each="process: ${processes}" th:text="${process.processId}"></th>
-                        <th th:each="process: ${processes}" th:text="${process.processName}"></th>
-                        <th th:each="process: ${processes}" th:text="${process.protectionLevel}"></th>
+                        <p th:each="process : ${processes}">
+                        <td th:text="${process.processId}" />
+                        <td th:text="${process.processName}" />
+                        <td th:text="${process.protectionLevel}" />
+                        </p>
                     </tr>
                 </tbody>
             </table>
