@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 
-
 import net.bytebuddy.implementation.bind.annotation.Empty;
 
 import javax.persistence.*;
@@ -24,7 +23,7 @@ public class User {
 
     @NotNull
     @ManyToOne()
-    @JoinColumn(name = "FK_USERROLE", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_USERROLE", insertable = true, updatable = true)
     private Role role;
 
     @ManyToMany
@@ -34,7 +33,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "componentId"))
     private List<Component> components;
 
-    public User(){
+    public User() {
     }
 
     public String getUsername() {

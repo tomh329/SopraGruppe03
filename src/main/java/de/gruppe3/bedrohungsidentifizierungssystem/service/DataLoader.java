@@ -10,7 +10,10 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 
 @Component
@@ -83,24 +86,31 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         Role testRole = new Role();
         testRole.setRole("ADMIN");
-
+        //LinkedList<User> users = new LinkedList<User>();
+        //testRole.setUserList(users);
+        roleService.saveRole(testRole);
 
 
         User testAdmin = new User();
         testAdmin.setUsername("Max");
         testAdmin.setPassword("12345");
         testAdmin.setRole(testRole);
+        testRole.addUser(testAdmin);
         testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
-        testRole.getUser().add(testAdmin); // Für Testzwecke ohne Kapslung bearbeitet
+
         userService.saveUser(testAdmin);
-        roleService.saveRole(testRole);
-        /*
+        //  roleService.saveRole(testRole);
+
+
         User normalEmployee = new User();
         normalEmployee.setUsername("Maxe");
         normalEmployee.setPassword("23456");
+        normalEmployee.setRole(testRole);
+        testRole.addUser(normalEmployee);
         normalEmployee.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
         userService.saveUser(normalEmployee);
-        */
+        //roleService.saveRole(testRole);
+
 
 
 
