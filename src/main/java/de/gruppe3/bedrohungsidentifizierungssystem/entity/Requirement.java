@@ -2,6 +2,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,8 @@ public class Requirement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int requirementId;
+
+    @NotBlank(message = "Die Bedingung benötigt einen Namen")
     String requirementName;
 
     @ManyToOne

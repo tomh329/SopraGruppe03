@@ -22,7 +22,7 @@ public class User {
     @NotBlank(message = "Das Passwort darf nicht nur Leerzeichen beinhalten")
     private String password;
 
-    @NotNull
+    @NotNull(message = "Dem Benutzer muss eine Rolle zugewiesen werden.")
     @ManyToOne()
     @JoinColumn(name = "FK_USERROLE", insertable = false, updatable = false)
     private Role role;
