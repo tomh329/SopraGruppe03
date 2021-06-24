@@ -4,6 +4,10 @@ import jdk.jfr.Enabled;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -14,11 +18,20 @@ public class Component {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int componentId;
 
+    @NotBlank(message = "Die Komponente braucht einen Namen.")
     private String componentName;
+
+    @PositiveOrZero(message = "Die Priorität darf nicht negativ sein.")
+    @NotNull(message = "Einer Komponente muss eine Priorität zugeordnet werden.")
     private int priority;
+
     private String lastAttack;
+
+    @Positive(message = "Eine Komponente muss mindestens einmal vorkommen.")
+    @javax.validation.constraints.NotNull
     private int occurrence;
 
+    @NotNull(message = "Eine Komponente muss einen Prozess zugeordnet sein." )
     @ManyToOne
     @JoinColumn(name = "process_id")
     private Process process;

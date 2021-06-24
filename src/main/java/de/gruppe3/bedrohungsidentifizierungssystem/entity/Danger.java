@@ -1,6 +1,8 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
@@ -10,7 +12,10 @@ public class Danger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dangerID;
+    @NotBlank(message = "Eine Gefahr braucht einen Gefahrenname.")
     private String dangerName;
+
+    @NotNull(message = "Der Gefahr muss ein Gefahrenlevel zugeordnet werden.")
     private Enum<Severity> dangerLevel;
 
     @ManyToOne

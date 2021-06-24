@@ -5,6 +5,10 @@ import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.*;
 
 
@@ -15,9 +19,13 @@ public class Process {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int processId;
+    @NotBlank(message = "Der Prozess braucht einen Namen.")
     private String processName;
+    @PositiveOrZero(message = "Das Sicherheitslevel darf nicht negativ sein.")
+    @NotNull(message = "Der Prozess benötigt ein Sicherheitslevel.")
     private int protectionLevel;
 
+    @NotEmpty(message = "Ein Prozess muss mindestens aus einer Komponente bestehen.")
     @OneToMany(targetEntity = Component.class, mappedBy = "process")
     private List<Component> components;
 
