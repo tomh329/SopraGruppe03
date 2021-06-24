@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 public class Danger {
@@ -9,16 +8,16 @@ public class Danger {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int dangerID;
+    private int dangerId;
     private String dangerName;
-    private Enum<Severity> dangerLevel;
+    private int dangerLevel;
 
     @ManyToOne
     @JoinColumn(name = "requirement_id")
     private Requirement requirement;
 
 
-    public Danger(String dangerName, Enum<Severity> dangerLevel) {
+    public Danger(String dangerName, int dangerLevel) {
         this.dangerName = dangerName;
         this.dangerLevel = dangerLevel;
     }
@@ -27,12 +26,12 @@ public class Danger {
 
     }
 
-    public int getDangerID() {
-        return dangerID;
+    public int getDangerId() {
+        return dangerId;
     }
 
-    public void setDangerID(int dangerID) {
-        this.dangerID = dangerID;
+    public void setDangerId(int dangerID) {
+        this.dangerId = dangerID;
     }
 
     public String getDangerName() {
@@ -43,11 +42,11 @@ public class Danger {
         this.dangerName = dangerName;
     }
 
-    public Enum<Severity> getDangerLevel() {
+    public int getDangerLevel() {
         return dangerLevel;
     }
 
-    public void setDangerLevel(Enum<Severity> dangerLevel) {
+    public void setDangerLevel(int dangerLevel) {
         this.dangerLevel = dangerLevel;
     }
 

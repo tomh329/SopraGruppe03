@@ -1,5 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class RequirementService {
     public List<Requirement> findAllRequirements() {
 
         return requirementRepository.findAll();
+    }
+
+
+    public Requirement findRequirementWithId(Integer requirementId) {
+        return requirementRepository.findByRequirementId(requirementId);
     }
 }

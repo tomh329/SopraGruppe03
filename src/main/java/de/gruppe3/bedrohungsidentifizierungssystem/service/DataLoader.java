@@ -57,7 +57,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         Requirement testReq1 = new Requirement("testReq1");
 
-        Danger testDanger1 = new Danger("testDanger1", Severity.THREE);
+        Danger testDanger1 = new Danger("testDanger1", 3);
 
 
         /*
