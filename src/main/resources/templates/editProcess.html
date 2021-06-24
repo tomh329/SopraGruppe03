@@ -61,10 +61,10 @@
 
         <h3>Einen Prozess bearbeiten</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-            <form th:action="@{/editProcess}" method="post" >
+            <form th:action="@{/editProcess/{path}(path=${editProcessId.processId})}" method="post" >
                 <p>Name: <input name="processName" type="text" th:value="${editProcessId.getProcessName()}"/></p>
                 <p>Level: <input name="protectionLevel" type="text" th:value="${editProcessId.getProtectionLevel()}"/></p>
-                <form>
+                <p>
                     <label>ComponentId:</label>
                     <select class="selectComponent">
                         <option th:each="component : ${editProcessId.getComponents()}"
@@ -72,7 +72,7 @@
                                 th:text="${component.getComponentId()}">
                         </option>
                     </select>
-                </form>
+                </p>
                 <p><input type="submit" value="Prozess speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>

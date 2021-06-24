@@ -24,19 +24,12 @@ public class EditProcessController {
     @Autowired
     ComponentRepository componentRepository;
 
-    @PostMapping("/editProcess")
-    public String create(@RequestParam (name = "processId") int processId,
-                         @RequestParam(name = "processName") String processName,
-                         @RequestParam (name = "protectionLevel") int protectionLevel,
-                         @RequestParam (name = "componentId") int componentId){
-
-        processService.updateProcess(processId, processName, protectionLevel, componentId);
-
-        System.out.println(processName);
-        System.out.println(protectionLevel);
-        System.out.println(componentId);
+    @PostMapping("/editProcess/{processId}")
+    public String updateProcess(@PathVariable String processId,
+                                @RequestParam (name = "processName", required = false) String processName,
+                                @RequestParam (name = "protectionLevel", defaultValue = "0") int protectionLevel) {
+        processService.updateProcess(Integer.parseInt(processId), processName, protectionLevel);
 
         return "redirect:/process";
     }
-
 }

@@ -7,7 +7,6 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -19,20 +18,17 @@ public class ProcessService {
     private ComponentRepository componentRepository;
 
 
-    public Process updateProcess(int processId, String processName, int protectionLevel, int componentId) {
+    public void updateProcess(int processId, String processName, int protectionLevel) {
 
-        Process process = processRepository.findByProcessId(processId);
-        process.setProcessName(processName);
-        process.setProtectionLevel(protectionLevel);
-        List<Component> compList = componentRepository.findAll();
-        for (Component component : compList) {
+        List<Process> processList = processRepository.findAll();
 
-            if (componentId == component.getComponentId()) {
-
-                process.addComponent(component);
+        for(Process process : processList){
+            if(processId == process.getProcessId()){
+                process.setProcessName(processName);
+                process.setProtectionLevel(protectionLevel);
+                processRepository.save(process);
             }
         }
-        return processRepository.save(process);
     }
 
 
