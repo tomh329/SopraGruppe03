@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,13 @@ public class ProcessController {
         return "process";
     }
 
+    @PostMapping("/deleteProcess/{processId}")
+    public String deleteProcess(@PathVariable String processId) {
+        System.out.println(processId);
+        //Insert Code to delete here
+        return "redirect:/process";
+    }
+
     @PostMapping("/createProcessButton")
     public String create(){
         return "redirect:/createProcess";
@@ -31,4 +39,11 @@ public class ProcessController {
     public String add(){
         return "redirect:/addComponent";
     }
+
+    @PostMapping({"/process/{processId}"})
+    public String showEditProcess(Model model, @PathVariable String processId) {
+        model.addAttribute("editProcessId", processService.findProcessWithId(Integer.parseInt(processId)));
+        return "createProcess";
+    }
+
 }
