@@ -24,6 +24,11 @@ public class ProcessController {
 
     @PostMapping("/createProcessButton")
     public String create(){
-        return "redirect:/editProcess";
+        return "redirect:/createProcess";
+    }
+
+    @PostMapping("/addComponentButton")
+    public String add(){
+        return "redirect:/addComponent";
     }
 }

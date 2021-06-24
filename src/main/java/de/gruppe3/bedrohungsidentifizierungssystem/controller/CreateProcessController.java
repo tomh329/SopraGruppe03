@@ -4,18 +4,17 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepositor
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class EditProcessController {
+public class CreateProcessController {
 
-    @GetMapping("/editProcess")
-    public String showEditProcess() {
+    @GetMapping("/createProcess")
+    public String showCreateProcess() {
 
-        return "editProcess";
+        return "createProcess";
     }
 
     @Autowired
@@ -34,6 +33,6 @@ public class EditProcessController {
         System.out.println(protectionLevel);
         System.out.println(componentId);
 
-        return "dashboard";
+        return "redirect:/process";
     }
 }

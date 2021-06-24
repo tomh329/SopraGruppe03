@@ -56,6 +56,10 @@
             <button th:type="submit" class="btn btn-primary" > Neuen Prozess erstellen
             </button>
         </form>
+        <form th:action="@{/addComponentButton}" method="post" >
+            <button th:type="submit" class="btn btn-primary" > Komponent hinzufügen
+            </button>
+        </form>
         <div class="processTable">
             <table class="table">
                 <thead class="thead-theme">
