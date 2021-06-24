@@ -16,7 +16,7 @@ public class Role {
 
 
 
-    @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "role")
     private List<User> user;
 
     public void setUser(List<User> user){
