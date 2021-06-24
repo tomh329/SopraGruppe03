@@ -29,7 +29,7 @@
                         Dropdown
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:action="@{/process}" methods="get">Prozess</a>
+                        <a class="dropdown-item" th:href="@{/process}">Prozess</a>
                         <a class="dropdown-item" href="#">Komponenten</a>
                         <a class="dropdown-item" href="#">Anforderungen</a>
                         <a class="dropdown-item" href="#">Gefahren</a>
@@ -43,5 +43,17 @@
     <h1>Dashboard</h1>
     <p>Hier könnte Ihre Werbung stehen.</p>
     <p>Und hier kommen später Statistiken oder ähnliches hin.</p>
+
+
+    <form th:action="@{/create}" method="post" >
+        <p>Name: <input name="processName" type="text" /></p>
+        <p>Level: <input name="protectionLevel" type="text" /></p>
+        <p>ComponentId: <input name="componentId" type="text" /></p>
+        <p><input type="submit" value="Prozess erstellen" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+
+
+
 </body>
 </html>

@@ -1,20 +1,21 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Scanner;
+
 
 @Service
 public class ProcessService {
 
     @Autowired
-    static Scanner sc = new Scanner(System.in);
-
-    @Autowired
     private ProcessRepository processRepository;
+    @Autowired
+    private ComponentRepository componentRepository;
 
     public Process saveProcess(Process process) {
 
@@ -22,23 +23,23 @@ public class ProcessService {
     }
 
 
-//    public Process createProcess(){
-//
-//        System.out.println("Geben Sie den Namen ein: ");
-//        String name = sc.nextLine();
-//        System.out.println("Geben Sie die Gefahrenstufe ein: ");
-//        int protectionLevel = sc.nextInt();
-//
-//        Process process = new Process(name, protectionLevel);
-//
-//        return processRepository.save(process);
-//    }
 
+    public Process createProcess(String processName, int protectionLevel, int componentId){
 
-    public Process createProcess(String processName, int protectionLevel){
         Process process = new Process(processName, protectionLevel);
+        List<Component> compList = componentRepository.findAll();
+
+        for(Component component : compList){
+
+            if (componentId == component.getComponentId()) {
+
+                process.addComponent(component);
+            }
+        }
+
         return processRepository.save(process);
     }
+
 
     public void deleteProcess(Process process){
 
