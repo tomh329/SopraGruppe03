@@ -76,7 +76,10 @@
                         <td th:text="${process.processId}" />
                         <td th:text="${process.processName}" />
                         <td th:text="${process.protectionLevel}" />
-                        <td> Hier kommen die Buttons rein. </td>
+                        <td> <form th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post" >
+                            <button th:type="submit" class="btn btn-primary" style="background: red"> Delete
+                            </button>
+                        </form> </td>
 
                     </tr>
                 </tbody>
