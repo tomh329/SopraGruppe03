@@ -35,17 +35,29 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         // Initialisieren Sie Beispielobjekte und speichern Sie diese über Ihre Services
 
-        //creation of Role admin
+        //creation of role admin
         Role adminRole = new Role();
         adminRole.setRole("ADMIN");
-        List<User> adminUsers = new LinkedList<>();
-        adminRole.setUser(adminUsers);
+        List<User> admins = new LinkedList<>();
+        adminRole.setUser(admins);
         roleService.saveRole(adminRole);
-        //creation of Role Employee
+        //creation of role IT security officer
+        Role itSecurityOfficerRole = new Role();
+        itSecurityOfficerRole.setRole("IT_SECURITY_OFFICER");
+        List<User> itSecurityOfficers = new LinkedList<>();
+        adminRole.setUser(itSecurityOfficers);
+        roleService.saveRole(itSecurityOfficerRole);
+        //creation of role manager
+        Role managerRole = new Role();
+        managerRole.setRole("MANAGER");
+        List<User> managers = new LinkedList<>();
+        managerRole.setUser(managers);
+        roleService.saveRole(managerRole);
+        //creation of role employee
         Role employeeRole = new Role();
         employeeRole.setRole("EMPLOYEE");
-        List<User> employeeUsers = new LinkedList<>();
-        employeeRole.setUser(employeeUsers);
+        List<User> employees = new LinkedList<>();
+        employeeRole.setUser(employees);
         roleService.saveRole(employeeRole);
 
         //Creation of user Max
