@@ -50,6 +50,8 @@
             </div>
         </nav>
 
+
+
         <h2>Prozesstabelle</h2>
         <!-- Prozesstabelle -->
         <form th:action="@{/createProcessButton}" method="post" >
@@ -68,11 +70,10 @@
                 </thead>
                 <tbody>
                     <tr th:each="process : ${processes}">
-
                         <td th:text="${process.processId}" />
                         <td th:text="${process.processName}" />
                         <td th:text="${process.protectionLevel}" />
-                        <td> <form th:action="@{/process/{processId}}" method="post" >
+                        <td> <form th:action="@{/process/{path}(path=${process.processId})}" method="post" >
                             <button th:type="submit" class="btn btn-primary" > Edit
                             </button>
                         </form> </td>

@@ -28,9 +28,9 @@ public class ProcessController {
         return "redirect:/editProcess";
     }
 
-    @GetMapping({"/process/{processId}"})
-    public String showEditProcess(Model model, @PathVariable Integer processId) {
-        model.addAttribute("editProcessId", processService.findProcessWithId(processId));
+    @PostMapping({"/process/{processId}"})
+    public String showEditProcess(Model model, @PathVariable String processId) {
+        model.addAttribute("editProcessId", processService.findProcessWithId(Integer.parseInt(processId)));
         return "editProcess";
     }
 
