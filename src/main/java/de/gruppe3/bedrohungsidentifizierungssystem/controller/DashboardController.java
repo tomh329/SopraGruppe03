@@ -17,7 +17,9 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
-    @PostMapping("/dashboard")
+
+
+    @GetMapping("/dashboard")
     public String showDashboard() {
 
 

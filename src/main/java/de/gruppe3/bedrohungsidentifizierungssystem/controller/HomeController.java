@@ -24,7 +24,7 @@ public class HomeController {
 
     @PostMapping("/login")
     public String login(){
-        return "dashboard";
+        return "redirect:/dashboard";
 
     }
 
