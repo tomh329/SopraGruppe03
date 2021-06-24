@@ -32,6 +32,10 @@ public class DashboardController {
     }
 
 
+    @PostMapping("/component")
+    public String navigateToComponent(){
+        return "redirect:/component";
+    }
 
 
 
