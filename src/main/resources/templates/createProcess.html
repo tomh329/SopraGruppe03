@@ -43,9 +43,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" th:href="@{/process}">Prozess</a>
-                            <a class="dropdown-item" href="#">Komponenten</a>
-                            <a class="dropdown-item" href="#">Anforderungen</a>
-                            <a class="dropdown-item" href="#">Gefahren</a>
+                            <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
+                            <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
+                            <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
                             <a class="dropdown-item" href="#">Maßnahmen</a>
                             <a class="dropdown-item" href="#">Benutzer</a>
                         </div>
@@ -55,7 +55,7 @@
         </nav>
 
 
-        <h3>Einen Prozess bearbeiten</h3>
+        <h3>Einen Prozess erstellen</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
             <form th:action="@{/createProcess}" method="post" >
                 <p>Name: <input name="processName" type="text" /></p>
