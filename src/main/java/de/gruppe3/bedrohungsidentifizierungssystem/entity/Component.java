@@ -52,6 +52,38 @@ public class Component {
         this.componentId = componentId;
     }
 
+    public String getComponentName() {
+        return componentName;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public String getLastAttack() {
+        return lastAttack;
+    }
+
+    public void setLastAttack(String lastAttack) {
+        this.lastAttack = lastAttack;
+    }
+
+    public int getOccurrence() {
+        return occurrence;
+    }
+
+    public void setOccurrence(int occurrence) {
+        this.occurrence = occurrence;
+    }
+
     public Process getProcess() {
         return process;
     }
