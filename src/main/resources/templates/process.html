@@ -50,12 +50,14 @@
             </div>
         </nav>
 
-
-
         <h2>Prozesstabelle</h2>
         <!-- Prozesstabelle -->
         <form th:action="@{/createProcessButton}" method="post" >
             <button th:type="submit" class="btn btn-primary" > Neuen Prozess erstellen
+            </button>
+        </form>
+        <form th:action="@{/addComponentButton}" method="post" >
+            <button th:type="submit" class="btn btn-primary" > Komponent hinzufügen
             </button>
         </form>
         <div class="processTable">
@@ -74,7 +76,11 @@
                         <td th:text="${process.processName}" />
                         <td th:text="${process.protectionLevel}" />
                         <td> <form th:action="@{/process/{path}(path=${process.processId})}" method="post" >
-                            <button th:type="submit" class="btn btn-primary" > Edit
+                        <button th:type="submit" class="btn btn-primary" > Edit
+                        </button>
+                    </form> </td>
+                        <td> <form th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post" >
+                            <button th:type="submit" class="btn btn-primary" style="background: red"> Delete
                             </button>
                         </form> </td>
 

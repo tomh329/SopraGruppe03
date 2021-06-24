@@ -23,9 +23,21 @@ public class ProcessController {
         return "process";
     }
 
+    @PostMapping("/deleteProcess/{processId}")
+    public String deleteProcess(@PathVariable String processId) {
+        System.out.println(processId);
+        //Insert Code to delete here
+        return "redirect:/process";
+    }
+
     @PostMapping("/createProcessButton")
     public String create(){
-        return "redirect:/editProcess";
+        return "redirect:/createProcess";
+    }
+
+    @PostMapping("/addComponentButton")
+    public String add(){
+        return "redirect:/addComponent";
     }
 
     @PostMapping({"/process/{processId}"})
