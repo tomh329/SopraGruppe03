@@ -26,26 +26,14 @@ public class DashboardController {
         return "dashboard";
     }
 
-
-
-    @Autowired
-    ProcessService processService;
-    @Autowired
-    ComponentRepository componentRepository;
-
-    @PostMapping("/create")
-    public String create(@RequestParam(name = "processName") String processName,
-                         @RequestParam (name = "protectionLevel") int protectionLevel,
-                         @RequestParam (name = "componentId") int componentId){
-
-        processService.createProcess(processName, protectionLevel, componentId);
-
-        System.out.println(processName);
-        System.out.println(protectionLevel);
-        System.out.println(componentId);
-
-        return "dashboard";
+    @PostMapping("/process")
+    public String navigateToProcess(){
+        return "redirect:/process";
     }
+
+
+
+
 
 
 }
