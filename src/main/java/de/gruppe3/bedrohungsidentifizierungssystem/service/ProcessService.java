@@ -42,6 +42,17 @@ public class ProcessService {
     }
 
 
+    public void deleteProcess(int processId){
+
+        List<Process> processList = processRepository.findAll();
+
+        for(Process process : processList){
+            if(processId == process.getProcessId()){
+                processRepository.delete(process);
+            }
+        }
+    }
+
     public void deleteProcess(Process process){
 
         processRepository.delete(process);
