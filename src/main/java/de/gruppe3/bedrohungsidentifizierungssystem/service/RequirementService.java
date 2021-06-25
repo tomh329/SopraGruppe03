@@ -28,6 +28,19 @@ public class RequirementService {
         requirementRepository.delete(requirement);
     }
 
+    public boolean deleteRequirement(int requirementId){
+
+        List<Requirement> requirementList = requirementRepository.findAll();
+
+        for(Requirement requirement : requirementList){
+            if(requirementId == requirement.getRequirementId()){
+                requirementRepository.delete(requirement);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Requirement> findAllRequirements() {
 
         return requirementRepository.findAll();

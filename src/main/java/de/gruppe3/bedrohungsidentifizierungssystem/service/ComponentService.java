@@ -68,6 +68,19 @@ public class ComponentService {
         componentRepository.delete(component);
     }
 
+    public boolean deleteComponent(int componentId){
+
+        List<Component> componentList = componentRepository.findAll();
+
+        for(Component component : componentList){
+            if(componentId == component.getComponentId()){
+                componentRepository.delete(component);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public Component findComponentWithId(Integer componentId) {
         return componentRepository.findByComponentId(componentId);

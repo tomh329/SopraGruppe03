@@ -40,4 +40,12 @@ public class ComponentController {
         return "editComponent";
     }
 
+    @PostMapping("/deleteComponent/{componentId}")
+    public String deleteProcess(@PathVariable String componentId) {
+        System.out.println(
+                componentService.deleteComponent(Integer.parseInt(componentId))
+        );
+        return "redirect:/component";
+    }
+
 }
