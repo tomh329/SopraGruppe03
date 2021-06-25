@@ -36,7 +36,7 @@ public class ComponentController {
 
     @PostMapping({"/component/{componentId}"})
     public String showEditComponent(Model model, @PathVariable String componentId) {
-        model.addAttribute("editComponentId", componentService.findComponentWithId(Integer.parseInt(componentId)));
+        model.addAttribute("editComponent", componentService.findComponentWithId(Integer.parseInt(componentId)));
         return "editComponent";
     }
 
