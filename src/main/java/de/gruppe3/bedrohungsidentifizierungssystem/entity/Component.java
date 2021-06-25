@@ -1,15 +1,11 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
-import jdk.jfr.Enabled;
-import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 
 @Entity
 public class Component {
@@ -31,7 +27,7 @@ public class Component {
     @NotNull(message = "Vorkommen muss ein Wert zugewiesen werden.")
     private int occurrence;
 
-    @NotNull(message = "Eine Komponente muss einem Prozess zugeordnet sein." )
+    @NotNull(message = "Eine Komponente muss einem Prozess zugeordnet sein.")
     @ManyToOne
     @JoinColumn(name = "process_id")
     private Process process;
@@ -41,7 +37,6 @@ public class Component {
 
     @ManyToMany
     public List<User> users;
-
 
 
     public Component(String componentName, int priority, String lastAttack, int occurrence) {
@@ -73,31 +68,8 @@ public class Component {
         this.process = process;
     }
 
-
-    public void addRequirement(Requirement requirement){
+    public void addRequirement(Requirement requirement) {
         requirement.setComponent(this);
     }
-
-
-/*
-        used to create a new component without requirements
-        needs html connection
-         */
-//    public void createComponent() {
-//        System.out.println("Geben Sie den Namen ein: ");
-//        String name = sc.nextLine();
-//        System.out.println("Geben Sie die Priorität ein: ");
-//        int priority = sc.nextInt();
-////        Date lastAttack = new Date();
-//        System.out.println("Geben Sie den letzten Angriff an: ");
-//        String lastAttack = sc.nextLine();
-//        System.out.println("Geben Sie das Aufkommen an: ");
-//        int occurrence = sc.nextInt();
-//
-//        Component component = new Component(name, priority, lastAttack, occurrence);
-//
-//        System.out.println("Komponente erstellt");
-//        ComponentList.componentList.add(component);
-//    }
 
 }

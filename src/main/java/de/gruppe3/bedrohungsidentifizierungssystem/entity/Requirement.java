@@ -23,7 +23,6 @@ public class Requirement {
     private List<Danger> dangers;
 
 
-
     public Requirement(String requirementName) {
 
         this.requirementName = requirementName;
@@ -58,7 +57,7 @@ public class Requirement {
         this.component = component;
     }
 
-    public void addDanger(Danger danger){
+    public void addDanger(Danger danger) {
         danger.setRequirement(this);
     }
 }

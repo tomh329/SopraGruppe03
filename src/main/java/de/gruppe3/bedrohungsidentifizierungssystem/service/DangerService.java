@@ -12,7 +12,6 @@ import java.util.Scanner;
 @Service
 public class DangerService {
 
-
     @Autowired
     static Scanner sc = new Scanner(System.in);
 
@@ -26,18 +25,16 @@ public class DangerService {
     }
 
 
-    public Danger createDanger(String dangerName, Enum<Severity> dangerLevel){
+    public Danger createDanger(String dangerName, Enum<Severity> dangerLevel) {
         Danger danger = new Danger(dangerName, dangerLevel);
         return dangerRepository.save(danger);
     }
 
-    public void deleteDanger(Danger danger){
+    public void deleteDanger(Danger danger) {
         dangerRepository.delete(danger);
     }
 
-
     public List<Danger> findAllDangers() {
-
         return dangerRepository.findAll();
     }
 

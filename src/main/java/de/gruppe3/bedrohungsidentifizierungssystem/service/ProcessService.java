@@ -4,6 +4,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,35 +17,21 @@ public class ProcessService {
     @Autowired
     private ProcessRepository processRepository;
 
+
     public Process saveProcess(Process process) {
 
         return processRepository.save(process);
     }
 
-
-//    public Process createProcess(){
-//
-//        System.out.println("Geben Sie den Namen ein: ");
-//        String name = sc.nextLine();
-//        System.out.println("Geben Sie die Gefahrenstufe ein: ");
-//        int protectionLevel = sc.nextInt();
-//
-//        Process process = new Process(name, protectionLevel);
-//
-//        return processRepository.save(process);
-//    }
-
-
-    public Process createProcess(String processName, int protectionLevel){
+    public Process createProcess(String processName, int protectionLevel) {
         Process process = new Process(processName, protectionLevel);
         return processRepository.save(process);
     }
 
-    public void deleteProcess(Process process){
+    public void deleteProcess(Process process) {
 
         processRepository.delete(process);
     }
-
 
     public List<Process> findAllProcesses() {
 
