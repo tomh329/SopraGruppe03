@@ -1,6 +1,7 @@
 # SopraGruppe03
 Bedrohungsidentifizierungssystem
 
+**Bitte den Branch Abgabe bewerten**
 
 **Anleitung zum Clonen des RP**
 1. Bitte entferne alle voherigen Versionen aus Git Desktop und IntelliJ
