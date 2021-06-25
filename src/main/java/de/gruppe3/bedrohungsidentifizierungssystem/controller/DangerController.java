@@ -24,8 +24,9 @@ public class DangerController {
 
     @PostMapping("/deleteDanger/{dangerId}")
     public String deleteProcess(@PathVariable String dangerId) {
-        System.out.println(dangerId);
-        //Insert Code to delete here
+        System.out.println(
+                dangerService.deleteDanger(Integer.parseInt(dangerId))
+        );
         return "redirect:/danger";
     }
 

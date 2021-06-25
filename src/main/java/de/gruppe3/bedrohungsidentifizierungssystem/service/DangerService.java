@@ -36,6 +36,19 @@ public class DangerService {
         dangerRepository.delete(danger);
     }
 
+    public boolean deleteDanger(int dangerId){
+
+        List<Danger> dangerList = dangerRepository.findAll();
+
+        for(Danger danger : dangerList){
+            if(dangerId == danger.getDangerId()){
+                dangerRepository.delete(danger);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public List<Danger> findAllDangers() {
 

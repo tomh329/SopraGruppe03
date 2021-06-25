@@ -33,6 +33,16 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public boolean deleteUser(String userName){
+
+        User userDelete = findUserWithName(userName);
+        if(!userDelete.equals(null)) {
+            userRepository.delete(userDelete);
+            return true;
+        }
+        return false;
+    }
+
     public void updateUser(String username, String userRole) {
 
         List<User> userList = userRepository.findAll();
