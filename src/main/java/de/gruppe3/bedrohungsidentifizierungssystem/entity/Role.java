@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 public class Role {
     @Id
+    private int roleId;
     private String role;
 
     public void setRole(String role) {
