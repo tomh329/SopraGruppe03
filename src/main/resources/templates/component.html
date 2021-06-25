@@ -53,10 +53,10 @@
   </div>
 </nav>
 
-<h2>Componententabelle</h2>
+<h2>Komponententabelle</h2>
 <!-- Komponententabelle -->
 <form th:action="@{/createComponentButton}" method="post" >
-  <button th:type="submit" class="btn btn-primary" > Neuen Component erstellen
+  <button th:type="submit" class="btn btn-primary" > Neue Komponente erstellen
   </button>
 </form>
 <form th:action="@{/addRequirementButton}" method="post" >
@@ -67,12 +67,12 @@
   <table class="table">
     <thead class="thead-theme">
     <tr>
-      <th scope="col">Component ID</th>
-      <th scope="col">Component Name</th>
-      <th scope="col">Last Attack</th>
-      <th scope="col">Occurrence</th>
-      <th scope="col">Priority</th>
-      <th scope="col">Process ID</th>
+      <th scope="col">Komponenten ID</th>
+      <th scope="col">Komponententitel</th>
+      <th scope="col">Letzte Attack</th>
+      <th scope="col">Aufkommen</th>
+      <th scope="col">Priorität</th>
+      <th scope="col">Prozess ID</th>
       <th scope="col">Aktionen</th>
     </tr>
     </thead>
@@ -86,11 +86,11 @@
       <td th:text="${component.priority}" />
 <!--      <td th:text="${component.getProcess().processId}" />-->
       <td> <form th:action="@{/component/{path}(path=${component.componentId})}" method="post" >
-      <button th:type="submit" class="btn btn-primary" > Edit
+      <button th:type="submit" class="btn btn-primary" > Bearbeiten
       </button>
     </form> </td>
       <td> <form th:action="@{/deleteComponent/{path}(path=${component.componentId})}" method="post" >
-        <button th:type="submit" class="btn btn-primary" style="background: red"> Delete
+        <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
         </button>
       </form> </td>
 

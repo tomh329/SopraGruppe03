@@ -45,19 +45,14 @@ public class UserService {
 
     public void updateUser(String username, String firstname, String lastname, String userRole) {
 
-        List<User> userList = userRepository.findAll();
+        User editedUser = findUserWithName(username);
+        editedUser.setFirstname(firstname);
+        editedUser.setLastname(lastname);
 
-        for(User user : userList){
-            if(username == user.getUsername()){
-                user.setFirstname(firstname);
-                user.setLastname(lastname);
-                Role role = new Role();
-                role.setRole(userRole);
-                user.setRole(role);
+        Role editedUserRole = editedUser.getRole();
+        editedUserRole.setRole(userRole);
 
-                userRepository.save(user);
-                roleRepository.save(role);
-            }
-        }
+        userRepository.save(editedUser);
+
     }
 }
