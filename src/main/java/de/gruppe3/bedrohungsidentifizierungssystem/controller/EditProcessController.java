@@ -1,5 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class EditProcessController {
 
     @PostMapping("/editProcess/{processId}")
     public String updateProcess(@PathVariable String processId,
-                                @RequestParam (name = "processName", required = false) String processName,
-                                @RequestParam (name = "protectionLevel", defaultValue = "0") int protectionLevel) {
+                                @RequestParam (name = "processName") String processName,
+                                @RequestParam (name = "protectionLevel") int protectionLevel) {
         processService.updateProcess(Integer.parseInt(processId), processName, protectionLevel);
 
         return "redirect:/process";
