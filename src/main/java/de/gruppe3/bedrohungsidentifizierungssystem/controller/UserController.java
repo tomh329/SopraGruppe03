@@ -36,5 +36,15 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @PostMapping("/createUserButton")
+    public String create(){
+        return "redirect:/createUser";
+    }
+
+//    @PostMapping("/addComponentButton")
+//    public String add(){
+//
+//        return "redirect:/addComponent";
+//    }
 
 }

@@ -33,6 +33,28 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+
+
+    public User createUser(String username, String password, String firstname, String lastname, int roleId){
+
+
+        User user = new User(username, password, firstname, lastname);
+
+        List<Role> roleList = roleRepository.findAll();
+
+        for(Role role : roleList){
+
+            if (roleId == role.getRoleId()) {
+
+                user.setRole(role);
+            }
+        }
+
+        return userRepository.save(user);
+    }
+
+
+
     public boolean deleteUser(String userName){
 
         User userDelete = findUserWithName(userName);

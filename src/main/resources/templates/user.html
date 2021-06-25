@@ -55,6 +55,14 @@
 
         <h2>Benutzertabelle</h2>
         <!-- Benutzertabelle -->
+        <form th:action="@{/createUserButton}" method="post" >
+            <button th:type="submit" class="btn btn-primary" > Neuen Benutzer erstellen
+            </button>
+        </form>
+        <form th:action="@{/addComponentButton}" method="post" >
+            <button th:type="submit" class="btn btn-primary" > Komponent hinzufügen
+            </button>
+        </form>
         <div class="userTable">
             <table class="table">
                 <thead class="thead-theme">
