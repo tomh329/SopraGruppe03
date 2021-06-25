@@ -22,6 +22,9 @@
         .edit-delete {
             display: inline;
         }
+        .createButton {
+            margin: 10px;
+        }
     </style>
 </head>
 
@@ -61,11 +64,11 @@
 
 <h2>Benutzertabelle</h2>
 <!-- Benutzertabelle -->
-<form th:action="@{/createUserButton}" method="post">
+<form class="createButton" th:action="@{/createUserButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Neuen Benutzer erstellen
     </button>
 </form>
-<form th:action="@{/addUserToComponentButton}" method="post">
+<form class="createButton" th:action="@{/addUserToComponentButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Benutzer Komponent zuweisen
     </button>
 </form>
