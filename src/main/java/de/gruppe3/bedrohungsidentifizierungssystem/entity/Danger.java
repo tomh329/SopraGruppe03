@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 public class Danger {
 
@@ -15,15 +16,17 @@ public class Danger {
     @NotBlank(message = "Eine Gefahr braucht einen Gefahrenname.")
     private String dangerName;
 
-    @NotNull(message = "Der Gefahr muss ein Gefahrenlevel zugeordnet werden.")
-    private Enum<Severity> dangerLevel;
+  @NotNull(message = "Die Gefahr darf nicht Null sein.")
+  @PositiveOrZero(message = "Der Gefahr muss positiv sein.")
+    private int dangerLevel;
+
 
     @ManyToOne
     @JoinColumn(name = "requirement_id")
     private Requirement requirement;
 
 
-    public Danger(String dangerName, Enum<Severity> dangerLevel) {
+    public Danger(String dangerName, int dangerLevel) {
         this.dangerName = dangerName;
         this.dangerLevel = dangerLevel;
     }
@@ -37,8 +40,8 @@ public class Danger {
         return dangerID;
     }
 
-    public void setDangerID(int dangerID) {
-        this.dangerID = dangerID;
+    public void setDangerId(int dangerID) {
+        this.dangerId = dangerID;
     }
 
     public String getDangerName() {
@@ -49,11 +52,11 @@ public class Danger {
         this.dangerName = dangerName;
     }
 
-    public Enum<Severity> getDangerLevel() {
+    public int getDangerLevel() {
         return dangerLevel;
     }
 
-    public void setDangerLevel(Enum<Severity> dangerLevel) {
+    public void setDangerLevel(int dangerLevel) {
         this.dangerLevel = dangerLevel;
     }
 

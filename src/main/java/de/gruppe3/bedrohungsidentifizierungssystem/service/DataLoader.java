@@ -23,6 +23,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private ActionService actionService;
+
     /**
      * Diese Methode wird zum Aufsetzen von Testdaten für die Datenbank verwendet werden. Die Methode wird immer dann
      * ausgeführt, wenn der Spring Kontext initialisiert wurde, d.h. wenn Sie Ihren Server (neu-)starten.
@@ -81,5 +84,40 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         userPaule.setPassword("23456");
         userPaule.setRole(employeeRole);
         userService.saveUser(userPaule);
+
+
+        Process testProcess1 = new Process("Test1", 3);
+        Process testProcess2 = new Process("Test2", 1);
+        testProcess1.setProcessName("ÄnderungsTest");
+
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "Date", 5);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "Date", 3);
+
+        Requirement testReq1 = new Requirement("testReq1");
+
+        Danger testDanger1 = new Danger("testDanger1", 3);
+
+
+        /*
+        ether you start with a component and add that to a process you pick
+        or you start with a process and pick the component you want to add
+         */
+//        testComponent1.setProcess(testProcess1);
+//        testComponent2.setProcess(testProcess1);
+        testProcess1.addComponent(testComponent1);
+        testProcess1.addComponent(testComponent2);
+        testComponent1.addRequirement(testReq1);
+        testReq1.addDanger(testDanger1);
+
+        processService.saveProcess(testProcess1);
+        processService.saveProcess(testProcess2);
+        componentService.saveComponent(testComponent1);
+        componentService.saveComponent(testComponent2);
+        requirementService.saveRequirement(testReq1);
+        dangerService.saveDanger(testDanger1);
+
+    
     }
 }

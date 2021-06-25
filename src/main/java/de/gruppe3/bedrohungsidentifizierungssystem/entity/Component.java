@@ -1,5 +1,10 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+
+import jdk.jfr.Enabled;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -33,7 +38,7 @@ public class Component {
     private Process process;
 
     @OneToMany(targetEntity = Requirement.class, mappedBy = "component")
-    private static List<Requirement> requirements;
+    private List<Requirement> requirements;
 
     @ManyToMany
     public List<User> users;
@@ -60,6 +65,38 @@ public class Component {
         this.componentId = componentId;
     }
 
+    public String getComponentName() {
+        return componentName;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public String getLastAttack() {
+        return lastAttack;
+    }
+
+    public void setLastAttack(String lastAttack) {
+        this.lastAttack = lastAttack;
+    }
+
+    public int getOccurrence() {
+        return occurrence;
+    }
+
+    public void setOccurrence(int occurrence) {
+        this.occurrence = occurrence;
+    }
+
     public Process getProcess() {
         return process;
     }
@@ -68,8 +105,33 @@ public class Component {
         this.process = process;
     }
 
-    public void addRequirement(Requirement requirement) {
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user){
+        users.add(user);
+    }
+
+    public void removeUser(User user){
+        users.remove(user);
+    }
+
+    public void addRequirement(Requirement requirement){
         requirement.setComponent(this);
+    }
+
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
 }
