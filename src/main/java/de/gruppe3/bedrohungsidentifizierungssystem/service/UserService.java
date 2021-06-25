@@ -4,6 +4,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Role;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.RoleRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -41,6 +45,7 @@ public class UserService {
                 user.setRole(role);
 
                 userRepository.save(user);
+                roleRepository.save(role);
             }
         }
     }
