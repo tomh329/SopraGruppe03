@@ -28,10 +28,10 @@ public class Component {
     private String lastAttack;
 
     @Positive(message = "Eine Komponente muss mindestens einmal vorkommen.")
-    @javax.validation.constraints.NotNull
+    @NotNull(message = "Vorkommen muss ein Wert zugewiesen werden.")
     private int occurrence;
 
-    @NotNull(message = "Eine Komponente muss einen Prozess zugeordnet sein." )
+    @NotNull(message = "Eine Komponente muss einem Prozess zugeordnet sein." )
     @ManyToOne
     @JoinColumn(name = "process_id")
     private Process process;

@@ -21,6 +21,7 @@ public class Process {
     private int processId;
     @NotBlank(message = "Der Prozess braucht einen Namen.")
     private String processName;
+    //Should there be a maximum security level?
     @PositiveOrZero(message = "Das Sicherheitslevel darf nicht negativ sein.")
     @NotNull(message = "Der Prozess benötigt ein Sicherheitslevel.")
     private int protectionLevel;

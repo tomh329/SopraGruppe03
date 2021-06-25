@@ -14,6 +14,7 @@ import java.util.*;
 public class User {
 
     @Id
+    @NotBlank(message = "Der Username darf nicht nur Leerzeichen beinhalten.")
     private String username;
 
 
@@ -25,7 +26,6 @@ public class User {
     @ManyToOne()
     @JoinColumn(name = "FK_USERROLE", nullable = false)
     private Role role;
-
     @ManyToMany
     @JoinTable(
             name = "user_components",
