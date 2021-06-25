@@ -69,8 +69,8 @@
         <p name="username" type="text" th:text="${editUsersName.username}"/></p>
         <p>Vorname: <input name="firstname" type="text" th:value="${editUsersName.firstname}"/></p>
         <p>Nachname: <input name="lastname" type="text" th:value="${editUsersName.lastname}"/></p>
-        <p>Rolle: <input name="userRole" type="text" th:each="role : ${editUsersName.getRole()}"
-                         th:value="${role.getRole()}"/></p>
+        <p>Rolle:
+        <p name="roleName" type="text" th:text="${editUsersName.getRole().role}" /></p>
         <p>Komponenten ID:
         <p name="componentId" type="text" th:each="component : ${editUsersName.getComponents()}"
            th:text="${component.getComponentId()}"></p>

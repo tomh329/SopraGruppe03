@@ -82,14 +82,13 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(String username, String firstname, String lastname, String userRole) {
+    public void updateUser(String username, String firstname, String lastname) {
 
         User editedUser = findUserWithName(username);
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
 
         Role editedUserRole = editedUser.getRole();
-        editedUserRole.setRole(userRole);
 
         userRepository.save(editedUser);
 
