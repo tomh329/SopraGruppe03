@@ -14,9 +14,12 @@
   <title>Components</title>
 
   <style>
-    .processTable{
+    .componentTable{
       margin: 100px;
       text-align: center;
+    }
+    .edit-delete{
+      display: inline;
     }
   </style>
 </head>
@@ -89,11 +92,11 @@
           <span th:text="${process.getProcessId()}"></span>
         </p>
       </td>
-      <td> <form th:action="@{/component/{path}(path=${component.componentId})}" method="post" >
+      <td> <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post" >
       <button th:type="submit" class="btn btn-primary" > Bearbeiten
       </button>
-    </form> </td>
-      <td> <form th:action="@{/deleteComponent/{path}(path=${component.componentId})}" method="post" >
+    </form>
+      <form class="edit-delete" th:action="@{/deleteComponent/{path}(path=${component.componentId})}" method="post" >
         <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
         </button>
       </form> </td>

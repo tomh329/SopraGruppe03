@@ -18,6 +18,9 @@
             margin: 100px;
             text-align: center;
         }
+        .edit-delete{
+            display: inline;
+        }
         </style>
     </head>
 
@@ -84,11 +87,11 @@
                                 <span th:text="${component.getComponentId()}"></span>
                             </p>
                         </td>
-                        <td> <form th:action="@{/process/{path}(path=${process.processId})}" method="post" >
+                        <td> <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}" method="post" >
                         <button th:type="submit" class="btn btn-primary" > Bearbeiten
                         </button>
-                    </form> </td>
-                        <td> <form th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post" >
+                    </form>
+                        <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post" >
                             <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
                             </button>
                         </form> </td>
