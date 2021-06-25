@@ -21,6 +21,9 @@
     .edit-delete{
       display: inline;
     }
+    .createButtons{
+      margin: 10px;
+    }
   </style>
 </head>
 
@@ -58,11 +61,11 @@
 
 <h2>Anforderungstabelle</h2>
 
-<form th:action="@{/createRequirementButton}" method="post" >
+<form class="createButtons" th:action="@{/createRequirementButton}" method="post" >
   <button th:type="submit" class="btn btn-primary" > Neue Anforderung erstellen
   </button>
 </form>
-<form th:action="@{/addDangerButton}" method="post" >
+<form class="createButtons" th:action="@{/addDangerButton}" method="post" >
   <button th:type="submit" class="btn btn-primary" > Gefahr hinzufügen
   </button>
 </form>

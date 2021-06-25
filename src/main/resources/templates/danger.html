@@ -21,6 +21,9 @@
     .edit-delete{
       display: inline;
     }
+    .createButtons{
+      margin: 10px;
+    }
   </style>
 </head>
 
@@ -57,7 +60,7 @@
 </nav>
 
 <h2>Gefahrentabelle</h2>
-<form th:action="@{/createDangerButton}" method="post" >
+<form class="createButtons" th:action="@{/createDangerButton}" method="post" >
   <button th:type="submit" class="btn btn-primary" > Neue Gefahr erstellen
   </button>
 </form>

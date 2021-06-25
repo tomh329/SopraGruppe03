@@ -21,6 +21,9 @@
         .edit-delete{
             display: inline;
         }
+        .createButtons{
+            margin: 10px;
+        }
         </style>
     </head>
 
@@ -58,11 +61,11 @@
 
         <h2>Prozesstabelle</h2>
         <!-- Prozesstabelle -->
-        <form th:action="@{/createProcessButton}" method="post" >
+        <form class="createButtons" th:action="@{/createProcessButton}" method="post" >
             <button th:type="submit" class="btn btn-primary" > Neuen Prozess erstellen
             </button>
         </form>
-        <form th:action="@{/addComponentButton}" method="post" >
+        <form class="createButtons" th:action="@{/addComponentButton}" method="post" >
             <button th:type="submit" class="btn btn-primary" > Komponent hinzufügen
             </button>
         </form>
