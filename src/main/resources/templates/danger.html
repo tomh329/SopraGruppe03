@@ -74,8 +74,11 @@
       <td th:text="${danger.dangerId}" />
       <td th:text="${danger.dangerName}" />
       <td th:text="${danger.dangerLevel}" />
-      <td></td>
-<!--      <td th:text="${danger.getRequirement().requirementId}" />-->
+      <td>
+        <p th:each="requirement : ${danger.getRequirement()}">
+          <span th:text="${requirement.getRequirementId()}"></span>
+        </p>
+      </td>
       <td> <form th:action="@{/danger/{path}(path=${danger.dangerId})}" method="post" >
         <button th:type="submit" class="btn btn-primary" > Bearbeiten
         </button>

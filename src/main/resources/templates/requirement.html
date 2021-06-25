@@ -77,7 +77,11 @@
     <tr th:each="requirement : ${requirements}">
       <td th:text="${requirement.requirementId}" />
       <td th:text="${requirement.requirementName}" />
-<!--      <td th:text="${requirement.getComponent().componentId}" />-->
+      <td>
+        <p th:each="component : ${requirement.getComponent()}">
+          <span th:text="${component.getComponentId()}"></span>
+        </p>
+      </td>
       <td> <form th:action="@{/requirement/{path}(path=${requirement.requirementId})}" method="post" >
         <button th:type="submit" class="btn btn-primary" > Bearbeiten
         </button>
