@@ -38,14 +38,6 @@ public class Role {
         this.roleId = roleId;
     }
 
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
-
     public void addUser(User user){
 
         user.setRole(this);

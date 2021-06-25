@@ -30,7 +30,7 @@ public class Process {
     @NotNull(message = "Der Prozess benötigt ein Sicherheitslevel.")
     private int protectionLevel;
 
-    @NotEmpty(message = "Ein Prozess muss mindestens aus einer Komponente bestehen.")
+//    @NotEmpty(message = "Ein Prozess muss mindestens aus einer Komponente bestehen.")
     @OneToMany(targetEntity = Component.class, mappedBy = "process")
     private List<Component> components;
 

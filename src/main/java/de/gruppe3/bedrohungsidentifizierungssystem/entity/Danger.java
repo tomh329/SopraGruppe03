@@ -11,13 +11,13 @@ public class Danger {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int dangerID;
+    private int dangerId;
 
     @NotBlank(message = "Eine Gefahr braucht einen Gefahrenname.")
     private String dangerName;
 
   @NotNull(message = "Die Gefahr darf nicht Null sein.")
-  @PositiveOrZero(message = "Der Gefahr muss positiv sein.")
+//  @PositiveOrZero(message = "Der Gefahr muss positiv sein.")
     private int dangerLevel;
 
 
@@ -36,8 +36,8 @@ public class Danger {
     }
 
 
-    public int getDangerID() {
-        return dangerID;
+    public int getDangerId() {
+        return dangerId;
     }
 
     public void setDangerId(int dangerID) {

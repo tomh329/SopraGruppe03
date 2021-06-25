@@ -21,9 +21,8 @@ public class User {
     private String firstname;
     private String lastname;
 
-    @NotNull(message = "Dem Benutzer muss eine Rolle zugewiesen werden.")
-    @ManyToOne()
-
+//    @NotNull(message = "Dem Benutzer muss eine Rolle zugewiesen werden.")
+    @ManyToOne
     @JoinColumn(name = "roll_id", nullable = false)
     private Role role;
 
