@@ -26,7 +26,7 @@ public class Component {
     private Process process;
 
     @OneToMany(targetEntity = Requirement.class, mappedBy = "component")
-    private static List<Requirement> requirements;
+    private List<Requirement> requirements;
 
     @ManyToMany
     public List<User> users;
@@ -104,7 +104,7 @@ public class Component {
     }
 
     public void setRequirements(List<Requirement> requirements) {
-        Component.requirements = requirements;
+        this.requirements = requirements;
     }
 
     /*
