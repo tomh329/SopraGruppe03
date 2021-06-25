@@ -23,9 +23,8 @@ public class EditUserController {
     @PostMapping("/editUser/{username}")
     public String updateUser(@PathVariable String username,
                              @RequestParam(name = "firstname") String firstname,
-                             @RequestParam(name = "lastname") String lastname,
-                             @RequestParam(name = "userRole") String userRole) {
-        userService.updateUser(username, firstname, lastname, userRole);
+                             @RequestParam(name = "lastname") String lastname) {
+        userService.updateUser(username, firstname, lastname);
 
         return "redirect:/user";
     }

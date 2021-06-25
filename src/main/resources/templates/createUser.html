@@ -64,7 +64,12 @@
         <p>Passwort: <input name="password" type="text"/></p>
         <p>Vorname: <input name="firstname" type="text"/></p>
         <p>Nachname: <input name="lastname" type="text"/></p>
-        <p>Rollen ID: <input name="roleId" type="text"/></p>
+        <p>Rolle: <select name="roleId" type = "number">
+            <option value="1">Admin</option>
+            <option value="2">IT Security Officer</option>
+            <option value="3">Manager</option>
+            <option value="4">Employee</option>
+        </select></p>
         <p><input type="submit" value="Benutzer speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>
