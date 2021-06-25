@@ -28,10 +28,10 @@ public class UserController {
         return "editUser";
     }
 
-    @PostMapping("/deleteUser/{userName}")
-    public String deleteProcess(@PathVariable String userName) {
+    @PostMapping("/deleteUser/{username}")
+    public String deleteProcess(@PathVariable String username) {
         System.out.println(
-                userService.deleteUser(userName)
+                userService.deleteUser(username)
         );
         return "redirect:/user";
     }

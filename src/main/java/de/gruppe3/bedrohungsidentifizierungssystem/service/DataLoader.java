@@ -87,6 +87,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         User testAdmin = new User();
         testAdmin.setUsername("Max");
+        testAdmin.setFirstname("Maximilian");
+        testAdmin.setLastname("Mustermann");
         testAdmin.setPassword("1234");
         testAdmin.setRole(admin);
         testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
