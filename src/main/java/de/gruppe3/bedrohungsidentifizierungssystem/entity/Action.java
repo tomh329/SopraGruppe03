@@ -4,24 +4,29 @@ package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.Scanner;
-import java.util.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 
 @Entity
 public class Action {
 
-
     @Id
     @GeneratedValue
     private int actionId;
+
+    @NotBlank(message = "Die Maßnahme braucht einen Namen.")
     private String actionName;
-    private String actionDueDate;
+
+    @FutureOrPresent(message = "Das Datum darf nicht in der Vergangenheit liegen.")
+    private Date actionDueDate;
+
+    @NotBlank(message = "Es muss ein Wert eingetragen werden.")
     private String protectionNeeds;
 
-  
-    public Action(String actionName, String actionDueDate, String protectionNeeds) {
+
+    public Action(String actionName, Date actionDueDate, String protectionNeeds) {
         this.actionName = actionName;
         this.actionDueDate = actionDueDate;
         this.protectionNeeds = protectionNeeds;
@@ -30,6 +35,7 @@ public class Action {
     public Action() {
 
     }
+
 
     public int getActionId() {
         return actionId;
@@ -47,11 +53,11 @@ public class Action {
         this.actionName = actionName;
     }
 
-    public String getActionDueDate() {
+    public Date getActionDueDate() {
         return actionDueDate;
     }
 
-    public void setActionDueDate(String actionDueDate) {
+    public void setActionDueDate(Date actionDueDate) {
         this.actionDueDate = actionDueDate;
     }
 
@@ -63,20 +69,4 @@ public class Action {
         this.protectionNeeds = protectionNeeds;
     }
 
-
-
-    /*
-    needs to be in the actionService class
-     */
-//    public void createAction() {
-//        System.out.println("Geben sie den Namen der Maßnahme an: ");
-//        String name = scA.nextLine();
-//        System.out.println("Geben sie das Umsetzungsdatum in der Form 'TT.MM.YYYY' an: ");
-//        String date = scA.nextLine();
-//        System.out.println("Geben sie den Schutzbedarf an: ");
-//        String protectionNeeds = scA.nextLine();
-//
-//        Action action = new Action(name, date, protectionNeeds);
-//
-//    }
 }

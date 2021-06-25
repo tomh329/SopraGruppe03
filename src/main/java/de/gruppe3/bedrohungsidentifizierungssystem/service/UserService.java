@@ -20,6 +20,7 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    
     public User saveUser(User user) {
         return userRepository.save(user);
     }

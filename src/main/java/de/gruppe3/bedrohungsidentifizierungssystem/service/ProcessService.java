@@ -6,6 +6,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepositor
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -33,10 +34,12 @@ public class ProcessService {
 
 
 
+
     public Process saveProcess(Process process) {
 
         return processRepository.save(process);
     }
+
 
 
 
@@ -74,11 +77,11 @@ public class ProcessService {
         return false;
     }
 
+  
     public void deleteProcess(Process process){
 
         processRepository.delete(process);
     }
-
 
     public List<Process> findAllProcesses() {
 

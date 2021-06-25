@@ -1,21 +1,30 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 
-
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User {
 
     @Id
+    @NotBlank(message = "Der Username darf nicht nur Leerzeichen beinhalten.")
     private String username;
+
+    @Size(min = 5, max = 25, message = "Das Passwort muss zwischen 5 und 25 Zeichen lang sein.")
+    @NotBlank(message = "Das Passwort darf nicht nur Leerzeichen beinhalten")
     private String password;
+  
     private String firstname;
     private String lastname;
 
+    @NotNull(message = "Dem Benutzer muss eine Rolle zugewiesen werden.")
     @ManyToOne()
-    @JoinColumn(name = "roll_id")
+
+    @JoinColumn(name = "roll_id", nullable = false)
     private Role role;
 
     @ManyToMany
@@ -25,7 +34,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "componentId"))
     private List<Component> components;
 
-    public User(){
+
+    public User() {
     }
 
 
@@ -43,6 +53,7 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+
 
     public String getUsername() {
         return username;

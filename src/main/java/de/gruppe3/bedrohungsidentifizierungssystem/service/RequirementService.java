@@ -7,6 +7,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -15,16 +16,17 @@ public class RequirementService {
     @Autowired
     private RequirementRepository requirementRepository;
 
+
     public Requirement saveRequirement(Requirement requirement) {
 
         return requirementRepository.save(requirement);
     }
 
-
-    public Requirement createRequirement(String requirementName){
+    public Requirement createRequirement(String requirementName) {
         Requirement requirement = new Requirement(requirementName);
         return requirementRepository.save(requirement);
     }
+
 
     public void updateRequirement(int requirementId, String requirementName) {
 
@@ -38,6 +40,7 @@ public class RequirementService {
         }
     }
 
+  
     public void deleteRequirement(Requirement requirement){
         requirementRepository.delete(requirement);
     }

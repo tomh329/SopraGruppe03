@@ -1,13 +1,16 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
+
 import jdk.jfr.Enabled;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import java.util.List;
 
 @Entity
 public class Component {
@@ -16,11 +19,20 @@ public class Component {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int componentId;
 
+    @NotBlank(message = "Die Komponente braucht einen Namen.")
     private String componentName;
+
+    @PositiveOrZero(message = "Die Priorität darf nicht negativ sein.")
+    @NotNull(message = "Einer Komponente muss eine Priorität zugeordnet werden.")
     private int priority;
+
     private String lastAttack;
+
+    @Positive(message = "Eine Komponente muss mindestens einmal vorkommen.")
+    @NotNull(message = "Vorkommen muss ein Wert zugewiesen werden.")
     private int occurrence;
 
+    @NotNull(message = "Eine Komponente muss einem Prozess zugeordnet sein.")
     @ManyToOne
     @JoinColumn(name = "process_id")
     private Process process;
@@ -30,7 +42,6 @@ public class Component {
 
     @ManyToMany
     public List<User> users;
-
 
 
     public Component(String componentName, int priority, String lastAttack, int occurrence) {
@@ -94,6 +105,7 @@ public class Component {
         this.process = process;
     }
 
+
     public List<User> getUsers() {
         return users;
     }
@@ -121,26 +133,5 @@ public class Component {
     public void setRequirements(List<Requirement> requirements) {
         this.requirements = requirements;
     }
-
-    /*
-        used to create a new component without requirements
-        needs html connection
-         */
-//    public void createComponent() {
-//        System.out.println("Geben Sie den Namen ein: ");
-//        String name = sc.nextLine();
-//        System.out.println("Geben Sie die Priorität ein: ");
-//        int priority = sc.nextInt();
-////        Date lastAttack = new Date();
-//        System.out.println("Geben Sie den letzten Angriff an: ");
-//        String lastAttack = sc.nextLine();
-//        System.out.println("Geben Sie das Aufkommen an: ");
-//        int occurrence = sc.nextInt();
-//
-//        Component component = new Component(name, priority, lastAttack, occurrence);
-//
-//        System.out.println("Komponente erstellt");
-//        ComponentList.componentList.add(component);
-//    }
 
 }

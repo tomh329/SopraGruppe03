@@ -1,6 +1,9 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Danger {
@@ -8,9 +11,15 @@ public class Danger {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int dangerId;
+    private int dangerID;
+
+    @NotBlank(message = "Eine Gefahr braucht einen Gefahrenname.")
     private String dangerName;
+
+  @NotNull(message = "Die Gefahr darf nicht Null sein.")
+  @PositiveOrZero(message = "Der Gefahr muss positiv sein.")
     private int dangerLevel;
+
 
     @ManyToOne
     @JoinColumn(name = "requirement_id")
@@ -26,8 +35,9 @@ public class Danger {
 
     }
 
-    public int getDangerId() {
-        return dangerId;
+
+    public int getDangerID() {
+        return dangerID;
     }
 
     public void setDangerId(int dangerID) {
@@ -57,25 +67,5 @@ public class Danger {
     public void setRequirement(Requirement requirement) {
         this.requirement = requirement;
     }
-
-    //    public void createDanger() {
-//        System.out.println("Geben sie den Namen ein:");
-//        String name = scD.nextLine();
-//        Enum<Severity> severity = null;
-//        while (severity == null) {
-//            System.out.println("Geben sie die Schwere inform von 'ZERO', 'ONE', 'TWO' oder 'THREE' an: ");
-//            String severityTemp = scD.nextLine();
-//            if (severityTemp.equalsIgnoreCase(Severity.ZERO.toString())) {
-//                severity = Severity.ZERO;
-//            } else if (severityTemp.equalsIgnoreCase(Severity.ONE.toString())) {
-//                severity = Severity.ONE;
-//            } else if (severityTemp.equalsIgnoreCase(Severity.TWO.toString())) {
-//                severity = Severity.TWO;
-//            } else if (severityTemp.equalsIgnoreCase(Severity.ZERO.toString())) {
-//                severity = Severity.THREE;
-//            }
-//        }
-//        Danger danger = new Danger(name, severity);
-//    }
 
 }

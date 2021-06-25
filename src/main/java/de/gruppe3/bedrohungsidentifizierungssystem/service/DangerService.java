@@ -14,7 +14,6 @@ import java.util.Scanner;
 @Service
 public class DangerService {
 
-
     @Autowired
     static Scanner sc = new Scanner(System.in);
 
@@ -28,10 +27,13 @@ public class DangerService {
     }
 
 
+
     public Danger createDanger(String dangerName, int dangerLevel){
+      
         Danger danger = new Danger(dangerName, dangerLevel);
         return dangerRepository.save(danger);
     }
+
 
     public void updateDanger(int dangerId, String dangerName, int dangerLevel) {
 
@@ -65,7 +67,6 @@ public class DangerService {
 
 
     public List<Danger> findAllDangers() {
-
         return dangerRepository.findAll();
     }
 
