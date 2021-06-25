@@ -20,6 +20,7 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+
     
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -82,13 +83,17 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(String username, String firstname, String lastname) {
+    public void updateUser(String username, String firstname, String lastname, int roleId) {
 
         User editedUser = findUserWithName(username);
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
-
-        Role editedUserRole = editedUser.getRole();
+        List<Role> editedUserRole = roleRepository.findAll();
+        for(Role editedRole : editedUserRole){
+            if(editedRole.getRoleId() == roleId) {
+                editedUser.setRole(editedRole);
+            }
+        }
 
         userRepository.save(editedUser);
 
