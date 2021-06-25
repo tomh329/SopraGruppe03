@@ -74,6 +74,9 @@ public class ComponentService {
 
         for(Component component : componentList){
             if(componentId == component.getComponentId()){
+                for(Requirement requirement : component.getRequirements()){
+                    requirement.setComponent(null);
+                }
                 componentRepository.delete(component);
                 return true;
             }

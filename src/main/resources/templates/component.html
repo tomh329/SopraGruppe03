@@ -84,7 +84,7 @@
       <td th:text="${component.lastAttack}" />
       <td th:text="${component.occurrence}" />
       <td th:text="${component.priority}" />
-      <td th:text="${component.getProcess().processId}" />
+<!--      <td th:text="${component.getProcess().processId}" />-->
       <td> <form th:action="@{/component/{path}(path=${component.componentId})}" method="post" >
       <button th:type="submit" class="btn btn-primary" > Edit
       </button>

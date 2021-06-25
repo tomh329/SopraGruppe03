@@ -63,6 +63,10 @@ public class ProcessService {
 
         for(Process process : processList){
             if(processId == process.getProcessId()){
+
+                for(Component component : process.getComponents()){
+                    component.setProcess(null);
+                }
                 processRepository.delete(process);
                 return true;
             }
