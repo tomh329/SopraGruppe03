@@ -59,15 +59,16 @@
         </nav>
 
 
-        <h3>Einen Prozess bearbeiten</h3>
+        <h3>Einen Komponent bearbeiten</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-            <form th:action="@{/editProcess/{path}(path=${editProcessId.processId})}" method="post" >
-                <p>ProcessId: <p name="processId" type="text" th:text="${editProcessId.getProcessId()}"/></p>
-                <p>Name: <input name="processName" type="text" th:value="${editProcessId.getProcessName()}"/></p>
-                <p>Level: <input name="protectionLevel" type="text" th:value="${editProcessId.getProtectionLevel()}"/></p>
-                <p>ComponentId: <p name="componentId" type="text" th:each="component : ${editProcessId.getComponents()}"
-                                                                      th:text="${component.getComponentId()}"></p>
-                <p><input type="submit" value="Prozess speichern" /> <input type="reset" value="Reset" /></p>
+            <form th:action="@{/editComponent/{path}(path=${editComponentId.componentId})}" method="post" >
+                <p>Component ID: <p name="componentId" type="text" th:text="${editComponentId.getComponentId()}"/></p>
+                <p>Component Name: <input name="componentName" type="text" th:value="${editComponentId.getComponentName()}"/></p>
+                <p>Last Attack: <input name="lastAttack" type="text" th:value="${editComponentId.getLastAttack()}"/></p>
+                <p>Occurence: <input name="occurence" type="text" th:value="${editComponentId.getOccurrence()}"></input>
+                <p>Priority: <input name="priority" type="text" th:value="${editComponentId.getPriority()}"/></p>
+                <p>Process ID: <p name="processId" type="text" th:text="${editComponentId.getProcess().getProcessId()}"/></p>
+                <p><input type="submit" value="Komponent speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>
     </body>

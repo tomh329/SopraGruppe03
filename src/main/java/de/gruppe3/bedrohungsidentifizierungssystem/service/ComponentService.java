@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -16,6 +17,24 @@ public class ComponentService {
     private ComponentRepository componentRepository;
     @Autowired
     RequirementRepository requirementRepository;
+
+
+
+    public void updateComponent(int componentId, String componentName, String lastAttack, int occurence, int priority) {
+
+        List<Component> componentList = componentRepository.findAll();
+
+        for(Component component : componentList){
+            if(componentId == component.getComponentId()){
+                component.setComponentName(componentName);
+                component.setLastAttack(lastAttack);
+                component.setOccurrence(occurence);
+                component.setPriority(priority);
+
+                componentRepository.save(component);
+            }
+        }
+    }
 
     public Component saveComponent(Component component) {
 
@@ -43,8 +62,14 @@ public class ComponentService {
         return componentRepository.save(component);
     }
 
+
     public void deleteComponent(Component component){
 
         componentRepository.delete(component);
+    }
+
+
+    public Component findComponentWithId(Integer componentId) {
+        return componentRepository.findByComponentId(componentId);
     }
 }

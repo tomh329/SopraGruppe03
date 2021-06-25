@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -32,4 +33,11 @@ public class ComponentController {
     public String add(){
         return "redirect:/addRequirement";
     }
+
+    @PostMapping({"/component/{componentId}"})
+    public String showEditComponent(Model model, @PathVariable String componentId) {
+        model.addAttribute("editComponentId", componentService.findComponentWithId(Integer.parseInt(componentId)));
+        return "editComponent";
+    }
+
 }
