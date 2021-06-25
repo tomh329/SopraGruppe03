@@ -67,7 +67,9 @@
         <p>Prozess ID:
         <p name="processId" type="text" th:text="${editProcess.getProcessId()}"/></p>
         <p>Prozesstitel: <input name="processName" type="text" th:value="${editProcess.getProcessName()}"/></p>
+        <p th:if="${#fields.hasErrors('editProcess.processName') }" style="color: red">Ungültiger Name (name ist zu kurz)</p>
         <p>Schutzbedarf: <input name="protectionLevel" type="text" th:value="${editProcess.getProtectionLevel()}"/></p>
+        <p th:if="${#fields.hasErrors('editProcess.protectionLevel')}" style="color: red">Ungültiger Schutzbedarf</p>
         <p>Komponenten IDs:
         <p name="componentId" type="text" th:each="component : ${editProcess.getComponents()}"
            th:text="${component.getComponentId()}"></p>
