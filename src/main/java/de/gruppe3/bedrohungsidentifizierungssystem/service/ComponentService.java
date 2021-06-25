@@ -20,7 +20,7 @@ public class ComponentService {
 
 
 
-    public void updateComponent(int componentId, String componentName, String lastAttack, int occurence, int priority) {
+    public void updateComponent(int componentId, String componentName, String lastAttack, int occurrence, int priority) {
 
         List<Component> componentList = componentRepository.findAll();
 
@@ -28,7 +28,7 @@ public class ComponentService {
             if(componentId == component.getComponentId()){
                 component.setComponentName(componentName);
                 component.setLastAttack(lastAttack);
-                component.setOccurrence(occurence);
+                component.setOccurrence(occurrence);
                 component.setPriority(priority);
 
                 componentRepository.save(component);

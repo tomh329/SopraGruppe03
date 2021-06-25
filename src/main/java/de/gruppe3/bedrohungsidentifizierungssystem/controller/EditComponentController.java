@@ -27,9 +27,9 @@ public class EditComponentController {
     public String updateComponent(@PathVariable String componentId,
                                   @RequestParam (name = "componentName") String componentName,
                                   @RequestParam (name = "lastAttack") String lastAttack,
-                                  @RequestParam (name = "occurence") int occurence,
+                                  @RequestParam (name = "occurrence") int occurrence,
                                   @RequestParam (name = "priority") int priority) {
-        componentService.updateComponent(Integer.parseInt(componentId), componentName, lastAttack, occurence, priority);
+        componentService.updateComponent(Integer.parseInt(componentId), componentName, lastAttack, occurrence, priority);
 
         return "redirect:/component";
     }
