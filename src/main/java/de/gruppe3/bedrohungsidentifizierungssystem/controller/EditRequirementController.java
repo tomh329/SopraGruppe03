@@ -21,14 +21,12 @@ public class EditRequirementController {
     private RequirementService requirementService;
 
 
-    @PostMapping("/editRequirement/{reqiurementID}")
+    @PostMapping("/editRequirement/{reqiurementId}")
     public String updateRequirement(@PathVariable String reqiurementId,
-                                  @RequestParam (name = "requirementName") String componentName,
-                                  @RequestParam (name = "lastAttack") String lastAttack,
-                                  @RequestParam (name = "occurrence") int occurrence,
-                                  @RequestParam (name = "priority") int priority) {
-        //requirementService.(Integer.parseInt(componentId), componentName, lastAttack, occurrence, priority);
+                                  @RequestParam (name = "requirementName") String requirementName
+                                  ) {
+        requirementService.updateRequirement(Integer.parseInt(reqiurementId),requirementName);
 
-        return "redirect:/component";
+        return "redirect:/requirement";
     }
 }

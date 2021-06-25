@@ -26,6 +26,18 @@ public class RequirementService {
         return requirementRepository.save(requirement);
     }
 
+    public void updateRequirement(int requirementId, String requirementName) {
+
+        List<Requirement> requirementList = requirementRepository.findAll();
+
+        for(Requirement requirement : requirementList){
+            if(requirementId == requirement.getRequirementId()){
+                requirement.setRequirementName(requirementName);
+                requirementRepository.save(requirement);
+            }
+        }
+    }
+
     public void deleteRequirement(Requirement requirement){
         requirementRepository.delete(requirement);
     }
