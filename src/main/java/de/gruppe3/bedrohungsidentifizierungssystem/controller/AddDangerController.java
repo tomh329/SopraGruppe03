@@ -19,7 +19,6 @@ public class AddDangerController {
 
     @GetMapping("/addDanger")
     public String showAddDanger() {
-
         return "addDanger";
     }
 
@@ -33,15 +32,15 @@ public class AddDangerController {
 
     @PostMapping("/addDanger")
     public String add(@RequestParam(name = "requirementId") int requirementId,
-                      @RequestParam (name = "dangerId") int dangerId){
+                      @RequestParam(name = "dangerId") int dangerId) {
 
         List<Danger> dangerList = dangerRepository.findAll();
         List<Requirement> requirementList = requirementRepository.findAll();
 
-        for(Requirement requirement : requirementList){
-            if(requirementId==requirement.getRequirementId()){
-                for(Danger danger : dangerList){
-                    if(dangerId==danger.getDangerId()){
+        for (Requirement requirement : requirementList) {
+            if (requirementId == requirement.getRequirementId()) {
+                for (Danger danger : dangerList) {
+                    if (dangerId == danger.getDangerId()) {
                         danger.setRequirement(requirement);
                         dangerService.saveDanger(danger);
                         return "redirect:/requirement";

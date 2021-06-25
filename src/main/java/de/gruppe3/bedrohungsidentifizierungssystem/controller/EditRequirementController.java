@@ -13,7 +13,6 @@ public class EditRequirementController {
 
     @GetMapping("/editRequirement")
     public String showEditRequirement() {
-
         return "editRequirement";
     }
 
@@ -23,9 +22,9 @@ public class EditRequirementController {
 
     @PostMapping("/editRequirement/{reqiurementId}")
     public String updateRequirement(@PathVariable String reqiurementId,
-                                  @RequestParam (name = "requirementName") String requirementName
-                                  ) {
-        requirementService.updateRequirement(Integer.parseInt(reqiurementId),requirementName);
+                                    @RequestParam(name = "requirementName") String requirementName
+    ) {
+        requirementService.updateRequirement(Integer.parseInt(reqiurementId), requirementName);
 
         return "redirect:/requirement";
     }

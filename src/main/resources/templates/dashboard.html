@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="de" >
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
 <head>
-    <title>Home</title>
+    <title>Dashboard</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,44 +10,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">BIS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">BIS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nichts</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/process}">Prozess</a>
-                        <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
-                        <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
-                        <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                        <a class="dropdown-item" href="#">Maßnahmen</a>
-                        <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <h1>Dashboard</h1>
-    <p>Hier könnte Ihre Werbung stehen.</p>
-    <p>Und hier kommen später Statistiken oder ähnliches hin.</p>
-
-
-
-
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Nichts</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/process}">Prozess</a>
+                    <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
+                    <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
+                    <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
+                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1>Dashboard</h1>
+<p>Hier könnte Ihre Werbung stehen.</p>
+<p>Und hier kommen später Statistiken oder ähnliches hin.</p>
 
 
 </body>

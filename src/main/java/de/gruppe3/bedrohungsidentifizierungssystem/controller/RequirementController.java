@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +31,12 @@ public class RequirementController {
     }
 
     @PostMapping("/createRequirementButton")
-    public String create(){
+    public String create() {
         return "redirect:/createRequirement";
     }
 
     @PostMapping("/addDangerButton")
-    public String add(){
+    public String add() {
         return "redirect:/addDanger";
     }
 

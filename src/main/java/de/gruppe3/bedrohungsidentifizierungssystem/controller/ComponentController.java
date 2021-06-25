@@ -2,7 +2,6 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +24,12 @@ public class ComponentController {
     }
 
     @PostMapping("/createComponentButton")
-    public String create(){
+    public String create() {
         return "redirect:/createComponent";
     }
 
     @PostMapping("/addRequirementButton")
-    public String add(){
+    public String add() {
         return "redirect:/addRequirement";
     }
 
@@ -47,5 +46,4 @@ public class ComponentController {
         );
         return "redirect:/component";
     }
-
 }

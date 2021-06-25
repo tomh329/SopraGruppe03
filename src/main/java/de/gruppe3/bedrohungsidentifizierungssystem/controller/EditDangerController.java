@@ -13,7 +13,6 @@ public class EditDangerController {
 
     @GetMapping("/editDanger")
     public String showEditDanger() {
-
         return "editDanger";
     }
 
@@ -23,9 +22,9 @@ public class EditDangerController {
 
     @PostMapping("/editDanger/{dangerId}")
     public String updateComponent(@PathVariable String dangerId,
-                                  @RequestParam (name = "dangerName") String dangerName,
-                                  @RequestParam (name = "dangerLevel") String dangerLevel){
-        dangerService.updateDanger(Integer.parseInt(dangerId),dangerName,Integer.parseInt(dangerLevel));
+                                  @RequestParam(name = "dangerName") String dangerName,
+                                  @RequestParam(name = "dangerLevel") String dangerLevel) {
+        dangerService.updateDanger(Integer.parseInt(dangerId), dangerName, Integer.parseInt(dangerLevel));
 
         return "redirect:/danger";
     }

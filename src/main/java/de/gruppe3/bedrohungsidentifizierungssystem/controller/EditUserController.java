@@ -1,6 +1,5 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ public class EditUserController {
 
     @GetMapping("/editUser")
     public String showEditUser() {
-
         return "editUser";
     }
 
@@ -24,9 +22,9 @@ public class EditUserController {
 
     @PostMapping("/editUser/{username}")
     public String updateUser(@PathVariable String username,
-                             @RequestParam (name = "firstname") String firstname,
-                             @RequestParam (name = "lastname") String lastname,
-                             @RequestParam (name = "userRole") String userRole) {
+                             @RequestParam(name = "firstname") String firstname,
+                             @RequestParam(name = "lastname") String lastname,
+                             @RequestParam(name = "userRole") String userRole) {
         userService.updateUser(username, firstname, lastname, userRole);
 
         return "redirect:/user";

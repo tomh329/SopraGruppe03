@@ -1,6 +1,5 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProcessController {
@@ -32,12 +30,12 @@ public class ProcessController {
     }
 
     @PostMapping("/createProcessButton")
-    public String create(){
+    public String create() {
         return "redirect:/createProcess";
     }
 
     @PostMapping("/addComponentButton")
-    public String add(){
+    public String add() {
         return "redirect:/addComponent";
     }
 
@@ -46,5 +44,4 @@ public class ProcessController {
         model.addAttribute("editProcess", processService.findProcessWithId(Integer.parseInt(processId)));
         return "editProcess";
     }
-
 }

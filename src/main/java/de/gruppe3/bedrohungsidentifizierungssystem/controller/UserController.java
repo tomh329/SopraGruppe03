@@ -1,6 +1,5 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,14 +36,13 @@ public class UserController {
     }
 
     @PostMapping("/createUserButton")
-    public String create(){
+    public String create() {
         return "redirect:/createUser";
     }
 
     @PostMapping("/addUserToComponentButton")
-    public String add(){
+    public String add() {
 
         return "redirect:/addUserToComponent";
     }
-
 }
