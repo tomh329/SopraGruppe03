@@ -14,7 +14,7 @@ public class User {
     private String password;
 
     @ManyToOne()
-    @JoinColumn(name = "FK_USERROLE", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_USERROLE")
     private Role role;
 
     @ManyToMany

@@ -32,6 +32,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private ActionService actionService;
 
     /**
@@ -78,9 +81,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(testReq1);
         dangerService.saveDanger(testDanger1);
 
+        Role admin = new Role();
+        admin.setRole("Admin");
+        roleService.saveRole(admin);
+
         User testAdmin = new User();
         testAdmin.setUsername("Max");
         testAdmin.setPassword("1234");
+        testAdmin.setRole(admin);
         testAdmin.setComponents(new LinkedList<de.gruppe3.bedrohungsidentifizierungssystem.entity.Component>());
         userService.saveUser(testAdmin);
 
