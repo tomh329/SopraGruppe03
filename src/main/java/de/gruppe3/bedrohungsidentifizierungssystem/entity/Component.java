@@ -1,6 +1,8 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 import jdk.jfr.Enabled;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 
 import javax.persistence.*;
@@ -97,8 +99,15 @@ public class Component {
         requirement.setComponent(this);
     }
 
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
 
-/*
+    public void setRequirements(List<Requirement> requirements) {
+        Component.requirements = requirements;
+    }
+
+    /*
         used to create a new component without requirements
         needs html connection
          */

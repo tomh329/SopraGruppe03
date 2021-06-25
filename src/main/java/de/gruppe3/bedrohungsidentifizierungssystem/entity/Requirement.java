@@ -58,4 +58,12 @@ public class Requirement {
     public void addDanger(Danger danger){
         danger.setRequirement(this);
     }
+
+    public List<Danger> getDangers() {
+        return dangers;
+    }
+
+    public void setDangers(List<Danger> dangers) {
+        this.dangers = dangers;
+    }
 }

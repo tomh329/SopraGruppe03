@@ -3,6 +3,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.DataLoader;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.apache.tomcat.jni.Proc;
+import org.hibernate.annotations.OnDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;

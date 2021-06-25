@@ -1,5 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -34,6 +36,9 @@ public class RequirementService {
 
         for(Requirement requirement : requirementList){
             if(requirementId == requirement.getRequirementId()){
+                for(Danger danger : requirement.getDangers()){
+                    danger.setRequirement(null);
+                }
                 requirementRepository.delete(requirement);
                 return true;
             }
