@@ -11,8 +11,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-        <title>Edit Component</title>
+        <!-- Der Titel könnte falsch sein -->
+        <title>Edit requirement</title>
 
         <style>
             .processTable{
@@ -59,16 +59,13 @@
         </nav>
 
 
-        <h3>Einen Komponent bearbeiten</h3>
+        <h3>Eine Anforderung bearbeiten</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-            <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post" >
-                <p>Komponenten ID: <p name="componentId" type="text" th:text="${editComponent.getComponentId()}"/></p>
-                <p>Komponententitel: <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/></p>
-                <p>Letze Attacke: <input name="lastAttack" type="text" th:value="${editComponent.getLastAttack()}"/></p>
-                <p>Aufkommen: <input name="occurrence" type="text" th:value="${editComponent.getOccurrence()}"></input>
-                <p>Priorität: <input name="priority" type="text" th:value="${editComponent.getPriority()}"/></p>
-                <p>Prozess ID: <p name="processId" type="text" th:text="${editComponent.getProcess().getProcessId()}"/></p>
-                <p><input type="submit" value="Komponent speichern" /> <input type="reset" value="Reset" /></p>
+            <form th:action="@{/editRequirement/{path}(path=${editRequirement.requirementId})}" method="post" >
+                <p>Anforderungs-ID: <p name="requirementId" type="text" th:text="${editRequirement.getRequirementId()}"/></p>
+                <p>Anforderungsname: <input name="requirementName" type="text" th:value="${editRequirement.getRequirementName()}"/></p>
+                <p>Komponenten ID: <p name="processId" type="text" th:text="${editRequirement.getComponent().componentId}"/></p>
+                <p><input type="submit" value="Anforderung speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>
     </body>
