@@ -25,7 +25,9 @@ public class CreateUserController {
                          @RequestParam(name = "firstname") String firstname,
                          @RequestParam(name = "lastname") String lastname,
                          @RequestParam(name = "roleId") int roleId) {
-
+        if(userService.findUserWithName(username) != null) {
+            return "redirect:user";
+        }
         userService.createUser(username, password, firstname, lastname, roleId);
         return "redirect:/user";
     }
