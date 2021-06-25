@@ -8,10 +8,11 @@ import java.util.List;
 @Entity
 public class Role {
 
-//    @NotBlank(message = "Die Rolle braucht einen Namen.")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
+    @NotBlank(message = "Die Rolle braucht einen Namen.")
     private String role;
 
     @OneToMany(mappedBy = "role")
