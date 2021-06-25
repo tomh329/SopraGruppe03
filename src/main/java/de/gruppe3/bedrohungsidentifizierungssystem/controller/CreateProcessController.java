@@ -29,7 +29,7 @@ public class CreateProcessController {
 
     @PostMapping("/createProcess")
     public String create(@RequestParam(name = "processName") String processName,
-                         @RequestParam(name = "protectionLevel") int protectionLevel,
+                         @RequestParam(name = "protectionLevel") String protectionLevel,
                          @Valid Process process, BindingResult bindingResult, Model model) {
 
         if(bindingResult.hasErrors()) {
@@ -38,7 +38,8 @@ public class CreateProcessController {
 
         }
 
-        processService.createProcess(processName, protectionLevel);
+
+        processService.createProcess(processName, Integer.parseInt(protectionLevel));
 
         System.out.println(processName);
         System.out.println(protectionLevel);
