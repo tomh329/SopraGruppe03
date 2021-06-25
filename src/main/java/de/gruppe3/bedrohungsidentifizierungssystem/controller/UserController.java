@@ -41,10 +41,10 @@ public class UserController {
         return "redirect:/createUser";
     }
 
-//    @PostMapping("/addComponentButton")
-//    public String add(){
-//
-//        return "redirect:/addComponent";
-//    }
+    @PostMapping("/addUserToComponentButton")
+    public String add(){
+
+        return "redirect:/addUserToComponent";
+    }
 
 }

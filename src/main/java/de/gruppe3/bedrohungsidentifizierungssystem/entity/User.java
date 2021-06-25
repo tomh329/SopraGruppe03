@@ -15,7 +15,7 @@ public class User {
     private String lastname;
 
     @ManyToOne()
-    @JoinColumn(name = "FK_USERROLE")
+    @JoinColumn(name = "roll_id")
     private Role role;
 
     @ManyToMany
@@ -83,4 +83,14 @@ public class User {
     public String getLastname() { return lastname; }
 
     public void setLastname(String lastname) { this.lastname = lastname; }
+
+    public void addComponent(Component component) {
+
+        components.add(component);
+    }
+
+    public void removeComponent(Component component){
+
+        components.remove(component);
+    }
 }

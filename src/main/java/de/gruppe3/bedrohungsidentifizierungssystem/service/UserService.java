@@ -1,9 +1,8 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Role;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RoleRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,9 @@ import java.util.List;
 public class UserService {
 
     @Autowired
+    private ComponentRepository componentRepository;
+    @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
 
@@ -57,7 +57,23 @@ public class UserService {
 
     public boolean deleteUser(String userName){
 
+
+
         User userDelete = findUserWithName(userName);
+        List<Component> componentList = componentRepository.findAll();
+        List<Component> compOfUserList = userDelete.getComponents();
+
+        for(Component componentOfUser : compOfUserList){
+            for(Component component : componentList){
+                if(component == componentOfUser){
+
+                    component.removeUser(userDelete);
+                }
+            }
+        }
+
+        compOfUserList.clear();
+
         if(!userDelete.equals(null)) {
             userRepository.delete(userDelete);
             return true;

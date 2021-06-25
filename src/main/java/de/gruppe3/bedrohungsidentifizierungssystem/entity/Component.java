@@ -94,6 +94,21 @@ public class Component {
         this.process = process;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user){
+        users.add(user);
+    }
+
+    public void removeUser(User user){
+        users.remove(user);
+    }
 
     public void addRequirement(Requirement requirement){
         requirement.setComponent(this);
