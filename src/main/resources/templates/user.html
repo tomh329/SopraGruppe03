@@ -59,11 +59,11 @@
             <table class="table">
                 <thead class="thead-theme">
                     <tr>
-                        <th scope="col">User Name</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">User Role</th>
-                        <th scope="col">Component Ids</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Vorname</th>
+                        <th scope="col">Nachname</th>
+                        <th scope="col">Rolle</th>
+                        <th scope="col">Komponenten ID</th>
                         <th scope="col">Aktionen</th>
                     </tr>
                 </thead>
@@ -83,11 +83,11 @@
                             </p>
                         </td>
                         <td> <form th:action="@{/user/{path}(path=${user.username})}" method="post" >
-                        <button th:type="submit" class="btn btn-primary" > Edit
+                        <button th:type="submit" class="btn btn-primary" > Bearbeiten
                         </button>
                     </form> </td>
                         <td> <form th:action="@{/deleteUser/{path}(path=${user.username})}" method="post" >
-                            <button th:type="submit" class="btn btn-primary" style="background: red"> Delete
+                            <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
                             </button>
                         </form> </td>
 

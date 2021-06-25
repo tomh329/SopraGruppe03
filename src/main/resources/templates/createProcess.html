@@ -58,9 +58,9 @@
         <h3>Einen Prozess erstellen</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
             <form th:action="@{/createProcess}" method="post" >
-                <p>Name: <input name="processName" type="text" /></p>
-                <p>Level: <input name="protectionLevel" type="text" /></p>
-                <p>ComponentId: <input name="componentId" type="text" /></p>
+                <p>Prozesstitel: <input name="processName" type="text" /></p>
+                <p>Schutzbedarf: <input name="protectionLevel" type="text" /></p>
+                <p>Komponenten ID: <input name="componentId" type="text" /></p>
                 <p><input type="submit" value="Prozess speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>
