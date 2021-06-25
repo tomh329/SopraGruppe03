@@ -61,13 +61,13 @@
 
         <h3>Einen Komponent bearbeiten</h3>
         <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-            <form th:action="@{/editComponent/{path}(path=${editComponentId.componentId})}" method="post" >
-                <p>Component ID: <p name="componentId" type="text" th:text="${editComponentId.getComponentId()}"/></p>
-                <p>Component Name: <input name="componentName" type="text" th:value="${editComponentId.getComponentName()}"/></p>
-                <p>Last Attack: <input name="lastAttack" type="text" th:value="${editComponentId.getLastAttack()}"/></p>
-                <p>Occurrence: <input name="occurrence" type="text" th:value="${editComponentId.getOccurrence()}"></input>
-                <p>Priority: <input name="priority" type="text" th:value="${editComponentId.getPriority()}"/></p>
-                <p>Process ID: <p name="processId" type="text" th:text="${editComponentId.getProcess().getProcessId()}"/></p>
+            <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post" >
+                <p>Component ID: <p name="componentId" type="text" th:text="${editComponent.getComponentId()}"/></p>
+                <p>Component Name: <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/></p>
+                <p>Last Attack: <input name="lastAttack" type="text" th:value="${editComponent.getLastAttack()}"/></p>
+                <p>Occurrence: <input name="occurrence" type="text" th:value="${editComponent.getOccurrence()}"></input>
+                <p>Priority: <input name="priority" type="text" th:value="${editComponent.getPriority()}"/></p>
+                <p>Process ID: <p name="processId" type="text" th:text="${editComponent.getProcess().getProcessId()}"/></p>
                 <p><input type="submit" value="Komponent speichern" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>
