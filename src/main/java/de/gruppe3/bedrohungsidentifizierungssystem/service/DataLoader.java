@@ -108,9 +108,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "Date", 5);
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "Date", 3);
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "2021-04-11", 3);
 
         Requirement testReq1 = new Requirement("testReq1");
 
