@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Components</title>
+
+    <style>
+        .componentTable {
+            margin: 100px;
+            text-align: center;
+        }
+
+        .edit-delete {
+            display: inline;
+        }
+        .createButton {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">BIS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Nichts</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/process}">Prozess</a>
+                    <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
+                    <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
+                    <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
+                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h2>Komponententabelle</h2>
+<!-- Komponententabelle -->
+<form class="createButton" th:action="@{/createComponentButton}" method="post">
+    <button th:type="submit" class="btn btn-primary"> Neue Komponente erstellen
+    </button>
+</form>
+<form class="createButton" th:action="@{/addRequirementButton}" method="post">
+    <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
+    </button>
+</form>
+<div class="componentTable">
+    <table class="table">
+        <thead class="thead-theme">
+        <tr>
+            <th scope="col">Komponenten ID</th>
+            <th scope="col">Komponententitel</th>
+            <th scope="col">Letzte Attack</th>
+            <th scope="col">Aufkommen</th>
+            <th scope="col">Priorität</th>
+            <th scope="col">Prozess ID</th>
+            <th scope="col">Aktionen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="component : ${components}">
+
+            <td th:text="${component.componentId}"/>
+            <td th:text="${component.componentName}"/>
+            <td th:text="${component.lastAttack}"/>
+            <td th:text="${component.occurrence}"/>
+            <td th:text="${component.priority}"/>
+            <td>
+                <p th:each="process : ${component.getProcess()}">
+                    <span th:text="${process.getProcessId()}"></span>
+                </p>
+            </td>
+            <td>
+                <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post">
+                    <button th:type="submit" class="btn btn-primary"> Bearbeiten
+                    </button>
+                </form>
+                <form class="edit-delete" th:action="@{/deleteComponent/{path}(path=${component.componentId})}"
+                      method="post">
+                    <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

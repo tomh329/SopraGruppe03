@@ -1,25 +1,56 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import de.gruppe3.bedrohungsidentifizierungssystem.service.DataLoader;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
+import org.apache.tomcat.jni.Proc;
+import org.hibernate.annotations.OnDelete;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import java.util.List;
+
 
 @Entity
 public class Process {
 
-    @Id
-    @GeneratedValue
-    private Integer processId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int processId;
+
+    @NotBlank(message = "Der Prozess braucht einen Namen.")
     private String processName;
 
-    private String protectionLevel;
+    //Should there be a maximum security level?
+    @PositiveOrZero(message = "Das Sicherheitslevel darf nicht negativ sein.")
+    @NotNull(message = "Der Prozess benötigt ein Sicherheitslevel.")
+    private int protectionLevel;
 
-    //private Component component;
+//    @NotEmpty(message = "Ein Prozess muss mindestens aus einer Komponente bestehen.")
+    @OneToMany(targetEntity = Component.class, mappedBy = "process")
+    private List<Component> components;
 
+
+    public Process(String processName, int protectionLevel) {
+        this.processName = processName;
+        this.protectionLevel = protectionLevel;
+    }
 
     public Process() {
-        // empty constructor for Hibernate
+
+    }
+
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 
     public Integer getProcessId() {
@@ -38,21 +69,16 @@ public class Process {
         this.processName = processName;
     }
 
-    public String getProtectionLevel() {
+    public int getProtectionLevel() {
         return protectionLevel;
     }
 
-    public void setProtectionLevel(String protectionLevel) {
+    public void setProtectionLevel(int protectionLevel) {
         this.protectionLevel = protectionLevel;
     }
 
-    /*
-    public Component getComponent() {
-        return component;
+    public void addComponent(Component component) {
+        component.setProcess(this);
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
-    }
-     */
 }

@@ -1,10 +1,37 @@
-                          <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Bedrohungsidentifizierungssystem</title>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Das ist eine Überschrift</h1>
+
+<div class="jumbotron text-center" style="background-color: dodgerblue">
+    <h1 style="color: floralwhite">Bedrohungsindentifizierungssystem - BIS</h1>
+</div>
+<p>
+    Willkommen auf der Startseite des Bedrohungsindentifizirungssystems.</br>
+    Bitte loggen Sie sich mit ihren Log-In Daten ein, die sie von Ihrem Administrator erhalten haben. </br>
+    Anmerkung: Aktuell reicht es auf den Log-In Button zu klicken :D </br></br>
+</p>
+
+<div style="background: dodgerblue; border: 2px solid darkgrey; width: fit-content; alignment: bottom">
+    <p style="color: floralwhite">Log-In</p>
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <input type="text" placeholder="Name"
+        /> </br></br>
+        <input type="password" placeholder="Password"
+        /> </br></br>
+        <button th:type="submit" class="btn btn-primary"> Log-In
+        </button>
+    </form>
+</div>
+
+
 </body>
 </html>
