@@ -69,7 +69,11 @@
         <p>Gefahrenname: <input name="dangerName" type="text" th:value="${editDanger.getDangerName()}"/></p>
         <p>Gefahrenlevel: <input name="dangerLevel" type="text" th:value="${editDanger.getDangerLevel()}"/></p>
         <p>Anforderung ID:
-        <p name="requirementId" type="text" th:text="${editDanger.getRequirement().getRequirementId()}"/></p>
+        <div th:if ="${editDanger.getRequirement()} != ${null}">
+        <p name="requirementId" type="text"
+           th:text="${editDanger.getRequirement().getRequirementId()}"/></p>
+        </div>
+
         <p><input type="submit" value="Gefahr speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

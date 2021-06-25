@@ -24,14 +24,13 @@ public class CreateProcessController {
 
     @PostMapping("/createProcess")
     public String create(@RequestParam(name = "processName") String processName,
-                         @RequestParam(name = "protectionLevel") int protectionLevel,
-                         @RequestParam(name = "componentId") int componentId) {
+                         @RequestParam(name = "protectionLevel") int protectionLevel) {
 
-        processService.createProcess(processName, protectionLevel, componentId);
+
+        processService.createProcess(processName, protectionLevel);
 
         System.out.println(processName);
         System.out.println(protectionLevel);
-        System.out.println(componentId);
 
         return "redirect:/process";
     }

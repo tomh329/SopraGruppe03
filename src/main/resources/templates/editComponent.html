@@ -73,7 +73,10 @@
         <p>Aufkommen: <input name="occurrence" type="text" th:value="${editComponent.getOccurrence()}"></input>
         <p>Priorität: <input name="priority" type="text" th:value="${editComponent.getPriority()}"/></p>
         <p>Prozess ID:
-        <p name="processId" type="text" th:text="${editComponent.getProcess().getProcessId()}"/></p>
+        <div th:if ="${editComponent.getProcess()} != ${null}">
+        <p name="processId" type="text"
+           th:text="${editComponent.getProcess().getProcessId()}"/></p>
+        </div>
         <p><input type="submit" value="Komponent speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

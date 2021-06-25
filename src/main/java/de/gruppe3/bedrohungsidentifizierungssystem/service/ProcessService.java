@@ -60,6 +60,18 @@ public class ProcessService {
     }
 
 
+
+    public Process createProcess(String processName, int protectionLevel){
+
+        Process process = new Process(processName, protectionLevel);
+        List<Component> compList = componentRepository.findAll();
+
+
+        return processRepository.save(process);
+    }
+
+
+
     public boolean deleteProcess(int processId){
 
         List<Process> processList = processRepository.findAll();

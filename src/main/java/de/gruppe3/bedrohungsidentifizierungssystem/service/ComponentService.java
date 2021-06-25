@@ -63,6 +63,15 @@ public class ComponentService {
         return componentRepository.save(component);
     }
 
+
+    public Component createComponent(String componentName, int priority, String lastAttack, int occurrence){
+
+        Component component = new Component(componentName, priority, lastAttack, occurrence);
+
+        return componentRepository.save(component);
+    }
+
+
     public void deleteComponent(Component component) {
 
         componentRepository.delete(component);

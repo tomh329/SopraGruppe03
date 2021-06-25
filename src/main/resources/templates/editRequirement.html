@@ -70,7 +70,11 @@
         <p>Anforderungsname: <input name="requirementName" type="text"
                                     th:value="${editRequirement.getRequirementName()}"/></p>
         <p>Komponenten ID:
-        <p name="processId" type="text" th:text="${editRequirement.getComponent().componentId}"/></p>
+        <div th:if ="${editRequirement.getComponent()} != ${null}">
+        <p name="processId" type="text"
+           th:text="${editRequirement.getComponent().componentId}"/></p>
+        </div>
+
         <p><input type="submit" value="Anforderung speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>
