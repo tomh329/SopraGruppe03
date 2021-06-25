@@ -2,6 +2,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Severity;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,19 @@ public class DangerService {
     public Danger createDanger(String dangerName, int dangerLevel){
         Danger danger = new Danger(dangerName, dangerLevel);
         return dangerRepository.save(danger);
+    }
+
+    public void updateDanger(int dangerId, String dangerName, int dangerLevel) {
+
+        List<Danger> dangerList = findAllDangers();
+
+        for(Danger danger : dangerList){
+            if(dangerId == danger.getDangerId()){
+                danger.setDangerName(dangerName);
+                danger.setDangerLevel(dangerLevel);
+                dangerRepository.save(danger);
+            }
+        }
     }
 
     public void deleteDanger(Danger danger){
