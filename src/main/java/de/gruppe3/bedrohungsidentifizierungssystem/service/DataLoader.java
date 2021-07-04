@@ -1,10 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Role;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +113,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         Danger testDanger1 = new Danger("testDanger1", 3);
 
+        Action testAction1 = new Action("testMaßnahme", "2021-08-17", 3);
+
 
         /*
         ether you start with a component and add that to a process you pick
@@ -135,6 +134,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         componentService.saveComponent(testComponent2);
         requirementService.saveRequirement(testReq1);
         dangerService.saveDanger(testDanger1);
+        actionService.saveAction(testAction1);
 
     
     }
