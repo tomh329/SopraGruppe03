@@ -1,9 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -13,20 +11,24 @@ import java.util.Date;
 public class Action {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int actionId;
 
     @NotBlank(message = "Die Maßnahme braucht einen Namen.")
     private String actionName;
 
-    @FutureOrPresent(message = "Das Datum darf nicht in der Vergangenheit liegen.")
-    private Date actionDueDate;
+//    @FutureOrPresent(message = "Das Datum darf nicht in der Vergangenheit liegen.")
+    private String actionDueDate;
 
-    @NotBlank(message = "Es muss ein Wert eingetragen werden.")
-    private String protectionNeeds;
+//    @NotBlank(message = "Es muss ein Wert eingetragen werden.")
+    private int protectionNeeds;
+
+    @ManyToOne
+    @JoinColumn(name = "component_id")
+    private Component componentAct;
 
 
-    public Action(String actionName, Date actionDueDate, String protectionNeeds) {
+    public Action(String actionName, String actionDueDate, int protectionNeeds) {
         this.actionName = actionName;
         this.actionDueDate = actionDueDate;
         this.protectionNeeds = protectionNeeds;
@@ -53,20 +55,27 @@ public class Action {
         this.actionName = actionName;
     }
 
-    public Date getActionDueDate() {
+    public String getActionDueDate() {
         return actionDueDate;
     }
 
-    public void setActionDueDate(Date actionDueDate) {
+    public void setActionDueDate(String actionDueDate) {
         this.actionDueDate = actionDueDate;
     }
 
-    public String getProtectionNeeds() {
+    public int getProtectionNeeds() {
         return protectionNeeds;
     }
 
-    public void setProtectionNeeds(String protectionNeeds) {
+    public void setProtectionNeeds(int protectionNeeds) {
         this.protectionNeeds = protectionNeeds;
     }
 
+    public Component getComponent() {
+        return componentAct;
+    }
+
+    public void setComponent(Component component) {
+        this.componentAct = component;
+    }
 }

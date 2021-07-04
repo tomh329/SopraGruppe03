@@ -1,5 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
@@ -85,6 +86,9 @@ public class ComponentService {
             if(componentId == component.getComponentId()){
                 for(Requirement requirement : component.getRequirements()){
                     requirement.setComponent(null);
+                }
+                for(Action action : component.getActions()){
+                    action.setComponent(null);
                 }
                 componentRepository.delete(component);
                 return true;

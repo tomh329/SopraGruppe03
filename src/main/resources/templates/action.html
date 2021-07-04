@@ -11,18 +11,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Der Titel könnte falsch sein -->
-    <title>Create Process</title>
+    <title>Processes</title>
 
     <style>
         .processTable {
             margin: 100px;
             text-align: center;
         }
+
+        .edit-delete {
+            display: inline;
+        }
+        .createButton {
+            margin: 10px;
+        }
     </style>
 </head>
 
-<body style="align-content: center">
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">BIS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -56,18 +62,50 @@
     </div>
 </nav>
 
+<h2>Maßnahmentabelle</h2>
+<!-- Maßnahmentabelle -->
+<form class="createButton" th:action="@{/createActionButton}" method="post">
+    <button th:type="submit" class="btn btn-primary"> Neue Maßnahme erstellen
+    </button>
+</form>
 
-<h3>Einen Prozess erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/createProcess}" method="post">
-        <p>Prozesstitel: <input name="processName" type="text"/></p>
-        <p th:if="${#fields.hasErrors('process.processName')}" style="color: red">Ungültiger Name (Name ist zu kurz)</p>
-        <p>Schutzbedarf: <input name="protectionLevel" type="text"/></p>
-        <p th:if="${#fields.hasErrors('process.protectionLevel')}" style="color: red">Ungültiger Schutzbedarf</p>
-<!--        <p>Komponenten ID: <input name="componentId" type="text"/></p>-->
-        <p><input type="submit" value="Prozess speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+<div class="actionTable">
+    <table class="table">
+        <thead class="thead-theme">
+        <tr>
+            <th scope="col">Maßnahmen ID</th>
+            <th scope="col">Maßnahmentitel</th>
+            <th scope="col">Umsetzungsziel</th>
+            <th scope="col">Schutzbedarf</th>
+            <th scope="col">Komponenten ID</th>
+            <th scope="col">Aktionen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="action : ${actions}">
+            <td th:text="${action.actionId}"/>
+            <td th:text="${action.actionName}"/>
+            <td th:text="${action.actionDueDate}"/>
+            <td th:text="${action.protectionNeeds}"/>
+            <td>
+                <p th:each="component : ${action.getComponent()}">
+                    <span th:text="${component.getComponentId()}"></span>
+                </p>
+            </td>
+            <td>
+                <form class="edit-delete" th:action="@{/action/{path}(path=${action.actionId})}" method="post">
+                    <button th:type="submit" class="btn btn-primary"> Bearbeiten
+                    </button>
+                </form>
+                <form class="edit-delete" th:action="@{/deleteAction/{path}(path=${action.actionId})}" method="post">
+                    <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
 </div>
-
 </body>
 </html>
