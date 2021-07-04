@@ -27,16 +27,14 @@ public class ActionController {
         return "redirect:/createAction";
     }
 
-//    @PostMapping("/addRequirementButton")
-//    public String add() {
-//        return "redirect:/addRequirement";
-//    }
 
-    @PostMapping({"/action/{actionId}"})
-    public String showEditComponent(Model model, @PathVariable String actionId) {
-        model.addAttribute("editAction", actionService.findActionWithId(Integer.parseInt(actionId)));
-        return "editComponent";
-    }
+
+
+//    @PostMapping({"/action/{actionId}"})
+//    public String showEditComponent(Model model, @PathVariable String actionId) {
+//        model.addAttribute("editAction", actionService.findActionWithId(Integer.parseInt(actionId)));
+//        return "editAction";
+//    }
 
     @PostMapping("/deleteAction/{actionId}")
     public String deleteAction(@PathVariable String actionId) {
