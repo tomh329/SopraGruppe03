@@ -23,6 +23,8 @@ public class Action {
 //    @NotBlank(message = "Es muss ein Wert eingetragen werden.")
     private int protectionNeeds;
 
+    private boolean status;
+
     @ManyToOne
     @JoinColumn(name = "component_id")
     private Component componentAct;
@@ -77,5 +79,13 @@ public class Action {
 
     public void setComponent(Component component) {
         this.componentAct = component;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

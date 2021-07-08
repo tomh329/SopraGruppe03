@@ -73,6 +73,7 @@
     <table class="table">
         <thead class="thead-theme">
         <tr>
+            <th scope="col">Status</th>
             <th scope="col">Maßnahmen ID</th>
             <th scope="col">Maßnahmentitel</th>
             <th scope="col">Umsetzungsziel</th>
@@ -83,6 +84,12 @@
         </thead>
         <tbody>
         <tr th:each="action : ${actions}">
+            <td>
+                <div th:switch="${action.status}">
+                    <p th:case="false" style="color: red"> Nicht Erledigt</p>
+                    <p th:case="true" style="color: green"> Erledigt</p>
+                </div>
+            </td>
             <td th:text="${action.actionId}"/>
             <td th:text="${action.actionName}"/>
             <td th:text="${action.actionDueDate}"/>
@@ -99,6 +106,10 @@
                 </form>
                 <form class="edit-delete" th:action="@{/deleteAction/{path}(path=${action.actionId})}" method="post">
                     <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
+                    </button>
+                </form>
+                <form class="edit-delete" th:action="@{/changeStatus/{path}(path=${action.actionId})}" method="post">
+                    <button th:type="submit" class="btn btn-primary" style="background: green"> Erldedigt
                     </button>
                 </form>
             </td>

@@ -113,8 +113,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         Danger testDanger1 = new Danger("testDanger1", 3);
 
-        Action testAction1 = new Action("testMaßnahme", "2021-08-17", 3);
+        Action testAction1 = new Action("testMaßnahme1", "2021-08-17", 3);
+        Action testAction2 = new Action("testMaßnahme2", "2021-10-23", 1);
 
+        testAction2.setStatus(true);
 
         /*
         ether you start with a component and add that to a process you pick
@@ -135,6 +137,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(testReq1);
         dangerService.saveDanger(testDanger1);
         actionService.saveAction(testAction1);
+        actionService.saveAction(testAction2);
 
     
     }
