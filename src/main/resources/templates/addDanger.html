@@ -11,11 +11,21 @@
 </head>
 <body style="align-content: center">
 
-<h3>Eine Gefahr hinzufügen</h3>
+<h3>Eine Gefahr an eine Anforderung anfügen</h3>
 <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
     <form th:action="@{/addDanger}" method="post">
-        <p>Anforderungs ID: <input name="requirementId" type="text"/></p>
-        <p>Gefahr ID: <input name="dangerId" type="text"/></p>
+
+        <p>Gefahr: <select name="dangerId" type = "text">
+            <option th:each="danger : ${dangers}"
+                    th:value="${danger.dangerId}" th:text="${danger.dangerName}"></option>
+        </select></p>
+
+        <p>Anforderung: <select name="requirementId" type = "text">
+            <option th:each="requirement : ${requirements}"
+                    th:value="${requirement.requirementId}" th:text="${requirement.requirementName}"></option>
+        </select></p>
+
+
         <p><input type="submit" value="Gefahr hinzufügen"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>
