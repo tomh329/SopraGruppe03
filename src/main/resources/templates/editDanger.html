@@ -52,7 +52,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -67,7 +67,16 @@
         <p>Gafahr ID:
         <p name="dangerId" type="text" th:text="${editDanger.getDangerId()}"/></p>
         <p>Gefahrenname: <input name="dangerName" type="text" th:value="${editDanger.getDangerName()}"/></p>
-        <p>Gefahrenlevel: <input name="dangerLevel" type="text" th:value="${editDanger.getDangerLevel()}"/></p>
+
+        <p>Gefahrenlevel: <select name="dangerLevel" type = "text" th:value="${editDanger.getDangerLevel()}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select></p>
+
         <p>Anforderung ID:
         <div th:if ="${editDanger.getRequirement()} != ${null}">
         <p name="requirementId" type="text"

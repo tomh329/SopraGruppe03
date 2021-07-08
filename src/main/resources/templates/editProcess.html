@@ -52,7 +52,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -68,7 +68,13 @@
         <p name="processId" type="text" th:text="${editProcess.getProcessId()}"/></p>
         <p>Prozesstitel: <input name="processName" type="text" th:value="${editProcess.getProcessName()}"/></p>
         <p th:if="${#fields.hasErrors('editProcess.processName') }" style="color: red">Ungültiger Name (name ist zu kurz)</p>
-        <p>Schutzbedarf: <input name="protectionLevel" type="text" th:value="${editProcess.getProtectionLevel()}"/></p>
+        <p>Schutzbedarf: <select name="protectionLevel" type = "text" th:value="${editProcess.getProtectionLevel()}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select></p>
+
         <p th:if="${#fields.hasErrors('editProcess.protectionLevel')}" style="color: red">Ungültiger Schutzbedarf</p>
         <p>Komponenten IDs:
         <p name="componentId" type="text" th:each="component : ${editProcess.getComponents()}"

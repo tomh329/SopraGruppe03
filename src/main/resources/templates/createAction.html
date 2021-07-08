@@ -64,7 +64,14 @@
 <!--    <p th:if="${#fields.hasErrors('action.actionName')}" style="color: red">Ungültiger Name (Feld ist leer)</p>-->
     <p>Umsetzungsziel: <input name="actionDueDate" type="date"/></p>
 <!--    <p th:if="${#fields.hasErrors('action.actionDueDate')}" style="color: red">Ungültiges Datum</p>-->
-    <p>Schutzbedarf: <input name="protectionNeeds" type="number"/></p>
+
+    <p>Schutzbedarf: <select name="protectionNeeds" type = "number">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select></p>
+
 <!--    <p th:if="${#fields.hasErrors('action.protectionNeeds')}" style="color: red">Ungültige Eingabe</p>-->
 
     <p><input type="submit" value="Maßnhame speichern"/> <input type="reset" value="Reset"/></p>
