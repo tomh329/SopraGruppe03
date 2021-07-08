@@ -7,9 +7,11 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,19 +22,25 @@ import java.util.List;
 public class AddActionController {
 
     @GetMapping("/addAction")
-    public String showAddAction() {
+    public String showAddAction(Model model) {
+
+        model.addAttribute("actions", actionService.findAllActions());
+        model.addAttribute("components", componentService.findAllComponents());
         return "addAction";
     }
 
 
     @Autowired
+    ActionRepository actionRepository;
+    @Autowired
     ActionService actionService;
 
     @Autowired
     ComponentRepository componentRepository;
-
     @Autowired
-    ActionRepository actionRepository;
+    ComponentService componentService;
+
+
 
     @PostMapping("/addAction")
     public String add(@RequestParam(name = "componentId") int componentId,

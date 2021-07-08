@@ -11,11 +11,21 @@
 </head>
 <body style="align-content: center">
 
-<h3>Eine Maßnahme hinzufügen</h3>
+<h3>Eine Maßnahme für eine Komponente festlegen</h3>
 <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
   <form th:action="@{/addAction}" method="post">
-    <p>Komponenten ID: <input name="componentId" type="text"/></p>
-    <p>Maßnahmen ID: <input name="actionId" type="text"/></p>
+
+    <p>Maßnahme: <select name="actionId" type = "text">
+      <option th:each="action : ${actions}"
+              th:value="${action.actionId}" th:text="${action.actionName}"></option>
+    </select></p>
+
+    <p>Komponente: <select name="componentId" type = "text">
+      <option th:each="component : ${components}"
+              th:value="${component.componentId}" th:text="${component.componentName}"></option>
+    </select></p>
+
+
     <p><input type="submit" value="Maßnahme hinzufügen"/> <input type="reset" value="Reset"/></p>
   </form>
 </div>
