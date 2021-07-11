@@ -131,7 +131,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Danger diebstahl = new Danger("Diebstahl von Geräten/Dokumenten", 5);
         Danger fehlplanung = new Danger("Fehlplanung", 2);
         Danger manipulation = new Danger("Manipulation", 4);
-
         Danger ausfall = new Danger("Ausfall von Geräten/System", 1);
 
         Danger testDanger1 = new Danger("testDanger1", 3);
@@ -157,11 +156,24 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         processService.saveProcess(testProcess1);
         processService.saveProcess(testProcess2);
 
+        componentService.saveComponent(compOrg);
+        componentService.saveComponent(compPers);
         componentService.saveComponent(testComponent1);
         componentService.saveComponent(testComponent2);
 
+        requirementService.saveRequirement(reqOrg11);
+        requirementService.saveRequirement(reqOrg12);
+        requirementService.saveRequirement(reqOrg13);
+        requirementService.saveRequirement(reqPers11);
+        requirementService.saveRequirement(reqPers12);
+        requirementService.saveRequirement(reqPers13);
         requirementService.saveRequirement(testReq1);
 
+        dangerService.saveDanger(spionage);
+        dangerService.saveDanger(diebstahl);
+        dangerService.saveDanger(fehlplanung);
+        dangerService.saveDanger(manipulation);
+        dangerService.saveDanger(ausfall);
         dangerService.saveDanger(testDanger1);
 
         actionService.saveAction(testAction1);
