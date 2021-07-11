@@ -75,9 +75,9 @@
             <option value="3">Manager</option>
             <option value="4">Employee</option>
         </select></p>
-        <p>Komponenten ID:
+        <p>Komponenten:
         <p name="componentId" type="text" th:each="component : ${editUsersName.getComponents()}"
-           th:text="${component.getComponentId()}"></p>
+           th:text="${component.getComponentName()}"></p>
         <p><input type="submit" value="Benutzer speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

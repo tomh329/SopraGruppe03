@@ -78,7 +78,7 @@
             <th scope="col">Maßnahmentitel</th>
             <th scope="col">Umsetzungsziel</th>
             <th scope="col">Schutzbedarf</th>
-            <th scope="col">Komponenten ID</th>
+            <th scope="col">Komponente</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -96,7 +96,7 @@
             <td th:text="${action.protectionNeeds}"/>
             <td>
                 <p th:each="component : ${action.getComponent()}">
-                    <span th:text="${component.getComponentId()}"></span>
+                    <span th:text="${component.getComponentName()}"></span>
                 </p>
             </td>
             <td>

@@ -74,7 +74,7 @@
             <th scope="col">Gefahr ID</th>
             <th scope="col">Gefahrtitel</th>
             <th scope="col">Gefahrlevel</th>
-            <th scope="col">Anforderungs ID</th>
+            <th scope="col">Anforderungen</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -85,7 +85,7 @@
             <td th:text="${danger.dangerLevel}"/>
             <td>
                 <p th:each="requirement : ${danger.getRequirements()}">
-                    <span th:text="${requirement.getRequirementId()}"></span>
+                    <span th:text="${requirement.getRequirementName()}"></span>
                 </p>
             </td>
             <td>

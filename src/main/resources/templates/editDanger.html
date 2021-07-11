@@ -77,10 +77,10 @@
             <option value="6">6</option>
         </select></p>
 
-        <p>Anforderung ID:
+        <p>Anforderungen:
         <div th:if ="${editDanger.getRequirements()} != ${null}">
         <p name="requirementId" type="text" th:each="requirement : ${editDanger.getRequirements()}"
-           th:text="${requirement.getRequirementId()}"/></p>
+           th:text="${requirement.getRequirementName()}"/></p>
         </div>
 
         <p><input type="submit" value="Gefahr speichern"/> <input type="reset" value="Reset"/></p>

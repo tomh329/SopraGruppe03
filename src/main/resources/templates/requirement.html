@@ -78,7 +78,7 @@
         <tr>
             <th scope="col">Anforderungs ID</th>
             <th scope="col">Anforderungstitel</th>
-            <th scope="col">Komponenten ID</th>
+            <th scope="col">Komponenten</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -88,7 +88,7 @@
             <td th:text="${requirement.requirementName}"/>
             <td>
                 <p th:each="component : ${requirement.getComponent()}">
-                    <span th:text="${component.getComponentId()}"></span>
+                    <span th:text="${component.getComponentName()}"></span>
                 </p>
             </td>
             <td>

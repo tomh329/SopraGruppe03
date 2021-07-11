@@ -85,8 +85,8 @@
             <th scope="col">Letzte Attack</th>
             <th scope="col">Aufkommen</th>
             <th scope="col">Priorität</th>
-            <th scope="col">Prozess ID</th>
-            <th scope="col">Maßnahmen ID</th>
+            <th scope="col">Prozess</th>
+            <th scope="col">Maßnahmen</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -100,12 +100,12 @@
             <td th:text="${component.priority}"/>
             <td>
                 <p th:each="process : ${component.getProcess()}">
-                    <span th:text="${process.getProcessId()}"></span>
+                    <span th:text="${process.getProcessName()}"></span>
                 </p>
             </td>
             <td>
                 <p th:each="action : ${component.getActions()}">
-                    <span th:text="${action.getActionId()}"></span>
+                    <span th:text="${action.getActionName()}"></span>
                 </p>
             </td>
             <td>

@@ -76,9 +76,9 @@
         </select></p>
 
         <p th:if="${#fields.hasErrors('editProcess.protectionLevel')}" style="color: red">Ungültiger Schutzbedarf</p>
-        <p>Komponenten IDs:
+        <p>Komponenten:
         <p name="componentId" type="text" th:each="component : ${editProcess.getComponents()}"
-           th:text="${component.getComponentId()}"></p>
+           th:text="${component.getComponentName()}"></p>
         <p><input type="submit" value="Prozess speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

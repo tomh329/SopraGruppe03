@@ -92,10 +92,10 @@
             <option value="5">5</option>
         </select></p>
 
-        <p>Prozess ID:
+        <p>Prozess:
         <div th:if ="${editComponent.getProcess()} != ${null}">
         <p name="processId" type="text"
-           th:text="${editComponent.getProcess().getProcessId()}"/></p>
+           th:text="${editComponent.getProcess().getProcessName()}"/></p>
         </div>
         <p><input type="submit" value="Komponent speichern"/> <input type="reset" value="Reset"/></p>
     </form>
