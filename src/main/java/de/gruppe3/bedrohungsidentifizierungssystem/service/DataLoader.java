@@ -150,7 +150,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         testProcess1.addComponent(testComponent1);
         testProcess1.addComponent(testComponent2);
         testComponent1.addRequirement(testReq1);
-        testReq1.addDanger(testDanger1);
+//        testReq1.addDanger(testDanger1);
 
         processService.saveProcess(orpOrgPers);
         processService.saveProcess(testProcess1);

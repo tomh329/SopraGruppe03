@@ -84,7 +84,7 @@
             <td th:text="${danger.dangerName}"/>
             <td th:text="${danger.dangerLevel}"/>
             <td>
-                <p th:each="requirement : ${danger.getRequirement()}">
+                <p th:each="requirement : ${danger.getRequirements()}">
                     <span th:text="${requirement.getRequirementId()}"></span>
                 </p>
             </td>

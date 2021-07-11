@@ -19,7 +19,8 @@ public class Requirement {
     @JoinColumn(name = "component_id")
     private Component component;
 
-    @OneToMany(targetEntity = Danger.class, mappedBy = "requirement")
+//    @OneToMany(targetEntity = Danger.class, mappedBy = "requirement")
+    @ManyToMany
     private List<Danger> dangers;
 
 
@@ -57,9 +58,9 @@ public class Requirement {
         this.component = component;
     }
 
-    public void addDanger(Danger danger) {
-        danger.setRequirement(this);
-    }
+//    public void addDanger(Danger danger) {
+//        danger.setRequirement(this);
+//    }
 
     public List<Danger> getDangers() {
         return dangers;

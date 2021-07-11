@@ -48,7 +48,10 @@ public class AddDangerController {
             if (requirementId == requirement.getRequirementId()) {
                 for (Danger danger : dangerList) {
                     if (dangerId == danger.getDangerId()) {
-                        danger.setRequirement(requirement);
+//                        danger.setRequirement(requirement);
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                        requirementService.saveRequirement(requirement);
                         dangerService.saveDanger(danger);
                         return "redirect:/requirement";
                     }
