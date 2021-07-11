@@ -78,9 +78,9 @@
         </select></p>
 
         <p>Anforderung ID:
-        <div th:if ="${editDanger.getRequirement()} != ${null}">
-        <p name="requirementId" type="text"
-           th:text="${editDanger.getRequirement().getRequirementId()}"/></p>
+        <div th:if ="${editDanger.getRequirements()} != ${null}">
+        <p name="requirementId" type="text" th:each="requirement : ${editDanger.getRequirements()}"
+           th:text="${requirement.getRequirementId()}"/></p>
         </div>
 
         <p><input type="submit" value="Gefahr speichern"/> <input type="reset" value="Reset"/></p>
