@@ -1,5 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.controller.AddDangerController;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +39,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private DangerService dangerService;
+
+    @Autowired
+    private AddDangerController addDangerController;
 
     /**
      * Diese Methode wird zum Aufsetzen von Testdaten für die Datenbank verwendet werden. Die Methode wird immer dann
@@ -132,6 +137,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Danger fehlplanung = new Danger("Fehlplanung", 2);
         Danger manipulation = new Danger("Manipulation", 4);
         Danger ausfall = new Danger("Ausfall von Geräten/System", 1);
+        Danger identitaetsdieebstahl = new Danger("Identitätsdieebstahl", 6);
+        Danger missbrauchPersDaten = new Danger("Missbrauch personenbezogener Daten", 6);
+        Danger verstoss = new Danger("Verstoß gegen Gesetzte/Regeln", 4);
 
         Danger testDanger1 = new Danger("testDanger1", 3);
 
@@ -147,10 +155,49 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //        testComponent1.setProcess(testProcess1);
 //        testComponent2.setProcess(testProcess1);
 
+
+
+        orpOrgPers.addComponent(compOrg);
+        orpOrgPers.addComponent(compPers);
         testProcess1.addComponent(testComponent1);
         testProcess1.addComponent(testComponent2);
+
+        compOrg.addRequirement(reqOrg11);
+        compOrg.addRequirement(reqOrg12);
+        compOrg.addRequirement(reqOrg13);
+        compPers.addRequirement(reqPers11);
+        compPers.addRequirement(reqPers12);
+        compPers.addRequirement(reqPers13);
         testComponent1.addRequirement(testReq1);
+
+
+//        reqOrg11.getDangers().add(spionage);
+//        reqOrg11.getDangers().add(fehlplanung);
+//        reqOrg11.getDangers().add(manipulation);
+//
+//        reqOrg12.getDangers().add(spionage);
+//        reqOrg12.getDangers().add(diebstahl);
+//        reqOrg12.getDangers().add(fehlplanung);
+//        reqOrg12.getDangers().add(manipulation);
+//        reqOrg12.getDangers().add(ausfall);
+//
+//        reqOrg13.getDangers().add(spionage);
+//        reqOrg13.getDangers().add(diebstahl);
+//        reqOrg13.getDangers().add(manipulation);
+//
+//        reqPers11.getDangers().add(spionage);
+//        reqPers11.getDangers().add(verstoss);
+//
+//        reqPers12.getDangers().add(identitaetsdieebstahl);
+//        reqPers12.getDangers().add(missbrauchPersDaten);
+//        reqPers11.getDangers().add(verstoss);
+//
+//        reqPers13.getDangers().add(spionage);
+//        reqPers13.getDangers().add(missbrauchPersDaten);
+//        reqPers11.getDangers().add(verstoss);
 //        testReq1.addDanger(testDanger1);
+
+
 
         processService.saveProcess(orpOrgPers);
         processService.saveProcess(testProcess1);
@@ -174,11 +221,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         dangerService.saveDanger(fehlplanung);
         dangerService.saveDanger(manipulation);
         dangerService.saveDanger(ausfall);
+        dangerService.saveDanger(identitaetsdieebstahl);
+        dangerService.saveDanger(missbrauchPersDaten);
+        dangerService.saveDanger(verstoss);
         dangerService.saveDanger(testDanger1);
 
         actionService.saveAction(testAction1);
         actionService.saveAction(testAction2);
-
-    
     }
 }

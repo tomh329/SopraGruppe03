@@ -62,6 +62,11 @@ public class Requirement {
 //        danger.setRequirement(this);
 //    }
 
+    public void addDanger(Danger danger){
+        this.getDangers().add(danger);
+        danger.getRequirements().add(this);
+    }
+
     public List<Danger> getDangers() {
         return dangers;
     }
