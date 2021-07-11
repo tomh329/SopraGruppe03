@@ -98,24 +98,47 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         userService.saveUser(userPaule);
 
 
+        //example process
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Process orpOrgPers = new Process("ORP: Organisation und Personal", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess1 = new Process("Test1", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess2 = new Process("Test2", 1);
         testProcess1.setProcessName("ÄnderungsTest");
 
 
-
+        //example component
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component compOrg
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.1Organisation", 1, "2021-04-11", 3);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component compPers
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.2Personal", 3, "2021-02-23", 7);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "2021-04-11", 3);
 
+        //example requirement
+        Requirement reqOrg11 = new Requirement("Festlegung von Verantwortlichkeiten");
+        Requirement reqOrg12 = new Requirement("Zuweisung der Zuständigkeiten");
+        Requirement reqOrg13 = new Requirement("Beaufsichtigung von Fremdpersonen");
+
+        Requirement reqPers11 = new Requirement("Einarbeitung neuer Mitarbeiter");
+        Requirement reqPers12 = new Requirement("Festlegung von Vertretungsregelungen");
+        Requirement reqPers13 = new Requirement("Qualifikation des Personals");
+
         Requirement testReq1 = new Requirement("testReq1");
+
+        //example danger
+        Danger spionage = new Danger("Spionage", 3);
+        Danger diebstahl = new Danger("Diebstahl von Geräten/Dokumenten", 5);
+        Danger fehlplanung = new Danger("Fehlplanung", 2);
+        Danger manipulation = new Danger("Manipulation", 4);
+
+        Danger ausfall = new Danger("Ausfall von Geräten/System", 1);
 
         Danger testDanger1 = new Danger("testDanger1", 3);
 
+        //example action
         Action testAction1 = new Action("testMaßnahme1", "2021-08-17", 3);
         Action testAction2 = new Action("testMaßnahme2", "2021-10-23", 1);
-
         testAction2.setStatus(true);
 
         /*
@@ -130,12 +153,17 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         testComponent1.addRequirement(testReq1);
         testReq1.addDanger(testDanger1);
 
+        processService.saveProcess(orpOrgPers);
         processService.saveProcess(testProcess1);
         processService.saveProcess(testProcess2);
+
         componentService.saveComponent(testComponent1);
         componentService.saveComponent(testComponent2);
+
         requirementService.saveRequirement(testReq1);
+
         dangerService.saveDanger(testDanger1);
+
         actionService.saveAction(testAction1);
         actionService.saveAction(testAction2);
 
