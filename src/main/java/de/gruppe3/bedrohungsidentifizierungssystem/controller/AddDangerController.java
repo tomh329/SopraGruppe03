@@ -69,37 +69,4 @@ public class AddDangerController {
         System.out.println("No Success");
         return "redirect:/requirement";
     }
-
-
-    public String addDataLoader(@RequestParam(name = "requirementId") int requirementId,
-                      @RequestParam(name = "dangerId") int dangerId) {
-
-        List<Danger> dangerList = dangerRepository.findAll();
-        List<Requirement> requirementList = requirementRepository.findAll();
-
-        for (Requirement requirement : requirementList) {
-            if (requirementId == requirement.getRequirementId()) {
-                for (Danger danger : dangerList) {
-                    if (dangerId == danger.getDangerId()) {
-//                        danger.setRequirement(requirement);
-
-                        if(requirement.getDangers().contains(danger)){
-                            requirementService.saveRequirement(requirement);
-                            dangerService.saveDanger(danger);
-                            return "redirect:/requirement";
-                        }
-
-                        requirement.getDangers().add(danger);
-                        danger.getRequirements().add(requirement);
-                        requirementService.saveRequirement(requirement);
-                        dangerService.saveDanger(danger);
-                        return "redirect:/requirement";
-                    }
-                }
-            }
-        }
-
-        System.out.println("No Success");
-        return "redirect:/requirement";
-    }
 }
