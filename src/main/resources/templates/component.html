@@ -54,7 +54,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -72,6 +72,10 @@
     <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
     </button>
 </form>
+<form class="createButton" th:action="@{/addActionButton}" method="post">
+    <button th:type="submit" class="btn btn-primary"> Maßnahme hinzufügen
+    </button>
+</form>
 <div class="componentTable">
     <table class="table">
         <thead class="thead-theme">
@@ -81,7 +85,8 @@
             <th scope="col">Letzte Attack</th>
             <th scope="col">Aufkommen</th>
             <th scope="col">Priorität</th>
-            <th scope="col">Prozess ID</th>
+            <th scope="col">Prozess</th>
+            <th scope="col">Maßnahmen</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -95,9 +100,15 @@
             <td th:text="${component.priority}"/>
             <td>
                 <p th:each="process : ${component.getProcess()}">
-                    <span th:text="${process.getProcessId()}"></span>
+                    <span th:text="${process.getProcessName()}"></span>
                 </p>
             </td>
+            <td>
+                <p th:each="action : ${component.getActions()}">
+                    <span th:text="${action.getActionName()}"></span>
+                </p>
+            </td>
+            <td>
             <td>
                 <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post">
                     <button th:type="submit" class="btn btn-primary"> Bearbeiten

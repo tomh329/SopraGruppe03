@@ -3,6 +3,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity
@@ -16,14 +17,20 @@ public class Danger {
     @NotBlank(message = "Eine Gefahr braucht einen Gefahrenname.")
     private String dangerName;
 
-  @NotNull(message = "Die Gefahr darf nicht Null sein.")
+    @NotNull(message = "Die Gefahr darf nicht Null sein.")
 //  @PositiveOrZero(message = "Der Gefahr muss positiv sein.")
     private int dangerLevel;
 
 
-    @ManyToOne
-    @JoinColumn(name = "requirement_id")
-    private Requirement requirement;
+    //    @ManyToOne
+//    @JoinColumn(name = "requirement_id")
+//    private Requirement requirement;
+    @ManyToMany
+    @JoinTable(
+            name = "danger_requirement",
+            joinColumns = @JoinColumn(name = "dangerId"),
+            inverseJoinColumns = @JoinColumn(name = "requirementId"))
+    private List<Requirement> requirements;
 
 
     public Danger(String dangerName, int dangerLevel) {
@@ -60,12 +67,19 @@ public class Danger {
         this.dangerLevel = dangerLevel;
     }
 
-    public Requirement getRequirement() {
-        return requirement;
+//    public Requirement getRequirement() {
+//        return requirement;
+//    }
+//    public void setRequirement(Requirement requirement) {
+//        this.requirement = requirement;
+//    }
+
+
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirement(Requirement requirement) {
-        this.requirement = requirement;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
-
 }

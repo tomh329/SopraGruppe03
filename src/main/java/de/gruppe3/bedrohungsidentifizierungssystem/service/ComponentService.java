@@ -1,8 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +85,13 @@ public class ComponentService {
                 for(Requirement requirement : component.getRequirements()){
                     requirement.setComponent(null);
                 }
+                for(Action action : component.getActions()){
+                    action.setComponent(null);
+                }
+                for(User user : component.getUsers()){
+                    user.removeComponent(component);
+                }
+
                 componentRepository.delete(component);
                 return true;
             }

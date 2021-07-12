@@ -54,7 +54,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -79,7 +79,7 @@
             <th scope="col">Prozess ID</th>
             <th scope="col">Prozesstitel</th>
             <th scope="col">Schutzbedarf</th>
-            <th scope="col">Komponenten ID</th>
+            <th scope="col">Komponenten</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -90,7 +90,7 @@
             <td th:text="${process.protectionLevel}"/>
             <td>
                 <p th:each="component : ${process.getComponents()}">
-                    <span th:text="${component.getComponentId()}"></span>
+                    <span th:text="${component.getComponentName()}"></span>
                 </p>
             </td>
             <td>

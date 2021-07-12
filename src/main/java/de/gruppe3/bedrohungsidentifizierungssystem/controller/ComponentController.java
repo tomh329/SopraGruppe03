@@ -33,6 +33,13 @@ public class ComponentController {
         return "redirect:/addRequirement";
     }
 
+    @PostMapping("/addActionButton")
+    public String addAct() {
+        return "redirect:/addAction";
+    }
+
+
+
     @PostMapping({"/component/{componentId}"})
     public String showEditComponent(Model model, @PathVariable String componentId) {
         model.addAttribute("editComponent", componentService.findComponentWithId(Integer.parseInt(componentId)));
@@ -40,7 +47,7 @@ public class ComponentController {
     }
 
     @PostMapping("/deleteComponent/{componentId}")
-    public String deleteProcess(@PathVariable String componentId) {
+    public String deleteComponent(@PathVariable String componentId) {
         System.out.println(
                 componentService.deleteComponent(Integer.parseInt(componentId))
         );

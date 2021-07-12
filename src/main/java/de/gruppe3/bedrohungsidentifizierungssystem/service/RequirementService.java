@@ -52,7 +52,8 @@ public class RequirementService {
         for(Requirement requirement : requirementList){
             if(requirementId == requirement.getRequirementId()){
                 for(Danger danger : requirement.getDangers()){
-                    danger.setRequirement(null);
+//                    danger.setRequirement(null);
+                    danger.getRequirements().remove(requirement);
                 }
                 requirementRepository.delete(requirement);
                 return true;

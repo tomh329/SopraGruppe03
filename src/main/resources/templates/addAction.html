@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Requirement</title>
+  <meta content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body style="align-content: center">
+
+<h3>Eine Maßnahme für eine Komponente festlegen</h3>
+<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
+  <form th:action="@{/addAction}" method="post">
+
+    <p>Maßnahme: <select name="actionId" type = "text">
+      <option th:each="action : ${actions}"
+              th:value="${action.actionId}" th:text="${action.actionName}"></option>
+    </select></p>
+
+    <p>Komponente: <select name="componentId" type = "text">
+      <option th:each="component : ${components}"
+              th:value="${component.componentId}" th:text="${component.componentName}"></option>
+    </select></p>
+
+
+    <p><input type="submit" value="Maßnahme hinzufügen"/> <input type="reset" value="Reset"/></p>
+  </form>
+</div>
+
+</body>
+</html>

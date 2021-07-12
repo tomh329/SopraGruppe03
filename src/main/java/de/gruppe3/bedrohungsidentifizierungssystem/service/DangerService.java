@@ -58,6 +58,12 @@ public class DangerService {
 
         for(Danger danger : dangerList){
             if(dangerId == danger.getDangerId()){
+
+                List<Requirement> requirementList = danger.getRequirements();
+                for(Requirement requirement : requirementList){
+                    requirement.getDangers().remove(danger);
+                }
+
                 dangerRepository.delete(danger);
                 return true;
             }

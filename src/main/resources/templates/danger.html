@@ -54,7 +54,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -74,7 +74,7 @@
             <th scope="col">Gefahr ID</th>
             <th scope="col">Gefahrtitel</th>
             <th scope="col">Gefahrlevel</th>
-            <th scope="col">Anforderungs ID</th>
+            <th scope="col">Anforderungen</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -84,8 +84,8 @@
             <td th:text="${danger.dangerName}"/>
             <td th:text="${danger.dangerLevel}"/>
             <td>
-                <p th:each="requirement : ${danger.getRequirement()}">
-                    <span th:text="${requirement.getRequirementId()}"></span>
+                <p th:each="requirement : ${danger.getRequirements()}">
+                    <span th:text="${requirement.getRequirementName()}"></span>
                 </p>
             </td>
             <td>

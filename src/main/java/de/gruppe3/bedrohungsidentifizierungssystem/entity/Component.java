@@ -40,6 +40,9 @@ public class Component {
     @OneToMany(targetEntity = Requirement.class, mappedBy = "component")
     private List<Requirement> requirements;
 
+    @OneToMany(targetEntity = Action.class, mappedBy = "componentAct")
+    private List<Action> actions;
+
     @ManyToMany
     public List<User> users;
 
@@ -134,4 +137,11 @@ public class Component {
         this.requirements = requirements;
     }
 
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
 }

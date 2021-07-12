@@ -1,8 +1,10 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.service.RoleService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CreateUserController {
 
     @GetMapping("/createUser")
-    public String showCreateUser() {
+    public String showCreateUser(Model model) {
+
+        model.addAttribute("roles", roleService.findAllRoles());
         return "createUser";
     }
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
 
     @PostMapping("/createUser")

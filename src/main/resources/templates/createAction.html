@@ -11,21 +11,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <title>Processes</title>
+  <!-- Der Titel könnte falsch sein -->
+  <title>Create Process</title>
 
   <style>
     .processTable {
       margin: 100px;
       text-align: center;
     }
-
-    .edit-delete {
-      display: inline;
-    }
   </style>
 </head>
 
-<body>
+<body style="align-content: center">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">BIS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -60,15 +57,26 @@
 </nav>
 
 
-<div class="jumbotron text-center" style="background-color: dodgerblue">
-  <h1 style="color: floralwhite">Ein Fehler ist aufgetretetn</h1>
-</div>
-<p>
-  Ein unerwartende Fehler ist aufgetreten.</br>
-  Möglicherweise wurde in einem Erstell- oder Zuweisungsprozess eine Eingabe vergessen </br>
-  Keine Sorgee es wurde nichts fehlerhaft gespeichert und sie können ganz normal fortfahren.</br>
-</p>
+<h3>Eine Maßnahme erstellen</h3>
+<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
+  <form th:action="@{/createAction}" method="post">
+    <p>Maßnahmentitel: <input name="actionName" type="text"/></p>
+<!--    <p th:if="${#fields.hasErrors('action.actionName')}" style="color: red">Ungültiger Name (Feld ist leer)</p>-->
+    <p>Umsetzungsziel: <input name="actionDueDate" type="date"/></p>
+<!--    <p th:if="${#fields.hasErrors('action.actionDueDate')}" style="color: red">Ungültiges Datum</p>-->
 
+    <p>Schutzbedarf: <select name="protectionNeeds" type = "number">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select></p>
+
+<!--    <p th:if="${#fields.hasErrors('action.protectionNeeds')}" style="color: red">Ungültige Eingabe</p>-->
+
+    <p><input type="submit" value="Maßnhame speichern"/> <input type="reset" value="Reset"/></p>
+  </form>
+</div>
 
 </body>
 </html>

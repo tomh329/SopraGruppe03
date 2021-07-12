@@ -16,9 +16,28 @@
     <form th:action="@{/createComponent}" method="post">
         <p>Komponententitel: <input name="componentName" type="text"/></p>
         <p>Letzte Attacke: <input name="lastAttack" type="date"/></p>
-        <p>Aufkommen: <input name="occurrence" type="text"/></p>
-        <p>Priorität: <input name="priority" type="text"/></p>
-<!--        <p>Anforderungs ID: <input name="requirementId" type="text"/></p>-->
+
+        <p>Aufkommen: <select name="occurrence" type = "text">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select></p>
+
+        <p>Priorität: <select name="priority" type = "text">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select></p>
+
         <p><input type="submit" value="Komponent erstellen"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

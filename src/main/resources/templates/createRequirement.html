@@ -48,7 +48,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -61,7 +61,6 @@
 <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
     <form th:action="@{/createRequirement}" method="post">
         <p>Anforderungstitel: <input name="requirementName" type="text"/></p>
-<!--        <p>Gefahr ID: <input name="dangerId" type="text"/></p>-->
         <p><input type="submit" value="Anforderung speichern"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>

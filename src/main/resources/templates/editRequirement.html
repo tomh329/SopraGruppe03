@@ -53,7 +53,7 @@
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
                     <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
@@ -69,10 +69,10 @@
         <p name="requirementId" type="text" th:text="${editRequirement.getRequirementId()}"/></p>
         <p>Anforderungsname: <input name="requirementName" type="text"
                                     th:value="${editRequirement.getRequirementName()}"/></p>
-        <p>Komponenten ID:
+        <p>Komponenten:
         <div th:if ="${editRequirement.getComponent()} != ${null}">
         <p name="processId" type="text"
-           th:text="${editRequirement.getComponent().componentId}"/></p>
+           th:text="${editRequirement.getComponent().componentName}"/></p>
         </div>
 
         <p><input type="submit" value="Anforderung speichern"/> <input type="reset" value="Reset"/></p>
