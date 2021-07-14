@@ -28,7 +28,7 @@ public class CreateComponentController {
                          @RequestParam(name = "occurrence") int occurrence,
                          @RequestParam(name = "priority") int priority) {
 
-        componentService.createComponent(componentName, occurrence, lastAttack, priority);
+        componentService.createComponent(componentName, priority, lastAttack, occurrence);
 
 
         return "redirect:/component";
