@@ -12,6 +12,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/search.css">
+
+    <style>
+        ::placeholder{
+            color: white;
+        }
+    </style>
 
     <title>Components</title>
 
@@ -66,6 +73,13 @@
     </button>
 </form>
 <div class="componentTable">
+
+    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">
+    <br>
+    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">
+    <br>
+    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
+
     <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
@@ -116,5 +130,6 @@
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
 </body>
 </html>
