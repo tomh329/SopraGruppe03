@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/search.css">
 
@@ -21,6 +24,34 @@
     </style>
 
     <title>Components</title>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable( {
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    } );
+                }
+            } );
+        } );
+    </script>
 
 </head>
 
@@ -126,10 +157,23 @@
 
         </tr>
         </tbody>
+        <br>
+        <br>
+        <br>
+        <tfoot class="text-primary">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </tfoot>
     </table>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
+<!--<script type="text/javascript" src="js/filter.js"></script>-->
 </body>
 </html>
