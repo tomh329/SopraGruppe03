@@ -2,6 +2,11 @@
 
 $(document).ready(function() {
     $('#myTable').DataTable( {
+
+        "paging": false,
+        "info": false,
+        "dom": '',
+
         initComplete: function () {
             this.api().columns().every( function () {
                 var column = this;
