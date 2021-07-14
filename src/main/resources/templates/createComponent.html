@@ -15,7 +15,10 @@
 <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
     <form th:action="@{/createComponent}" method="post">
         <p>Komponententitel: <input name="componentName" type="text"/></p>
+        <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+
         <p>Letzte Attacke: <input name="lastAttack" type="date"/></p>
+        <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
 
         <p>Aufkommen: <select name="occurrence" type = "text">
             <option value="1">1</option>
@@ -29,6 +32,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select></p>
+        <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
 
         <p>Priorität: <select name="priority" type = "text">
             <option value="1">1</option>
@@ -37,6 +41,7 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select></p>
+        <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
 
         <p><input type="submit" value="Komponent erstellen"/> <input type="reset" value="Reset"/></p>
     </form>

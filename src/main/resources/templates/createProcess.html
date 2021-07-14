@@ -61,14 +61,14 @@
 <div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
     <form th:action="@{/createProcess}" method="post">
         <p>Prozesstitel: <input name="processName" type="text"/></p>
-        <p th:if="${#fields.hasErrors('process.processName')}" style="color: red">Ungültiger Name (Name ist zu kurz)</p>
+        <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
         <p>Schutzbedarf: <select name="protectionLevel" type = "text">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
         </select></p>
-        <p th:if="${#fields.hasErrors('process.protectionLevel')}" style="color: red">Ungültiger Schutzbedarf</p>
+        <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
 <!--        <p>Komponenten ID: <input name="componentId" type="text"/></p>-->
         <p><input type="submit" value="Prozess speichern"/> <input type="reset" value="Reset"/></p>
     </form>
