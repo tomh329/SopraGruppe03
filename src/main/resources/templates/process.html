@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"/>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,22 +17,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/table.css">
 
     <title>Processes</title>
 
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -73,13 +68,13 @@
     </button>
 </form>
 <div class="processTable">
-    <table class="table">
+    <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
-            <th scope="col">Prozess ID</th>
-            <th scope="col">Prozesstitel</th>
-            <th scope="col">Schutzbedarf</th>
-            <th scope="col">Komponenten</th>
+            <th onclick="sortTable(0)" scope="col">Prozess ID</th>
+            <th onclick="sortTable(1)" scope="col">Prozesstitel</th>
+            <th onclick="sortTable(2)" scope="col">Schutzbedarf</th>
+            <th onclick="sortTable(3)" scope="col">Komponenten</th>
             <th scope="col">Aktionen</th>
         </tr>
         </thead>
@@ -108,5 +103,8 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript" src="js/sort.js"></script>
 </body>
+
 </html>

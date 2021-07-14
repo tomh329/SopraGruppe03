@@ -1,0 +1,17 @@
+
+
+.processTable {
+    margin: 100px;
+    text-align: center;
+}
+
+th {
+    cursor: pointer;
+}
+
+.edit-delete {
+    display: inline;
+}
+.createButton {
+    margin: 10px;
+}
