@@ -22,10 +22,14 @@
 
 <div style="background: dodgerblue; border: 2px solid darkgrey; width: fit-content; alignment: bottom">
     <p style="color: floralwhite">Log-In</p>
-    <a th:href="@{/dashboard}">
+    <form th:action="@{/login}" method="post">
+        <input type="username" name="username" placeholder="Username"
+        /> </br></br>
+        <input type="password" name="password" placeholder="Password"
+        /> </br></br>
         <button th:type="submit" class="btn btn-primary"> Log-In
         </button>
-    </a>
+    </form>
 </div>
 
 
