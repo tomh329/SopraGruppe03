@@ -14,20 +14,40 @@
 <div class="jumbotron text-center" style="background-color: dodgerblue">
     <h1 style="color: floralwhite">Bedrohungsindentifizierungssystem - BIS</h1>
 </div>
-<p>
-    Willkommen auf der Startseite des Bedrohungsindentifizirungssystems.</br>
-    Bitte loggen Sie sich mit ihren Log-In Daten ein, die sie von Ihrem Administrator erhalten haben. </br>
-    Anmerkung: Aktuell reicht es auf den Log-In Button zu klicken :D </br></br>
+<p style="text-align: center">
+    Willkommen im Bedrohungsidentifizierungssystem BIS.</br>
+    Bitte loggen Sie sich mit ihren Login-Daten ein, die Sie von Ihrem Administrator erhalten haben. </br>
+    Anmerkung: Demonstrationsweise kann man sich mit dem Username: Max und Passwort: 12345 einloggen. </br></br>
 </p>
 
-<div style="background: dodgerblue; border: 2px solid darkgrey; width: fit-content; alignment: bottom">
-    <p style="color: floralwhite">Log-In</p>
-    <a th:href="@{/dashboard}">
-        <button th:type="submit" class="btn btn-primary"> Log-In
-        </button>
-    </a>
+<div class="content" style="background: dodgerblue; width: fit-content; alignment: bottom">
+    <div class="content" style="margin: auto; display: block; width: 30%">
+        <a th:href="@{/dashboard}">
+            <button th:type="submit" class="btn btn-primary"> Enter </button>
+        </a>
+        </br>
+        </br>
+    </div>
 </div>
-
 
 </body>
 </html>
+<style>
+    .btn {
+        margin-top: 30px;
+        width: 100%;
+    }
+    input {
+        width: 100%;
+        height: 35px;
+        padding: 12px 20px;
+    }
+    div.content {
+        margin-top: 10px;
+    }
+</style>
+
+
+
+
+

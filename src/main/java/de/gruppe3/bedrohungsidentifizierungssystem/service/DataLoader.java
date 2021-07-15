@@ -98,6 +98,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User userPaula = new User();
         userPaula.setUsername("Paula");
         userPaula.setPassword("12345");
+        userPaula.setPassword(bCryptPasswordEncoder.encode(userPaula.getPassword()));
         userPaula.setRole(adminRole);
 
         //Creation of user Paule
@@ -105,6 +106,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         userPaule.setUsername("Paule");
         userPaule.setPassword("23456");
         userPaule.setRole(employeeRole);
+        userPaule.setPassword(bCryptPasswordEncoder.encode(userPaule.getPassword()));
         userService.saveUser(userPaule);
 
 

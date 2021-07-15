@@ -56,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/dashboard")
                 .and()
                 .logout()
+                .logoutSuccessUrl("/home")
                 .permitAll();
 
         //Disables header security. This allows the use of the h2 console.
