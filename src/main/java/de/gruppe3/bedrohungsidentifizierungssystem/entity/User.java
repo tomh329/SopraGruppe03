@@ -14,7 +14,7 @@ public class User {
     @NotBlank(message = "Der Username darf nicht nur Leerzeichen beinhalten.")
     private String username;
 
-    @Size(min = 5, max = 25, message = "Das Passwort muss zwischen 5 und 25 Zeichen lang sein.")
+    @Size(min = 5, message = "Das Passwort muss mindestens 5 Zeichen lang sein.")
     @NotBlank(message = "Das Passwort darf nicht nur Leerzeichen beinhalten")
     private String password;
   
@@ -47,10 +47,10 @@ public class User {
     }
 
 
-    public User(String firstname, String lastname) {
+    public User(String username, String password) {
 
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
     }
 
 
