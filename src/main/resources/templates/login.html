@@ -24,8 +24,8 @@
     </br>
     <div style="margin: auto; display: block; width: 30%">
         <form th:action="@{/login}" method="post">
-            <div class="error" th:if="${param.error}">
-                <p class="error">Ungültiger Username oder ungültiges Passwort.</p>
+            <div class="errorBox" th:if="${param.error}">
+                <div class="error">Ungültiger Username oder ungültiges Passwort.</div>
             </div>
             <div class="content">
                 <label style="color: floralwhite"><b>Username</b></label>
@@ -59,14 +59,14 @@
     div.content {
         margin-top: 10px;
     }
-
     div.error {
+        border-radius: 3px;
         width: 100%;
         color:floralwhite;
         background: firebrick;
         padding: 12px 12px;
         text-align: center;
         display: table;
-        vertical-align: middle;
     }
+
 </style>
