@@ -1,0 +1,25 @@
+.btn.btn-primary-edit {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+}
+.btn.btn-danger-delete{
+    background-color: Red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+}
+
+/* Darker background on mouse-over */
+.btn.btn-primary:hover {
+    background-color: RoyalBlue;
+}
+.btn.btn-primary-edit:hover {
+    background-color: RoyalBlue;
+}
+.btn.btn-danger-delete:hover {
+    background-color: DarkRed;
+}

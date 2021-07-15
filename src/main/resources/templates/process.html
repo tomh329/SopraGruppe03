@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 
 
@@ -18,6 +19,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/button.css">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Processes</title>
 
@@ -90,11 +95,13 @@
             </td>
             <td>
                 <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary"> Bearbeiten
+                    <button th:type="submit" class="btn btn-primary-edit">
+                        <i class="fa fa-pencil"></i>
                     </button>
                 </form>
                 <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
+                    <button th:type="submit" class="btn btn-danger-delete">
+                        <i class="fa fa-trash"></i>
                     </button>
                 </form>
             </td>
