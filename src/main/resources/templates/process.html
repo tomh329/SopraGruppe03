@@ -61,9 +61,6 @@
         </ul>
     </div>
 </nav>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    Content for administrators
-</div>
 <h2>Prozesstabelle</h2>
 <!-- Prozesstabelle -->
 <form class="createButton" th:action="@{/createProcessButton}" method="post">
