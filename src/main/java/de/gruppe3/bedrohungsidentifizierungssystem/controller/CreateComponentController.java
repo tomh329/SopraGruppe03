@@ -3,6 +3,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,20 +27,21 @@ public class CreateComponentController {
     private ComponentService componentService;
     @Autowired
     RequirementRepository requirementRepository;
+    @Autowired
+    private ProcessService processService;
 
     @PostMapping("/createComponent")
     public String create(@RequestParam(name = "componentName") String componentName,
                          @RequestParam(name = "lastAttack") String lastAttack,
                          @RequestParam(name = "occurrence") int occurrence,
-
                          @RequestParam(name = "priority") int priority,
                          @Valid Component component, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("component", component);
             return "/createComponent";
         }
-        componentService.createComponent(componentName, priority, lastAttack, occurrence);
 
+        componentService.createComponent(componentName, priority, lastAttack, occurrence);
 
         return "redirect:/component";
     }
