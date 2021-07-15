@@ -11,21 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>Processes</title>
+    <link rel="stylesheet" href="css/table.css">
 
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
+    <title>Actions</title>
 
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -70,7 +59,7 @@
 </form>
 
 <div class="actionTable">
-    <table class="table">
+    <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
             <th scope="col">Status</th>
@@ -118,5 +107,7 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript" src="js/sort.js"></script>
 </body>
 </html>

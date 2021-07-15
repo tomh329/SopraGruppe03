@@ -20,7 +20,7 @@
         <p>Letzte Attacke: <input name="lastAttack" type="date"/></p>
         <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
 
-        <p>Aufkommen: <select name="occurrence" type = "text">
+        <p>Aufkommen: <select name="occurrence" type = "number">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -30,7 +30,6 @@
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10">10</option>
         </select></p>
         <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
 

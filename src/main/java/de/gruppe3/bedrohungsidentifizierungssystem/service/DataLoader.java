@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,6 +25,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private ActionService actionService;
@@ -55,28 +59,28 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         //creation of role admin
         Role adminRole = new Role();
-        adminRole.setRole("ADMIN");
+        adminRole.setRole("ROLE_ADMIN");
         List<User> admins = new LinkedList<>();
         adminRole.setUser(admins);
         roleService.saveRole(adminRole);
 
         //creation of role IT security officer
         Role itSecurityOfficerRole = new Role();
-        itSecurityOfficerRole.setRole("IT_SECURITY_OFFICER");
+        itSecurityOfficerRole.setRole("ROLE_IT_SECURITY_OFFICER");
         List<User> itSecurityOfficers = new LinkedList<>();
         adminRole.setUser(itSecurityOfficers);
         roleService.saveRole(itSecurityOfficerRole);
 
         //creation of role manager
         Role managerRole = new Role();
-        managerRole.setRole("MANAGER");
+        managerRole.setRole("ROLE_MANAGER");
         List<User> managers = new LinkedList<>();
         managerRole.setUser(managers);
         roleService.saveRole(managerRole);
 
         //creation of role employee
         Role employeeRole = new Role();
-        employeeRole.setRole("EMPLOYEE");
+        employeeRole.setRole("ROLE_EMPLOYEE");
         List<User> employees = new LinkedList<>();
         employeeRole.setUser(employees);
         roleService.saveRole(employeeRole);
@@ -87,12 +91,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         userMax.setUsername("Max");
         userMax.setPassword("12345");
         userMax.setRole(adminRole);
+        userMax.setPassword(bCryptPasswordEncoder.encode(userMax.getPassword()));
         userService.saveUser(userMax);
 
         //Creation of user Paula
         User userPaula = new User();
         userPaula.setUsername("Paula");
         userPaula.setPassword("12345");
+        userPaula.setPassword(bCryptPasswordEncoder.encode(userPaula.getPassword()));
         userPaula.setRole(adminRole);
 
         //Creation of user Paule
@@ -100,6 +106,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         userPaule.setUsername("Paule");
         userPaule.setPassword("23456");
         userPaule.setRole(employeeRole);
+        userPaule.setPassword(bCryptPasswordEncoder.encode(userPaule.getPassword()));
         userService.saveUser(userPaule);
 
 
@@ -118,7 +125,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 10, "2021-04-11", 3);
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 4, "2021-04-11", 3);
 
         //example requirement
         Requirement reqOrg11 = new Requirement("Festlegung von Verantwortlichkeiten");

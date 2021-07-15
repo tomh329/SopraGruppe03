@@ -11,21 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="css/table.css">
+
     <title>Dangers</title>
 
-    <style>
-        .dangerTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -68,7 +57,7 @@
     </button>
 </form>
 <div class="dangerTable">
-    <table class="table">
+    <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
             <th scope="col">Gefahr ID</th>
@@ -103,5 +92,7 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript" src="js/sort.js"></script>
 </body>
 </html>

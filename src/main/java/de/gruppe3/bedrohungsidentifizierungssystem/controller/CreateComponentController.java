@@ -31,13 +31,14 @@ public class CreateComponentController {
     public String create(@RequestParam(name = "componentName") String componentName,
                          @RequestParam(name = "lastAttack") String lastAttack,
                          @RequestParam(name = "occurrence") int occurrence,
+
                          @RequestParam(name = "priority") int priority,
                          @Valid Component component, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("component", component);
             return "/createComponent";
         }
-        componentService.createComponent(componentName, occurrence, lastAttack, priority);
+        componentService.createComponent(componentName, priority, lastAttack, occurrence);
 
 
         return "redirect:/component";

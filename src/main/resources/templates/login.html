@@ -21,14 +21,28 @@
 </p>
 
 <div class="content" style="background: dodgerblue; width: fit-content; alignment: bottom">
-    <div class="content" style="margin: auto; display: block; width: 30%">
-        <a th:href="@{/dashboard}">
-            <button th:type="submit" class="btn btn-primary"> Enter </button>
-        </a>
-        </br>
-        </br>
+    </br>
+    <div style="margin: auto; display: block; width: 30%">
+        <form th:action="@{/login}" method="post">
+            <div class="errorBox" th:if="${param.error}">
+                <div class="error">Ungültiger Username oder ungültiges Passwort.</div>
+            </div>
+            <div class="content">
+                <label style="color: floralwhite"><b>Username</b></label>
+                <input type="username" name="username" placeholder="Username"/>
+            </div>
+            <div class="content">
+                <label style="color: floralwhite"><b>Password</b></label>
+                <input type="password" name="password" placeholder="Passwort"/>
+            </div>
+            <button th:type="submit" class="btn btn-primary" id="myBtn"> Login </button>
+            </br>
+            </br>
+        </form>
     </div>
 </div>
+
+
 
 </body>
 </html>
@@ -45,9 +59,14 @@
     div.content {
         margin-top: 10px;
     }
+    div.error {
+        border-radius: 3px;
+        width: 100%;
+        color:floralwhite;
+        background: firebrick;
+        padding: 12px 12px;
+        text-align: center;
+        display: table;
+    }
+
 </style>
-
-
-
-
-

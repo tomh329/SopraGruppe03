@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"/>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,27 +17,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/table.css">
 
     <title>Processes</title>
 
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">BIS</a>
+    <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -73,7 +68,7 @@
     </button>
 </form>
 <div class="processTable">
-    <table class="table">
+    <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
             <th scope="col">Prozess ID</th>
@@ -108,5 +103,8 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript" src="js/sort.js"></script>
 </body>
+
 </html>

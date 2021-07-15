@@ -11,21 +11,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>Components</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <style>
-        .componentTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
+        ::placeholder {
+            color: white;
         }
     </style>
+
+    <title>Components</title>
+
 </head>
 
 <body>
@@ -64,20 +64,38 @@
 
 <h2>Komponententabelle</h2>
 <!-- Komponententabelle -->
-<form class="createButton" th:action="@{/createComponentButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neue Komponente erstellen
-    </button>
-</form>
-<form class="createButton" th:action="@{/addRequirementButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
-    </button>
-</form>
-<form class="createButton" th:action="@{/addActionButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Maßnahme hinzufügen
-    </button>
-</form>
+<div style="float: left">
+    <form class="createButton" th:action="@{/createComponentButton}" method="post">
+        <button th:type="submit" class="btn btn-primary"> Neue Komponente erstellen
+        </button>
+    </form>
+    <form class="createButton" th:action="@{/addRequirementButton}" method="post">
+        <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
+        </button>
+    </form>
+    <form class="createButton" th:action="@{/addActionButton}" method="post">
+        <button th:type="submit" class="btn btn-primary"> Maßnahme hinzufügen
+        </button>
+    </form>
+</div>
+
+<div style="float: right;">
+    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">
+    <br>
+    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">
+    <br>
+    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
+</div>
+
 <div class="componentTable">
-    <table class="table">
+
+    <!--    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">-->
+    <!--    <br>-->
+    <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
+    <!--    <br>-->
+    <!--    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">-->
+
+    <table id="myTable" class="table">
         <thead class="thead-theme">
         <tr>
             <th scope="col">Komponenten ID</th>
@@ -98,17 +116,14 @@
             <td th:text="${component.lastAttack}"/>
             <td th:text="${component.occurrence}"/>
             <td th:text="${component.priority}"/>
-            <td>
-                <p th:each="process : ${component.getProcess()}">
-                    <span th:text="${process.getProcessName()}"></span>
-                </p>
-            </td>
+            <td th:text="${component.getProcess().processName}"/>
+
             <td>
                 <p th:each="action : ${component.getActions()}">
                     <span th:text="${action.getActionName()}"></span>
                 </p>
             </td>
-            <td>
+
             <td>
                 <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post">
                     <button th:type="submit" class="btn btn-primary"> Bearbeiten
@@ -123,8 +138,22 @@
 
         </tr>
         </tbody>
+
+        <tfoot class="text-primary">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </tfoot>
     </table>
 </div>
 
+<script type="text/javascript" src="js/sort.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
 </body>
 </html>
