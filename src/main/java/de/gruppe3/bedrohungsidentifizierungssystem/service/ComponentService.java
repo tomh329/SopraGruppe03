@@ -66,7 +66,7 @@ public class ComponentService {
     public Component createComponent(String componentName, int priority, String lastAttack, int occurrence){
 
         Component component = new Component(componentName, priority, lastAttack, occurrence);
-
+        component.setProcess(new Process());
         return componentRepository.save(component);
     }
 
