@@ -116,7 +116,13 @@
             <td th:text="${component.lastAttack}"/>
             <td th:text="${component.occurrence}"/>
             <td th:text="${component.priority}"/>
-            <td th:text="${component.getProcess().processName}"/>
+<!--            <td th:text="${component.getProcess().processName}"/>-->
+
+            <td>
+                <p th:each="process : ${component.getProcess()}">
+                    <span th:text="${process.getProcessName()}"></span>
+                </p>
+            </td>
 
             <td>
                 <p th:each="action : ${component.getActions()}">
