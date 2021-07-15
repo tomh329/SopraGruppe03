@@ -42,6 +42,7 @@ public class ProcessController {
     @PostMapping({"/process/{processId}"})
     public String showEditProcess(Model model, @PathVariable String processId) {
         model.addAttribute("editProcess", processService.findProcessWithId(Integer.parseInt(processId)));
+        model.addAttribute("process", processService.findProcessWithId(Integer.parseInt(processId)));
         return "editProcess";
     }
 }
