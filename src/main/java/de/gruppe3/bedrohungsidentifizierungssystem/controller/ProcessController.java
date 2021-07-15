@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ public class ProcessController {
 
     @Autowired
     private ProcessService processService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/process")
     public String showProcess(Model model) {

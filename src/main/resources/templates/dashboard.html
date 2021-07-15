@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<html xmlns:th="http://www.thymeleaf.org" lang="de"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Dashboard</title>
     <meta charset="utf-8">
@@ -38,7 +39,7 @@
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
                     <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
-                    <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+                    <a class="dropdown-item" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
         </ul>
@@ -52,6 +53,7 @@
 
 
 </nav>
+
 <h1>Dashboard</h1>
 <p>Hier könnte Ihre Werbung stehen.</p>
 <p>Und hier kommen später Statistiken oder ähnliches hin.</p>
