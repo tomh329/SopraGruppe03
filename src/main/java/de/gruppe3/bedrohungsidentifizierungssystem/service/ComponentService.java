@@ -3,6 +3,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.service;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class ComponentService {
 
     @Autowired
     private ComponentRepository componentRepository;
+    @Autowired
+    ProcessRepository processRepository;
     @Autowired
     RequirementRepository requirementRepository;
 
@@ -66,7 +69,11 @@ public class ComponentService {
     public Component createComponent(String componentName, int priority, String lastAttack, int occurrence){
 
         Component component = new Component(componentName, priority, lastAttack, occurrence);
-        component.setProcess(new Process());
+
+
+        processRepository.findByProcessId(1).addComponent(component);
+
+
         return componentRepository.save(component);
     }
 
