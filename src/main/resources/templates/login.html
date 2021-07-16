@@ -8,65 +8,151 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 </head>
 <body>
 
-<div class="jumbotron text-center" style="background-color: dodgerblue">
-    <h1 style="color: floralwhite">Bedrohungsindentifizierungssystem - BIS</h1>
+<div class="jumbotron text-center" style="background-color: #337AB7">
+    <h1 style="color: floralwhite; font-size: 30px">Bedrohungsindentifizierungssystem - BIS</h1>
 </div>
 <p style="text-align: center">
     Willkommen im Bedrohungsidentifizierungssystem BIS.</br>
     Bitte loggen Sie sich mit Ihren Login-Daten ein, die Sie von Ihrem Administrator erhalten haben. </br>
+    Falls Sie Ihre Zugangsdaten vergessen haben oder einen neuen Zugang benötigen, wenden Sie sich bitte an Ihren Administrator.</br>
     Anmerkung: Demonstrationsweise kann man sich mit dem Username: Max und Passwort: 12345 einloggen. </br></br>
 </p>
 
-<div class="content" style="background: dodgerblue; width: fit-content; alignment: bottom">
+<div class="contentBox">
     </br>
-    <div style="margin: auto; display: block; width: 30%">
-        <form th:action="@{/login}" method="post">
+    <div style="margin: auto; display: block; width: 80%; margin-top: 30px">
+        <form th:action="@{/login}" th:href="@{/dashboard}" method="post">
+            <p class="loginTitle"> Login im BIS </p>
             <div class="errorBox" th:if="${param.error}">
-                <div class="error">Ungültiger Username oder ungültiges Passwort.</div>
+                <div class="error"><i class="fa fa-ban"></i> Ungültiger Username oder ungültiges Passwort.</div>
             </div>
             <div class="content">
-                <label style="color: floralwhite"><b>Username</b></label>
+                <label><b>Username</b></label>
                 <input type="username" name="username" placeholder="Username"/>
             </div>
             <div class="content">
-                <label style="color: floralwhite"><b>Password</b></label>
-                <input type="password" name="password" placeholder="Passwort"/>
+                <label><b>Passwort</b></label>
+                <div class="pwContainer">
+                    <input type="password" name="password" placeholder="Passwort" id="myInput">
+                    <label class="check-text" style="position:absolute">
+                        <input class="check-text" type="checkbox" onclick="myFunction()">
+                        <span class="glyphicon glyphicon-eye-open checked"></span>
+                        <span class="glyphicon glyphicon-eye-close unchecked"></span>
+                    </label>
+                </div>
             </div>
-            <button th:type="submit" class="btn btn-primary" id="myBtn"> Login </button>
+            <button th:type="submit" class="btn btn-primary" id="myBtn" style="margin-bottom: 30px"> Login </button>
             </br>
             </br>
         </form>
     </div>
 </div>
 
-
-
 </body>
 </html>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 <style>
     .btn {
-        margin-top: 30px;
+        margin-top: 45px;
         width: 100%;
+        height: 45px;
     }
     input {
         width: 100%;
-        height: 35px;
+        height: 45px;
         padding: 12px 20px;
+        background: #EFEFEF;
+        border: none;
     }
     div.content {
-        margin-top: 10px;
+        margin-top: 15px;
     }
     div.error {
+        font-weight: 400;
         border-radius: 3px;
         width: 100%;
-        color:floralwhite;
-        background: firebrick;
+        color: #AA3231;
+        background: #EBC8C4;
         padding: 12px 12px;
         text-align: center;
         display: table;
     }
-
+    .contentBox {
+        margin-top: 10px;
+        background: white;
+        width: 40%;
+        display: block;
+        margin: auto;
+    }
+    body {
+        background: #F5F7FB;
+    }
+    .loginTitle {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 23px;
+        font-weight: 600;
+    }
+    .fa.fa-ban {
+        margin-right: 10px;
+    }
+    fa-ban {
+        left: 10px;
+    }
+    .check-text input {
+        display: none;
+    }
+    .check-text input ~ span {
+        color: #333;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 2px;
+        font-weight: 200;
+    }
+    .check-text input ~ .checked {
+        display: none;
+    }
+    .check-text input:checked ~ .checked {
+        display: inline-block;
+    }
+    .check-text input:checked ~ .unchecked {
+        display: none;
+    }
+    .check-text input:disabled ~ span {
+        color: #999;
+        cursor: not-allowed;
+    }
+    .glyphicon {
+        position: absolute;
+        right: 12px;
+        top: 10px;
+    }
+    .pwContainer {
+        psotion: relative;
+        align-items:center;
+    }
+    .jumbotron {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 0px;
+    }
 </style>
+
