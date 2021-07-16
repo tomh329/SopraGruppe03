@@ -66,7 +66,10 @@
     <form th:action="@{/editDanger/{path}(path=${editDanger.getDangerId()})}" method="post">
         <p>Gafahr ID:
         <p name="dangerId" type="text" th:text="${editDanger.getDangerId()}"/></p>
+        <p th:if="${#fields.hasErrors('danger.dangerId')}" th:errors="*{danger.dangerId}" class="text-danger"></p>
+
         <p>Gefahrenname: <input name="dangerName" type="text" th:value="${editDanger.getDangerName()}"/></p>
+        <p th:if="${#fields.hasErrors('danger.dangerName')}" th:errors="*{danger.dangerName}" class="text-danger"></p>
 
         <p>Gefahrenlevel: <select name="dangerLevel" type = "text" th:value="${editDanger.getDangerLevel()}">
             <option value="1">1</option>
@@ -76,12 +79,14 @@
             <option value="5">5</option>
             <option value="6">6</option>
         </select></p>
+        <p th:if="${#fields.hasErrors('danger.dangerLevel')}" th:errors="*{danger.dangerLevel}" class="text-danger"></p>
 
         <p>Anforderungen:
         <div th:if ="${editDanger.getRequirements()} != ${null}">
         <p name="requirementId" type="text" th:each="requirement : ${editDanger.getRequirements()}"
            th:text="${requirement.getRequirementName()}"/></p>
         </div>
+        <p th:if="${#fields.hasErrors('danger.dangerLevel')}" th:errors="*{danger.dangerLevel}" class="text-danger"></p>
 
         <p><input type="submit" value="Gefahr speichern"/> <input type="reset" value="Reset"/></p>
     </form>

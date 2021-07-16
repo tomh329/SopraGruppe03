@@ -38,6 +38,7 @@ public class DangerController {
     @PostMapping({"/danger/{dangerId}"})
     public String showEditDanger(Model model, @PathVariable String dangerId) {
         model.addAttribute("editDanger", dangerService.findProcessWithId(Integer.parseInt(dangerId)));
+        model.addAttribute("danger", dangerService.findProcessWithId(Integer.parseInt(dangerId)));
         return "editDanger";
     }
 }
