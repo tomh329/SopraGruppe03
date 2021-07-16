@@ -6,32 +6,28 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+<nav class="navbar navbar-expand-sm">
     <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Nichts</a>
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Tabellen
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:href="@{/process}">Prozess</a>
@@ -43,21 +39,62 @@
                 </div>
             </li>
         </ul>
+        <a class="ml-auto mr-1">
+            <form class="log" th:action="@{/logout}" method="post">
+                <button th:type="logout" class="btn btn-danger">Logout</button>
+            </form>
+        </a>
     </div>
 
-    <a class="ml-auto mr-1">
-        <form th:action="@{/logout}" method="post">
-            <button th:type="logout" class="btn btn-primary">Logout</button>
-        </form>
-    </a>
 
 
 </nav>
-
-<h1>Dashboard</h1>
-<p>Hier könnte Ihre Werbung stehen.</p>
-<p>Und hier kommen später Statistiken oder ähnliches hin.</p>
-
+<div style="text-align: center; margin-top: 30px;">
+    <h1>Dashboard</h1>
+    <p>Hier könnte Ihre Werbung stehen. </br> Und hier kommen später Statistiken oder ähnliches hin.</p>
+</div>
 
 </body>
 </html>
+<style>
+    body {
+        background: #F5F7FB;
+    }
+    nav {
+        background-color: #337AB7;
+    }
+    .navbar-brand {
+        margin-left: 20px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        color: #edf0f1;
+    }
+    .btn-danger {
+        border-radius: 25px;
+        width: 90px;
+        height: 35px;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    .nav-link.dropdown-toggle {
+        margin-left: 20px;
+        color: #edf0f1;
+    }
+    .nav-link.dropdown-toggle:hover {
+        color: #0056b3;
+    }
+    .dropdown-menu {
+        border-radius: 0px;
+        margin-top: 16px;
+        margin-left: -9px;
+        border-style: none;
+        padding: 12px;
+        margin-bottom: 25px;
+    }
+    .fa-bars {
+        color: #edf0f1;
+        font-size: 30px;
+    }
+
+</style>
