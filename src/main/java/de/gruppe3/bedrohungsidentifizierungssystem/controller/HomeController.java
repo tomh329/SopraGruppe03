@@ -17,7 +17,7 @@ public class HomeController {
     @GetMapping("/")
     public String showHome(Model model) {
         model.addAttribute("user", new User());
-        return "home";
+        return "login";
     }
 
 /*    @PostMapping("/login")

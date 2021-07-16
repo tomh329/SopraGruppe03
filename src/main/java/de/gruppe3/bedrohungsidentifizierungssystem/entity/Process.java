@@ -15,11 +15,12 @@ import java.util.List;
 
 
 @Entity
+@SequenceGenerator(name = "seq", initialValue = 0)
 public class Process {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seq")
     private int processId;
 
     @NotBlank(message = "Der Prozess braucht einen Namen.")

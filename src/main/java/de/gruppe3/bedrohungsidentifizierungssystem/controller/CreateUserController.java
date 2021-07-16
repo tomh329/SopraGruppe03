@@ -4,6 +4,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RoleService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,8 @@ public class CreateUserController {
     private UserService userService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @PostMapping("/createUser")
@@ -44,7 +47,7 @@ public class CreateUserController {
         if(userService.findUserWithName(username) != null) {
             return "redirect:user";
         }
-        userService.createUser(username, password, firstname, lastname, roleId);
+        userService.createUser(username, bCryptPasswordEncoder.encode(password), firstname, lastname, roleId);
         return "redirect:/user";
     }
 }
