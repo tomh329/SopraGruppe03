@@ -1,0 +1,36 @@
+nav {
+    background-color: #337AB7;
+}
+.navbar-brand {
+    margin-left: 20px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: #edf0f1;
+}
+.btn-danger {
+    border-radius: 25px;
+    width: 90px;
+    height: 35px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.nav-link.dropdown-toggle {
+    margin-left: 20px;
+    color: #edf0f1;
+}
+.nav-link.dropdown-toggle:hover {
+    color: #0056b3;
+}
+.dropdown-menu {
+    border-radius: 0px;
+    margin-top: 16px;
+    margin-left: -9px;
+    border-style: none;
+    padding: 12px;
+    margin-bottom: 25px;
+}
+.fa-bars {
+    color: #edf0f1;
+    font-size: 30px;
+}
