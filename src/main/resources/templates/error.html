@@ -7,6 +7,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/navbar.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -26,25 +28,27 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">BIS</a>
+
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Nichts</a>
+        <a class="nav-link" th:href="@{/toDoList}">To-Do Liste</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Tabellen
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" th:href="@{/process}">Prozess</a>
@@ -52,10 +56,15 @@
           <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
           <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
           <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
-          <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+          <a class="dropdown-item" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{/user}">Benutzer</a>
         </div>
       </li>
     </ul>
+    <a class="ml-auto mr-1">
+      <form class="log" th:action="@{/logout}" method="post">
+        <button th:type="logout" class="btn btn-danger">Logout</button>
+      </form>
+    </a>
   </div>
 </nav>
 
