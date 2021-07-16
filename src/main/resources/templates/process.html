@@ -84,8 +84,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="process : ${processes}" th:if="${process.processId} != 1">
-            <td th:text="${process.processId} - 1"/>
+        <tr th:each="process : ${processes}" th:if="${process.processId} != 0">
+            <td th:text="${process.processId}"/>
             <td th:text="${process.processName}"/>
             <td th:text="${process.protectionLevel}"/>
             <td>

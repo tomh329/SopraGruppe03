@@ -71,7 +71,7 @@ public class ComponentService {
         Component component = new Component(componentName, priority, lastAttack, occurrence);
 
 
-        processRepository.findByProcessId(1).addComponent(component);
+        processRepository.findByProcessId(0).addComponent(component);
 
 
         return componentRepository.save(component);
