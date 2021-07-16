@@ -77,9 +77,13 @@
     <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post">
         <p>Komponenten ID:
         <p name="componentId" type="text" th:text="${editComponent.getComponentId()}"/></p>
-        <p>Komponententitel: <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/>
-        </p>
+        <p th:if="${#fields.hasErrors('component.componentId')}" th:errors="*{component.componentId}" class="text-danger"></p>
+
+        <p>Komponententitel: <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/></p>
+        <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+
         <p>Letze Attacke: <input name="lastAttack" type="date" th:value="${editComponent.getLastAttack()}"/></p>
+        <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
 
         <p>Aufkommen: <select name="occurrence" type = "text" th:value="${editComponent.getOccurrence()}">
             <option value="1">1</option>
@@ -92,6 +96,7 @@
             <option value="8">8</option>
             <option value="9">9</option>
         </select></p>
+        <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
 
         <p>Priorität: <select name="priority" type = "text" th:value="${editComponent.getPriority()}">
             <option value="1">1</option>
@@ -100,6 +105,7 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select></p>
+        <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
 
         <p>Prozess:
         <div th:if ="${editComponent.getProcess()} != ${null}">
