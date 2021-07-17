@@ -79,6 +79,8 @@
         <p name="requirementId" type="text" th:text="${editRequirement.getRequirementId()}"/></p>
         <p>Anforderungsname: <input name="requirementName" type="text"
                                     th:value="${editRequirement.getRequirementName()}"/></p>
+        <p th:if="${#fields.hasErrors('requirement.requirementName')}" th:errors="*{requirement.requirementName}" class="text-danger"></p>
+
         <p>Komponenten:
         <div th:if ="${editRequirement.getComponent()} != ${null}">
         <p name="processId" type="text"
