@@ -82,4 +82,11 @@ public class Process {
         component.setProcess(this);
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Student [Id=" + processId + ", name=" + processName + "]";
+    }
+
 }
