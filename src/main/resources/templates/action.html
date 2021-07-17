@@ -63,63 +63,76 @@
     </div>
 </nav>
 
-<h2>Maßnahmentabelle</h2>
+
 <!-- Maßnahmentabelle -->
-<form class="createButton" th:action="@{/createActionButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neue Maßnahme erstellen
-    </button>
-</form>
 
-<div class="contentTable">
-    <table id="myTable" class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Status</th>
-            <th scope="col">Maßnahmen ID</th>
-            <th scope="col">Maßnahmentitel</th>
-            <th scope="col">Umsetzungsziel</th>
-            <th scope="col">Schutzbedarf</th>
-            <th scope="col">Komponente</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="action : ${actions}">
-            <td>
-                <div th:switch="${action.status}">
-                    <p th:case="false" style="color: red"> Nicht Erledigt</p>
-                    <p th:case="true" style="color: green"> Erledigt</p>
+<div class="wrapper">
+    <div class="contentTable">
+
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Maßnahmentabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createActionButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neue Maßnahme</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen ID</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmentitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponente</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="action : ${actions}">
+                <div class="scrollable">
+                    <td class="textContent">
+                        <div th:switch="${action.status}">
+                            <p th:case="false" style="color: red"> Nicht Erledigt</p>
+                            <p th:case="true" style="color: green"> Erledigt</p>
+                        </div>
+                    </td>
+                    <td class="textContent" th:text="${action.actionId}"/>
+                    <td class="textContent" th:text="${action.actionName}"/>
+                    <td class="textContent" th:text="${action.actionDueDate}"/>
+                    <td class="textContent" th:text="${action.protectionNeeds}"/>
+                    <td class="textContent">
+                        <div th:each="component : ${action.getComponent()}">
+                            <span th:text="${component.getComponentName()}"></span>
+                        </div>
+                    </td>
                 </div>
-            </td>
-            <td th:text="${action.actionId}"/>
-            <td th:text="${action.actionName}"/>
-            <td th:text="${action.actionDueDate}"/>
-            <td th:text="${action.protectionNeeds}"/>
-            <td>
-                <p th:each="component : ${action.getComponent()}">
-                    <span th:text="${component.getComponentName()}"></span>
-                </p>
-            </td>
-            <td>
-                <form class="edit-delete" th:action="@{/action/{path}(path=${action.actionId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary-edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteAction/{path}(path=${action.actionId})}" method="post">
-                    <button th:type="submit" class="btn btn-danger-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/changeStatus/{path}(path=${action.actionId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary" style="background: green"> Erledigt
-                    </button>
-                </form>
-            </td>
+                <td class="actionButtons">
+                    <form class="edit-delete" th:action="@{/action/{path}(path=${action.actionId})}" method="post">
+                        <button th:type="submit" class="btn btn-primary-edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                    <form class="edit-delete" th:action="@{/deleteAction/{path}(path=${action.actionId})}" method="post">
+                        <button th:type="submit" class="btn btn-danger-delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                    <form class="edit-delete" th:action="@{/changeStatus/{path}(path=${action.actionId})}" method="post">
+                        <button th:type="submit" class="btn btn-primary" style="background: green"> Erledigt
+                        </button>
+                    </form>
+                </td>
 
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>

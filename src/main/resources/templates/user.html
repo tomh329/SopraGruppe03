@@ -64,59 +64,74 @@
     </div>
 </nav>
 
-<h2>Benutzertabelle</h2>
+
 <!-- Benutzertabelle -->
-<form class="createButton" th:action="@{/createUserButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neuen Benutzer erstellen
-    </button>
-</form>
+
 <form class="createButton" th:action="@{/addUserToComponentButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Benutzer Komponent zuweisen
     </button>
 </form>
-<div class="contentTable">
-    <table id="myTable" class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Vorname</th>
-            <th scope="col">Nachname</th>
-            <th scope="col">Rolle</th>
-            <th scope="col">Komponenten</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.username}"/>
-            <td th:text="${user.firstname}"/>
-            <td th:text="${user.lastname}"/>
-            <td>
-                <p th:each="role : ${user.getRole()}">
-                    <span th:text="${role.getRole()}"/>
-                </p>
-            </td>
-            <td>
-                <p th:each="component : ${user.getComponents()}">
-                    <span th:text="${component.getComponentName()}"></span>
-                </p>
-            </td>
-            <td>
-                <form class="edit-delete" th:action="@{/user/{path}(path=${user.username})}" method="post">
-                    <button th:type="submit" class="btn btn-primary-edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteUser/{path}(path=${user.username})}" method="post">
-                    <button th:type="submit" class="btn btn-danger-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </td>
 
-        </tr>
-        </tbody>
-    </table>
+<div class="wrapper">
+    <div class="contentTable">
+
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Benutzertabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createUserButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neuer Benutzer</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Username</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Vorname</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Nachname</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Rolle</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <div class="scrollable">
+                    <td class="textContent" th:text="${user.username}"/>
+                    <td class="textContent" th:text="${user.firstname}"/>
+                    <td class="textContent" th:text="${user.lastname}"/>
+                    <td class="textContent">
+                        <div th:each="role : ${user.getRole()}">
+                            <span th:text="${role.getRole()}"/>
+                        </div>
+                    </td>
+                    <td class="textContent">
+                        <div th:each="component : ${user.getComponents()}">
+                            <span th:text="${component.getComponentName()}"></span>
+                        </div>
+                    </td>
+                </div>
+                <td class="actionButtons">
+                    <form class="edit-delete" th:action="@{/user/{path}(path=${user.username})}" method="post">
+                        <button th:type="submit" class="btn btn-primary-edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                    <form class="edit-delete" th:action="@{/deleteUser/{path}(path=${user.username})}" method="post">
+                        <button th:type="submit" class="btn btn-danger-delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>

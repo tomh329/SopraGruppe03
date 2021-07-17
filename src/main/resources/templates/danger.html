@@ -66,48 +66,61 @@
     </div>
 </nav>
 
-<h2>Gefahrentabelle</h2>
-<form class="createButton" th:action="@{/createDangerButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neue Gefahr erstellen
-    </button>
-</form>
-<div class="contentTable">
-    <table id="myTable" class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Gefahr ID</th>
-            <th scope="col">Gefahrtitel</th>
-            <th scope="col">Gefahrlevel</th>
-            <th scope="col">Anforderungen</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="danger : ${dangers}">
-            <td th:text="${danger.dangerId}"/>
-            <td th:text="${danger.dangerName}"/>
-            <td th:text="${danger.dangerLevel}"/>
-            <td>
-                <p th:each="requirement : ${danger.getRequirements()}">
-                    <span th:text="${requirement.getRequirementName()}"></span>
-                </p>
-            </td>
-            <td>
-                <form class="edit-delete" th:action="@{/danger/{path}(path=${danger.dangerId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary-edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteDanger/{path}(path=${danger.dangerId})}" method="post">
-                    <button th:type="submit" class="btn btn-danger-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </td>
 
-        </tr>
-        </tbody>
-    </table>
+
+<div class="wrapper">
+    <div class="contentTable">
+
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Gefahrentabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createDangerButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neue Gefahr</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Gefahr ID</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Gefahrtitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Gefahrlevel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Anforderungen</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="danger : ${dangers}">
+                <div class="scrollable">
+                    <td class="textContent" th:text="${danger.dangerId}"/>
+                    <td class="textContent" th:text="${danger.dangerName}"/>
+                    <td class="textContent" th:text="${danger.dangerLevel}"/>
+                    <td class="textContent">
+                        <div th:each="requirement : ${danger.getRequirements()}">
+                            <span th:text="${requirement.getRequirementName()}"></span>
+                        </div>
+                    </td>
+                    <td class="actionButtons">
+                        <form class="edit-delete" th:action="@{/danger/{path}(path=${danger.dangerId})}" method="post">
+                            <button th:type="submit" class="btn btn-primary-edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </form>
+                        <form class="edit-delete" th:action="@{/deleteDanger/{path}(path=${danger.dangerId})}" method="post">
+                            <button th:type="submit" class="btn btn-danger-delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>
