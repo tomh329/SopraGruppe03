@@ -50,7 +50,7 @@ table th:last-child{
     border-style: none;
 }
 
-div.scrollable{
+/*div.scrollable{
     overflow-y: auto;
     max-height: 80px;
 }
@@ -66,11 +66,11 @@ div.scrollable{
 .table .th-sort-asc::after,
 .table .th-sort-desc::after {
     margin-left: 5px;
-}
+}*/
 
 .table .th-sort-asc,
 .table .th-sort-desc {
-    background: rgba(0, 0, 0, 0.1);
+    background-color: #2b6392;
 }
 
 .table thead tr {
@@ -101,5 +101,5 @@ i span {
     margin-left: 0.5rem;
     font-family: Arial;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
 }

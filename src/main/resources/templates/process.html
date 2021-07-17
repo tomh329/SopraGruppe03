@@ -85,31 +85,32 @@
             <div>
                 <form class="createButton" th:action="@{/createProcessButton}" method="post">
                     <button th:type="submit" class="btn btn-primary-newAdd">
-                        <i class="fa fa-plus"><span>Neuer Prozess</span></i>
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neuer Prozess</span></i>
                     </button>
                 </form>
             </div>
         </div>
         <table id="myTable" class="table">
             <thead class="thead-theme">
-            <tr>
-                <th class="textContent" scope="col">Prozess ID</th>
-                <th class="textContent" scope="col">Prozesstitel</th>
-                <th class="textContent" scope="col">Schutzbedarf</th>
-                <th class="textContent" scope="col">Komponenten</th>
-                <th class="actionButtons" scope="col">Aktionen</th>
+            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozess ID</span></i></th>
+            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozesstitel</span></i></th>
+            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
+            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
+            <th class="actionButtons" scope="col">Aktionen</span></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="process : ${processes}" th:if="${process.processId} != 0">
-                <td class="textContent" th:text="${process.processId}"/>
-                <td class="textContent" th:text="${process.processName}"/>
-                <td class="textContent" th:text="${process.protectionLevel}"/>
-                <td class="textContent"><div class="scrollable">
-                    <div style="vertical-align:middle" th:each="component : ${process.getComponents()}">
-                        <span th:text="${component.getComponentName()}"></span>
-                    </div>
-                </div></td>
+                <div class="scrollable">
+                    <td class="textContent" th:text="${process.processId}"/>
+                    <td class="textContent" th:text="${process.processName}"/>
+                    <td class="textContent" th:text="${process.protectionLevel}"/>
+                    <td class="textContent">
+                        <div style="vertical-align:middle" th:each="component : ${process.getComponents()}">
+                            <span th:text="${component.getComponentName()}"></span>
+                        </div>
+                    </td>
+                </div>
                 <td class="actionButtons">
                     <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}" method="post">
                         <button th:type="submit" class="btn btn-primary-edit">
@@ -131,5 +132,4 @@
 
 <script type="text/javascript" src="js/sort.js"></script>
 </body>
-
 </html>
