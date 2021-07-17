@@ -73,19 +73,23 @@
     <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Prozess erstellen</h3>
     <div class="formContent">
         <form th:action="@{/createProcess}" method="post">
-            <label style="font-size: 14px;"><b>Prozesstitel</b></label>
-            <input name="processName" type="text" placeholder="Prozesstitel"/></p>
-            <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
-            <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
-            <select class="protectionLevel" name="protectionLevel" type = "text">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select></p>
-            <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
-            <!--        <p>Komponenten ID: <input name="componentId" type="text"/></p>-->
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Prozesstitel</b></label>
+                <input name="processName" type="text" placeholder="Prozesstitel"/></p>
+                <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
+            </div>
 
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
+                <select class="protectionLevel" name="protectionLevel" type = "text">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
+            <!--        <p>Komponenten ID: <input name="componentId" type="text"/></p>-->
+            </div>
             <div class="formButtons">
 
                 <input class="btn btn-primary-reset" type="reset" value="Reset"/></input>

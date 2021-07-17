@@ -1,4 +1,4 @@
-.protectionLevel {
+.eachLine {
     margin-bottom: 30px;
 }
 .btn-primary-save {
@@ -25,7 +25,6 @@ input {
     padding: 12px 20px;
     background: #EFEFEF;
     border: none;
-    margin-bottom: 30px;
 }
 .createEntity {
     background-color: white;
