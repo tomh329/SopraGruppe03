@@ -99,8 +99,6 @@
     <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
 </div>
 
-
-
 <div class="contentTable">
 
     <!--    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">-->
@@ -108,10 +106,6 @@
     <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">-->
-
-    <div style="float: end">
-        <button onClick="window.location.href=window.location.href" class="btn btn-primary">Filter entfehrnen</button>
-    </div>
 
     <table id="myTable" class="table">
         <thead class="thead-theme">
@@ -136,11 +130,11 @@
             <td th:text="${component.priority}"/>
             <td th:text="${component.getProcess().processName}"/>
 
-            <!--            <td>-->
-            <!--                <p th:each="process : ${component.getProcess()}">-->
-            <!--                    <span th:text="${process.processName}"></span>-->
-            <!--                </p>-->
-            <!--            </td>-->
+<!--            <td>-->
+<!--                <p th:each="process : ${component.getProcess()}">-->
+<!--                    <span th:text="${process.processName}"></span>-->
+<!--                </p>-->
+<!--            </td>-->
 
             <td>
                 <p th:each="action : ${component.getActions()}">

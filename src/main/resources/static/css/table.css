@@ -91,3 +91,15 @@ td.textContent, th.textContent {
     text-align: left;
     padding-left: 30px;
 }
+.topLine {
+    display: flex;
+    justify-content: space-between;
+
+}
+i span {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 500;
+}

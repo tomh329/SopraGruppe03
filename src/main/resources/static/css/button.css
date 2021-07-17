@@ -12,6 +12,15 @@
     cursor: pointer;
     width: 50px;
 }
+.btn.btn-primary-newAdd {
+    border-radius: 17px;
+    background-color: #35b8b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+
+}
 
 /* Darker background on mouse-over */
 .btn.btn-primary:hover {
@@ -22,4 +31,7 @@
 }
 .btn.btn-danger-delete:hover {
     background-color: DarkRed;
+}
+.btn.btn-primary-newAdd:hover {
+    background-color: #298f8a;
 }
