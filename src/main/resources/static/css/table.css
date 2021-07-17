@@ -50,6 +50,11 @@ table th:last-child{
     border-style: none;
 }
 
+div.scrollable{
+    overflow-y: auto;
+    max-height: 80px;
+}
+
 .table .th-sort-asc::after {
     content: "\25b4";
 }
