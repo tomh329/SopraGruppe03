@@ -81,10 +81,10 @@
         <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
         </button>
     </form>
-    <form class="createButton" th:action="@{/addActionButton}" method="post">
+ <!--   <form class="createButton" th:action="@{/addActionButton}" method="post">
         <button th:type="submit" class="btn btn-primary"> Maßnahme hinzufügen
         </button>
-    </form>
+    </form>-->
 </div>
 
 <div style="float: right;">
@@ -147,8 +147,19 @@
     <!--            </td>-->
 
                 <td class="textContent">
-                    <div th:each="action : ${component.getActions()}">
-                        <span th:text="${action.getActionName()}"></span>
+                    <div>
+                        <div class="addMore" style="margin-right: 10px">
+                            <form class="edit-delete" th:action="@{/addActionButton(componentId=${component.componentId}, actionId=${component.getActions()})}" method="post">
+                                <button th:type="submit" class="btn btn-primary-add">
+                                    <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="addMore">
+                            <div style="vertical-align:middle" th:each="action : ${component.getActions()}">
+                                <span th:text="${action.getActionName()}"></span>
+                            </div>
+                        </div>
                     </div>
                 </td>
                 </div>
