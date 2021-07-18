@@ -66,7 +66,7 @@
         <form th:action="@{/createDanger}" method="post">
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Gefahrtitel</b></label>
-                <input name="dangerName" type="text" placeholder="Gefahrtitel"/></p>
+                <input name="dangerName" type="text" placeholder="Gefahrtitel"/>
                 <p th:if="${#fields.hasErrors('danger.dangerName')}" th:errors="*{danger.dangerName}" class="text-danger"></p>
             </div>
 

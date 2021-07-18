@@ -65,6 +65,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Gefahrtitel</b></label>
                 <select name="dangerId" type = "text">
+                    <option style="display:none;"></option>
                     <option th:each="danger : ${dangers}"
                             th:value="${danger.dangerId}" th:text="${danger.dangerName}"></option>
                 </select>
@@ -72,6 +73,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Anforderungstitel</b></label>
                 <select name="requirementId" type = "text">
+                    <option style="display:none;"></option>
                     <option th:each="requirement : ${requirements}"
                             th:value="${requirement.requirementId}" th:text="${requirement.requirementName}"></option>
                 </select>

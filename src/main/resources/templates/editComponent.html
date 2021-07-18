@@ -71,49 +71,198 @@
     </div>
 </nav>
 
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Eine Komponente bearbeiten</h3>
+    <div class="formContent">
+        <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post">
 
-<h3>Einen Komponent bearbeiten</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post">
-        <p>Komponenten ID:
-        <p name="componentId" type="text" th:text="${editComponent.getComponentId()}"/></p>
-        <p th:if="${#fields.hasErrors('component.componentId')}" th:errors="*{component.componentId}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Komponententitel</b></label>
+                <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/>
+                <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+            </div>
 
-        <p>Komponententitel: <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/></p>
-        <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Letzte Attacke</b></label>
+                <input name="lastAttack" type="date" th:value="${editComponent.getLastAttack()}"/>
+                <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
+            </div>
 
-        <p>Letze Attacke: <input name="lastAttack" type="date" th:value="${editComponent.getLastAttack()}"/></p>
-        <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Anzahl</b></label>
+                <select name="occurrence" type = "text" th:value="${editComponent.getOccurrence()}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
+            </div>
 
-        <p>Aufkommen: <select name="occurrence" type = "text" th:value="${editComponent.getOccurrence()}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Priorität</b></label>
+                <select name="priority" type = "text" th:value="${editComponent.getPriority()}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
+            </div>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Pozess</b></label>
+                <div th:if ="${editComponent.getProcess()} != ${null}">
+                    <div name="processId" type="text"
+                       th:text="${editComponent.getProcess().getProcessName()}"/>
+                </div>
+            </div>
 
-        <p>Priorität: <select name="priority" type = "text" th:value="${editComponent.getPriority()}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
+            <div class="formButtons">
 
-        <p>Prozess:
-        <div th:if ="${editComponent.getProcess()} != ${null}">
-        <p name="processId" type="text"
-           th:text="${editComponent.getProcess().getProcessName()}"/></p>
-        </div>
-        <p><input type="submit" value="Komponent speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+            </div>
+
+
+        </form>
+    </div>
 </div>
+
 </body>
 </html>
+<style>
+    /*navbar.css*/
+    body {
+        background: #F5F7FB;
+    }
+    nav {
+        background-color: #337AB7;
+    }
+    .navbar-brand {
+        margin-left: 20px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        color: #edf0f1;
+    }
+    .btn-danger {
+        border-radius: 25px;
+        width: 90px;
+        height: 35px;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    .nav-link.dropdown-toggle {
+        margin-left: 20px;
+        color: #edf0f1;
+    }
+
+    .nav-link {
+        margin-left: 20px;
+        color: #edf0f1;
+    }
+
+    .nav-link:hover {
+        color: #0056b3;
+    }
+
+    .nav-link.dropdown-toggle:hover {
+        color: #0056b3;
+    }
+    .dropdown-menu {
+        border-radius: 0px;
+        margin-top: 16px;
+        margin-left: -9px;
+        border-style: none;
+        padding: 12px;
+        margin-bottom: 25px;
+    }
+    .fa-bars {
+        color: #edf0f1;
+        font-size: 30px;
+    }
+
+
+    /*editForm.css*/
+    .eachLine {
+        margin-bottom: 30px;
+    }
+    .btn-primary-save {
+        width: 120px;
+        margin-left: 12px;
+        border-radius: 25px;
+        background-color: #337AB7;
+        color: white;
+        font-weight: 500;
+        margin-top: 30px;
+    }
+    .btn-primary-reset {
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+    }
+    .btn-primary-save:hover {
+        background-color: #286090;
+    }
+    .formButtons {
+        display: inline-block;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 30px;
+    }
+    select {
+        background-color: transparent;
+        border: solid;
+        padding-left: 12px;
+        width: 100%;
+        border-width: thin;
+        height: 35px;
+        border-radius: 3px;
+    }
+    input {
+        width: 100%;
+        height: 45px;
+        padding: 12px 20px;
+        background: #EFEFEF;
+        border: none;
+    }
+    .createEntity {
+        background-color: white;
+        width: 40%;
+        text-align: center;
+        border-radius: 3px;
+        margin-top: 50px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .formContent {
+        text-align: left;
+        margin-top: 30px;
+        margin-right: 30px;
+        margin-left: 30px;
+
+    }
+
+
+    /*from createForm.css*/
+    .btn-primary-reset {
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+        background-color: #ffedba;
+    }
+    .btn-primary-reset:hover {
+        background-color: #fadc87;
+    }
+
+
+</style>

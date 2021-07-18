@@ -43,6 +43,7 @@ public class RequirementController {
     @PostMapping({"/requirement/{requirementId}"})
     public String showEditRequirement(Model model, @PathVariable String requirementId) {
         model.addAttribute("editRequirement", requirementService.findRequirementWithId(Integer.parseInt(requirementId)));
+        model.addAttribute("requirement", requirementService.findRequirementWithId(Integer.parseInt(requirementId)));
         return "editRequirement";
     }
 }
