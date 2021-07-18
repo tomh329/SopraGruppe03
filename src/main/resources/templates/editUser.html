@@ -90,6 +90,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Rolle</b></label>
                 <select name="roleId" type = "number">
+                    <option th:value="${editUsersName.getRole().getRoleId()}"></option>
                     <option value="1">Admin</option>
                     <option value="2">IT Security Officer</option>
                     <option value="3">Manager</option>

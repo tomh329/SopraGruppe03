@@ -84,6 +84,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Gefahrenlevel</b></label>
                 <select name="dangerLevel" type = "text" th:value="${editDanger.getDangerLevel()}">
+                    <option th:value="${editDanger.getDangerLevel()}"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
