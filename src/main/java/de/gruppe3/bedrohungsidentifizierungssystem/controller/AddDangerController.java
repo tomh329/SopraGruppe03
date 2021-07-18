@@ -53,20 +53,20 @@ public class AddDangerController {
                         if(requirement.getDangers().contains(danger)){
                             requirementService.saveRequirement(requirement);
                             dangerService.saveDanger(danger);
-                            return "redirect:/requirement";
+                            return "redirect:/danger";
                         }
 
                         requirement.getDangers().add(danger);
                         danger.getRequirements().add(requirement);
                         requirementService.saveRequirement(requirement);
                         dangerService.saveDanger(danger);
-                        return "redirect:/requirement";
+                        return "redirect:/danger";
                     }
                 }
             }
         }
 
         System.out.println("No Success");
-        return "redirect:/requirement";
+        return "redirect:/danger";
     }
 }
