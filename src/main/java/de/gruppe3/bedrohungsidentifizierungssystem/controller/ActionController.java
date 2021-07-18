@@ -72,4 +72,11 @@ public class ActionController {
 
         return "redirect:/action";
     }
+
+    @PostMapping({"/action/{actionId}"})
+    public String showEditProcess(Model model, @PathVariable String actionId) {
+        model.addAttribute("editAction", actionService.findActionWithId(Integer.parseInt(actionId)));
+        model.addAttribute("action", actionService.findActionWithId(Integer.parseInt(actionId)));
+        return "editAction";
+    }
 }

@@ -2,6 +2,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
@@ -82,6 +83,20 @@ public class ActionService {
 
     public Action findActionWithId(Integer actionId) {
         return actionRepository.findByActionId(actionId);
+    }
+
+    public void updateAction(int actionId, String actionName, String actionDueDate, int protectionNeeds) {
+
+        List<Action> actionList = findAllActions();
+
+        for(Action action : actionList){
+            if(actionId == action.getActionId()){
+                action.setActionName(actionName);
+                action.setActionDueDate(actionDueDate);
+                action.setProtectionNeeds(protectionNeeds);
+                actionRepository.save(action);
+            }
+        }
     }
 }
 

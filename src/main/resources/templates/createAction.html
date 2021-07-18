@@ -73,12 +73,12 @@
   <form th:action="@{/createAction}" method="post">
     <div class="eachLine">
       <label style="font-size: 14px;"><b>Maßnahmentitel</b></label>
-      <input name="actionName" type="text" placeholder="Maßnahmentitel"/></p>
+      <input name="actionName" type="text" placeholder="Maßnahmentitel"/>
       <p th:if="${#fields.hasErrors('action.actionName')}" th:errors="*{action.actionName}" class="text-danger"></p>
     </div>
     <div class="eachLine">
       <label style="font-size: 14px;"><b>Umsetzungsziel</b></label>
-      <input name="actionDueDate" type="date"/></p>
+      <input name="actionDueDate" type="date"/>
       <p th:if="${#fields.hasErrors('action.actionDueDate')}" th:errors="*{action.actionDueDate}" class="text-danger"></p>
     </div>
     <div class="eachLine">
