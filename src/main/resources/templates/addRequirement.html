@@ -66,6 +66,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Anforderungstitel</b></label>
                 <select name="requirementId" type = "text">
+                    <option style="display:none;"></option>
                     <option th:each="requirement : ${requirements}"
                             th:value="${requirement.requirementId}" th:text="${requirement.requirementName}"></option>
                 </select>
@@ -73,6 +74,7 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Komponententitel</b></label>
                 <select name="componentId" type = "text">
+                    <option style="display:none;"></option>
                     <option th:each="component : ${components}"
                             th:value="${component.componentId}" th:text="${component.componentName}"></option>
                 </select>

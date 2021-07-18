@@ -75,7 +75,7 @@
         <form th:action="@{/createProcess}" method="post">
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Prozesstitel</b></label>
-                <input name="processName" type="text" placeholder="Prozesstitel"/></p>
+                <input name="processName" type="text" placeholder="Prozesstitel"/>
                 <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
             </div>
 

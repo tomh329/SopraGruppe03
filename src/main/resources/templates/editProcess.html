@@ -76,7 +76,6 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
                 <select name="protectionLevel" type = "text" th:value="${editProcess.getProtectionLevel()}">
-                    <option th:value="${editProcess.getProtectionLevel()}"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -217,6 +216,18 @@
         margin-right: 30px;
         margin-left: 30px;
 
+    }
+
+
+    /*from createForm.css*/
+    .btn-primary-reset {
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+        background-color: #ffedba;
+    }
+    .btn-primary-reset:hover {
+        background-color: #fadc87;
     }
 
 

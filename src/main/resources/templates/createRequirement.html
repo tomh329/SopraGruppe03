@@ -73,7 +73,7 @@
         <form th:action="@{/createRequirement}" method="post">
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Anforderungstitel</b></label>
-                <input name="requirementName" type="text" placeholder="Anforderungstitel"/></p>
+                <input name="requirementName" type="text" placeholder="Anforderungstitel"/>
                 <p th:if="${#fields.hasErrors('requirement.requirementName')}" th:errors="*{requirement.requirementName}" class="text-danger"></p>
             </div>
 

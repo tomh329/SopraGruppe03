@@ -6,6 +6,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class EditUserController {
 
-    @GetMapping("/editUser")
-    public String showEditUser(User user, Model model) {
 
-        model.addAttribute("editUsersName",user);
+    @GetMapping("/editUser")
+    public String showEditUser(User editUser, User user, BindingResult bindingResult, Model model) {
+
+        model.addAttribute("editUsersName", editUser);
+        model.addAttribute("user", user);
         model.addAttribute("roles", roleService.findAllRoles());
         return "editUser";
     }
