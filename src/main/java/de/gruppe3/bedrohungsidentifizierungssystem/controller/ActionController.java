@@ -60,8 +60,13 @@ public class ActionController {
         for(Action action : actionList){
 
             if(id == action.getActionId()){
-                action.setStatus(true);
-                actionRepository.save(action);
+                if(action.getStatus() == false) {
+                    action.setStatus(true);
+                    actionRepository.save(action);
+                } else if (action.getStatus() == true) {
+                    action.setStatus(false);
+                    actionRepository.save(action);
+                }
             }
         }
 

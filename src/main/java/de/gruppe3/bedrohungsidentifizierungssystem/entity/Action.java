@@ -81,7 +81,7 @@ public class Action {
         this.componentAct = component;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
