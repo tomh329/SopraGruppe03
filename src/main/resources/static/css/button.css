@@ -21,6 +21,15 @@
     width: 150px;
 
 }
+.btn.btn-primary-add {
+    border-radius: 17px;
+    border: none;
+    background-color: #35b8b4;
+    height: 30px;
+    width: 30px;
+    color: white;
+    padding: 0px;
+}
 
 /* Darker background on mouse-over */
 .btn.btn-primary:hover {
@@ -33,5 +42,8 @@
     background-color: DarkRed;
 }
 .btn.btn-primary-newAdd:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-add:hover {
     background-color: #298f8a;
 }

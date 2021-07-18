@@ -61,10 +61,10 @@
     <form th:action="@{/addComponent}" method="post">
 
         <p>Komponent: <select name="componentId" type = "text">
+
             <option th:each="component : ${components}"
                     th:value="${component.componentId}" th:text="${component.componentName}"></option>
         </select></p>
-
 
         <p>Prozess: <select name="processId" type = "text">
             <option th:each="process : ${processes}"

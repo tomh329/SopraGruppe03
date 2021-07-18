@@ -115,7 +115,7 @@
     <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">-->
-
+<div id="pdfBox">
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <tr>
@@ -181,10 +181,16 @@
             </tfoot>
         </table>
     </div>
+    </div>
 </div>
+<p>
+    <input type="button" value="Create PDF"
+           id="btPrint" onclick="createPDF()" />
+</p>
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/exportTable.js"></script>
 </body>
 </html>

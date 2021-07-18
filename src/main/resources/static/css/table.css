@@ -103,3 +103,7 @@ i span {
     font-size: 14px;
     font-weight: 700;
 }
+.addMore {
+    display: inline-block;
+    vertical-align: middle;
+}
