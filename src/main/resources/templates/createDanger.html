@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -16,12 +17,6 @@
 
     <title>Create Danger</title>
 
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body style="align-content: center">
@@ -65,25 +60,38 @@
     </div>
 </nav>
 
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Eine Gefahr erstellen</h3>
+    <div class="formContent">
+        <form th:action="@{/createDanger}" method="post">
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Gefahrtitel</b></label>
+                <input name="dangerName" type="text" placeholder="Gefahrtitel"/></p>
+                <p th:if="${#fields.hasErrors('danger.dangerName')}" th:errors="*{danger.dangerName}" class="text-danger"></p>
+            </div>
 
-<h3>Eine Gefahr erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/createDanger}" method="post">
-        <p>Gefahrtitel: <input name="dangerName" type="text"/></p>
-        <p th:if="${#fields.hasErrors('danger.dangerName')}" th:errors="*{danger.dangerName}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Gefahrenlevel</b></label>
+                <select class="dangerLevel" name="dangerLevel" type = "text">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <p th:if="${#fields.hasErrors('danger.dangerLevel')}" th:errors="*{danger.dangerLevel}" class="text-danger"></p>
+            </div>
+            <div class="formButtons">
 
-        <p>Gefahrenlevel: <select name="dangerLevel" type = "text">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('danger.dangerLevel')}" th:errors="*{danger.dangerLevel}" class="text-danger"></p>
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
 
-        <p><input type="submit" value="Gefahr speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+            </div>
+
+
+        </form>
+    </div>
 </div>
 
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
 
@@ -9,6 +10,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -56,40 +58,63 @@
     </div>
 </nav>
 
-<h3>Eine Komponente erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Eine Komponente erstellen</h3>
+    <div class="formContent">
     <form th:action="@{/createComponent}" method="post">
-        <p>Komponententitel: <input name="componentName" type="text"/></p>
-        <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
 
-        <p>Letzte Attacke: <input name="lastAttack" type="date"/></p>
-        <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
+        <div class="eachLine">
+            <label style="font-size: 14px;"><b>Komponententitel</b></label>
+            <input name="componentName" type="text" placeholder="Komponententitel"/></p>
+            <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+        </div>
 
-        <p>Aufkommen: <select name="occurrence" type = "number">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
+        <div class="eachLine">
+            <label style="font-size: 14px;"><b>Letzte Attacke</b></label>
+            <input name="lastAttack" type="date"/>
+            <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
+        </div>
 
-        <p>Priorität: <select name="priority" type = "text">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
+        <div class="eachLine">
+            <label style="font-size: 14px;"><b>Anzahl</b></label>
+            <select class="occurrence" name="occurrence" type = "number">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
+        </div>
 
-        <p><input type="submit" value="Komponent erstellen"/> <input type="reset" value="Reset"/></p>
+        <div class="eachLine">
+            <label style="font-size: 14px;"><b>Priorität</b></label>
+            <select class="priority" name="priority" type = "text">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
+        </div>
+        <div class="formButtons">
+
+            <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+            <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+        </div>
+
+
     </form>
+    </div>
 </div>
+
 
 </body>
 </html>

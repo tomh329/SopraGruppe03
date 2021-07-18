@@ -91,9 +91,9 @@
             </div>
 
             <div class="formButtons">
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
 
-                <input class="btn btn-primary-reset" type="reset" value="Reset"/></input>
-                <input class="btn btn-primary-save" type="submit" value="Speichern"/></input>
 
             </div>
 
@@ -107,53 +107,53 @@
 <style>
     /*navbar.css*/
     body {
-    background: #F5F7FB;
+        background: #F5F7FB;
     }
     nav {
-    background-color: #337AB7;
+        background-color: #337AB7;
     }
     .navbar-brand {
-    margin-left: 20px;
-    font-size: 30px;
-    text-align: center;
-    font-weight: 600;
-    color: #edf0f1;
+        margin-left: 20px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        color: #edf0f1;
     }
     .btn-danger {
-    border-radius: 25px;
-    width: 90px;
-    height: 35px;
-    font-size: 14px;
-    margin-left: 10px;
+        border-radius: 25px;
+        width: 90px;
+        height: 35px;
+        font-size: 14px;
+        margin-left: 10px;
     }
     .nav-link.dropdown-toggle {
-    margin-left: 20px;
-    color: #edf0f1;
+        margin-left: 20px;
+        color: #edf0f1;
     }
 
     .nav-link {
-    margin-left: 20px;
-    color: #edf0f1;
+        margin-left: 20px;
+        color: #edf0f1;
     }
 
     .nav-link:hover {
-    color: #0056b3;
+        color: #0056b3;
     }
 
     .nav-link.dropdown-toggle:hover {
-    color: #0056b3;
+        color: #0056b3;
     }
     .dropdown-menu {
-    border-radius: 0px;
-    margin-top: 16px;
-    margin-left: -9px;
-    border-style: none;
-    padding: 12px;
-    margin-bottom: 25px;
+        border-radius: 0px;
+        margin-top: 16px;
+        margin-left: -9px;
+        border-style: none;
+        padding: 12px;
+        margin-bottom: 25px;
     }
     .fa-bars {
-    color: #edf0f1;
-    font-size: 30px;
+        color: #edf0f1;
+        font-size: 30px;
     }
 
 
@@ -162,13 +162,27 @@
         margin-bottom: 30px;
     }
     .btn-primary-save {
-        width: 130px;
+        width: 120px;
+        margin-left: 12px;
+        border-radius: 25px;
+        background-color: #337AB7;
+        color: white;
+        font-weight: 500;
+        margin-top: 30px;
     }
     .btn-primary-reset {
-        width: 130px;
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+    }
+    .btn-primary-save:hover {
+        background-color: #286090;
     }
     .formButtons {
         display: inline-block;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 30px;
     }
     select {
         background-color: transparent;
@@ -201,6 +215,8 @@
         margin-top: 30px;
         margin-right: 30px;
         margin-left: 30px;
+
     }
+
 
 </style>

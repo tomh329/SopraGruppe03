@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -66,13 +67,24 @@
 </nav>
 
 
-<h3>Eine Anforderung erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/createRequirement}" method="post">
-        <p>Anforderungstitel: <input name="requirementName" type="text"/></p>
-        <p th:if="${#fields.hasErrors('requirement.requirementName')}" th:errors="*{requirement.requirementName}" class="text-danger"></p>
-        <p><input type="submit" value="Anforderung speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Anforderung erstellen</h3>
+    <div class="formContent">
+        <form th:action="@{/createRequirement}" method="post">
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Anforderungstitel</b></label>
+                <input name="requirementName" type="text" placeholder="Anforderungstitel"/></p>
+                <p th:if="${#fields.hasErrors('requirement.requirementName')}" th:errors="*{requirement.requirementName}" class="text-danger"></p>
+            </div>
+
+            <div class="formButtons">
+
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+            </div>
+        </form>
+    </div>
 </div>
 
 </body>

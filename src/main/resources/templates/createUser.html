@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -66,20 +67,33 @@
 </nav>
 
 
-<h3>Einen Benutzer erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/createUser}" method="post">
-        <p>Benutzername: <input name="username" type="text"/></p>
-        <p th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}" class="text-danger"></p>
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Anforderung erstellen</h3>
+    <div class="formContent">
+        <form th:action="@{/createUser}" method="post">
 
-        <p>Passwort: <input name="password" type="text"/></p>
-        <p th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}" class="text-danger"></p>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Benutzername</b></label>
+                <input name="username" type="text" placeholder="Benutzername"/></p>
+                <p th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}" class="text-danger"></p>
+            </div>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Passwort</b></label>
+                <input name="password" type="text" placeholder="Passwort"/></p>
+                <p th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}" class="text-danger"></p>
+            </div>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Vorname</b></label>
+                <input name="firstname" type="text" placeholder="Vorname"/></p>
+                <p th:if="${#fields.hasErrors('user.firstname')}" th:errors="*{user.firstname}" class="text-danger"></p>
+            </div>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Nachname</b></label>
+                <input name="lastname" type="text" placeholder="Nachname"/></p>
+                <p th:if="${#fields.hasErrors('user.lastname')}" th:errors="*{user.lastname}" class="text-danger"></p>
+            </div>
 
-        <p>Vorname: <input name="firstname" type="text"/></p>
-        <p th:if="${#fields.hasErrors('user.firstname')}" th:errors="*{user.firstname}" class="text-danger"></p>
 
-        <p>Nachname: <input name="lastname" type="text"/></p>
-        <p th:if="${#fields.hasErrors('user.lastname')}" th:errors="*{user.lastname}" class="text-danger"></p>
 <!--        <p>Rolle: <select name="roleId" type = "number">-->
 <!--            <option value="1">Admin</option>-->
 <!--            <option value="2">IT Security Officer</option>-->
@@ -87,17 +101,22 @@
 <!--            <option value="4">Employee</option>-->
 <!--        </select></p>-->
 
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Rolle</b></label>
+                <select class="roleId" name="roleId" type = "number">
+                    <option th:each="role : ${roles}"
+                            th:value="${role.roleId}" th:text="${role.getRole()}"></option>
+                </select>
+                <p th:if="${#fields.hasErrors('user.role')}" th:errors="*{user.role}" class="text-danger"></p>
+            </div>
+            <div class="formButtons">
 
-        <p>Rolle: <select name="roleId" type = "number">
-            <option th:each="role : ${roles}"
-                    th:value="${role.roleId}" th:text="${role.getRole()}"></option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('user.role')}" th:errors="*{user.role}" class="text-danger"></p>
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
 
-
-
-        <p><input type="submit" value="Benutzer speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+            </div>
+        </form>
+    </div>
 </div>
 
 </body>

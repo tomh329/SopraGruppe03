@@ -2,13 +2,27 @@
     margin-bottom: 30px;
 }
 .btn-primary-save {
-    width: 130px;
+    width: 120px;
+    margin-left: 12px;
+    border-radius: 25px;
+    background-color: #337AB7;
+    color: white;
+    font-weight: 500;
+    margin-top: 30px;
 }
 .btn-primary-reset {
-    width: 130px;
+    width: 120px;
+    border-radius: 25px;
+    margin-top: 30px;
+}
+.btn-primary-save:hover {
+    background-color: #286090;
 }
 .formButtons {
     display: inline-block;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
 }
 select {
     background-color: transparent;
