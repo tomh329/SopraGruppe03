@@ -84,24 +84,19 @@
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <tr>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen ID</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmentitel</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponente</span></i></th>
                 <th class="actionButtons" scope="col">Aktionen</th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="action : ${actions}">
                 <div class="scrollable">
-                    <td class="textContent">
-                        <div th:switch="${action.status}">
-                            <p th:case="false" style="color: red"> Nicht Erledigt</p>
-                            <p th:case="true" style="color: green"> Erledigt</p>
-                        </div>
-                    </td>
                     <td class="textContent" th:text="${action.actionId}"/>
                     <td class="textContent" th:text="${action.actionName}"/>
                     <td class="textContent" th:text="${action.actionDueDate}"/>
@@ -123,8 +118,19 @@
                             <i class="fa fa-trash"></i>
                         </button>
                     </form>
+                </td>
+                <div class="scrollable">
+                    <td class="textContent">
+                        <div th:switch="${action.status}">
+                            <div th:case="false" style="color: red"> Nicht Erledigt</div>
+                            <div th:case="true" style="color: #298f8a"> Erledigt</div>
+                        </div>
+                    </td>
+                </div>
+                <td class="actionButtons">
                     <form class="edit-delete" th:action="@{/changeStatus/{path}(path=${action.actionId})}" method="post">
-                        <button th:type="submit" class="btn btn-primary" style="background: green"> Erledigt
+                        <button id="done" th:type="submit" class="btn btn-primary-done">
+                            <i class="fa fa-check"></i>
                         </button>
                     </form>
                 </td>

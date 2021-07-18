@@ -4,6 +4,7 @@
     color: white;
     cursor: pointer;
     width: 50px;
+    margin: 1.5px;
 }
 .btn.btn-danger-delete{
     background-color: Red;
@@ -11,6 +12,7 @@
     color: white;
     cursor: pointer;
     width: 50px;
+    margin: 1.5px;
 }
 .btn.btn-primary-newAdd {
     border-radius: 17px;
@@ -30,6 +32,13 @@
     color: white;
     padding: 0px;
 }
+.btn.btn-primary-done {
+    background-color: #35b8b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+}
 
 /* Darker background on mouse-over */
 .btn.btn-primary:hover {
@@ -45,5 +54,8 @@
     background-color: #298f8a;
 }
 .btn.btn-primary-add:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-done:hover {
     background-color: #298f8a;
 }
