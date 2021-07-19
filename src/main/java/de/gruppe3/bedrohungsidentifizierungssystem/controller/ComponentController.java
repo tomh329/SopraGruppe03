@@ -39,6 +39,13 @@ public class ComponentController {
         return "redirect:/addAction";
     }
 
+    @PostMapping("/removeActionButton/{actionId}")
+    public String removeAction(@PathVariable String actionId){
+
+        componentService.removeAction(Integer.parseInt(actionId));
+        return "redirect:/component";
+    }
+
 
 
     @PostMapping({"/component/{componentId}"})

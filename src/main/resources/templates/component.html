@@ -159,6 +159,14 @@
                         <div class="addMore">
                             <div style="vertical-align:middle" th:each="action : ${component.getActions()}">
                                 <span th:text="${action.getActionName()}"></span>
+                                <form class="edit-delete"
+                                      th:action="@{/removeActionButton/{path}(path=${action.actionId})}"
+                                      method="post">
+                                    <button th:type="submit" class="btn btn-primary-remove">
+                                        <i class="fa fa-minus"
+                                           style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

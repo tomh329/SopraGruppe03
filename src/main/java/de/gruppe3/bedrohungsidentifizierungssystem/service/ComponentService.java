@@ -2,6 +2,7 @@ package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -19,6 +20,8 @@ public class ComponentService {
     ProcessRepository processRepository;
     @Autowired
     RequirementRepository requirementRepository;
+    @Autowired
+    ActionRepository actionRepository;
 
 
 
@@ -76,6 +79,20 @@ public class ComponentService {
 
         return componentRepository.save(component);
     }
+
+
+    public void removeAction(int actionId){
+
+        Action action = actionRepository.findByActionId(actionId);
+        Component component = action.getComponent();
+
+        action.setComponent(null);
+        component.getActions().remove(action);
+
+        actionRepository.save(action);
+        componentRepository.save(component);
+    }
+
 
 
     public void deleteComponent(Component component) {
