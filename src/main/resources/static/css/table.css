@@ -28,6 +28,7 @@
 .table {
     border-collapse: separate;
     border-spacing: 0 20px;
+    max-width: content-box;
 }
 
 .table td {
@@ -60,6 +61,7 @@ table th:last-child{
     font-weight: 600;
     border-style: none;
 }
+
 
 /*div.scrollable{
     overflow-y: auto;

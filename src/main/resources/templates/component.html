@@ -88,13 +88,6 @@
         </button>
     </form>-->
 
-<div style="float: right;">
-    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">
-    <br>
-    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">
-    <br>
-    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
-</div>
 
 <div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 30px;">
     <div style="display: inline-block; vertical-align: middle;">
@@ -107,6 +100,7 @@
 </div>
 
 <div class="wrapper">
+
     <div class="contentTable">
         <div id="pdfBox">
         <div class="topLine">
@@ -122,7 +116,40 @@
             </div>
         </div>
 
-    <!--    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">-->
+
+
+<!--            <div style="float: right;">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div>
+                                <input class="searchBox" type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div>
+                                <input class="searchBox" type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <input class="searchBox" type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>-->
+
+
+            <!--    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
     <!--    <br>-->
@@ -141,8 +168,36 @@
                 <th class="actionButtons" scope="col">Aktionen</th>
             </tr>
             </thead>
+
+            <thead>
+                <tr>
+                    <th style="background-color: #f7f9fa;">
+                        <div><input class="searchBox" type="text" id="inputZero" onkeyup="myFunctionZero()"></div>
+                    </th>
+                    <th style="background-color: #f7f9fa;">
+                        <div>
+                            <input class="searchBox" type="text" id="inputOne" onkeyup="myFunctionOne()" placeholder="Suche nach Komponente...">
+                        </div>
+                    </th>
+                    <th style="background-color: #f7f9fa;"></th>
+                    <th style="background-color: #f7f9fa;"></th>
+                    <th style="background-color: #f7f9fa;">
+                        <div>
+                            <input class="searchBox" type="text" id="inputFour" onkeyup="myFunctionFour()" placeholder="Suche nach Prozess...">
+                        </div>
+                    </th>
+                    <th style="background-color: #f7f9fa;">
+                        <div>
+                            <input class="searchBox" type="text" id="inputFive" onkeyup="myFunctionFive()" placeholder="Suche nach Priorität...">
+                        </div>
+                    </th>
+                    <th style="background-color: #f7f9fa;"></th>
+                    <th style="background-color: #f7f9fa;"></th>
+                </tr>
+            </thead>
+
             <tbody>
-            <tr th:each="component : ${components}">
+            <tr class="searchBox" th:each="component : ${components}">
                 <div class="scrollable">
 
                 <td class="textContent" th:text="${component.componentId}"/>
@@ -191,17 +246,17 @@
 
             </tr>
             </tbody>
-
-            <tfoot class="text-primary">
+            <tfoot>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th style="background: white"></th>
+                <th style="background: white"></th>
+                <th style="background: white"></th>
+                <th style="background: white"></th>
+                <th style="background: white"></th>
+                <th style="background: white"></th>
             </tr>
             </tfoot>
+
         </table>
     </div>
     </div>
@@ -212,5 +267,7 @@
 <script type="text/javascript" src="js/filter.js"></script>
 <script type="text/javascript" src="js/exportTable.js"></script>
 <script type="text/javascript" src="js/searchWholeTable.js"></script>
+
+
 </body>
 </html>
