@@ -6,6 +6,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepositor
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RoleRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     
@@ -83,9 +86,10 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(String username, String firstname, String lastname, int roleId) {
+    public void updateUser(String username, String password, String firstname, String lastname, int roleId) {
 
         User editedUser = findUserWithName(username);
+        editedUser.setPassword(bCryptPasswordEncoder.encode(password));
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
         List<Role> editedUserRole = roleRepository.findAll();

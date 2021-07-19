@@ -82,6 +82,21 @@
         <form th:action="@{/editUser/{path}(path=${editUsersName.username})}" method="post">
 
             <div class="eachLine">
+                <label style="font-size: 14px;"><b>Passwort</b></label>
+                <div class="pwContainer">
+                    <input type="password" name="password" th:value="${editUsersName.password}" id="myInput">
+                    <div class="eye">
+                        <label class="check-text" style="position:absolute">
+                            <input class="check-text" type="checkbox" onclick="myFunction()">
+                            <span class="fa fa-eye checked"></span>
+                            <span class="fa fa-eye-slash unchecked"></span>
+                            </input>
+                        </label>
+                    </div>
+                </div>
+                <p th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}" class="text-danger"></p>
+            </div>
+            <div class="eachLine">
                 <label style="font-size: 14px;"><b>Vorname</b></label>
                 <input name="firstname" type="text" th:value="${editUsersName.firstname}"/>
                 <p th:if="${#fields.hasErrors('user.firstname')}" th:errors="*{user.firstname}" class="text-danger"></p>
@@ -123,7 +138,61 @@
 
 </body>
 </html>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 <style>
+    .eye{
+        position: absolute;
+        right: 40px;
+        top: 10px;
+    }
+    .pwContainer {
+        position: relative;
+        align-items:center;
+    }
+    .check-text input {
+        display: none;
+    }
+    .check-text input ~ span {
+        color: #333;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 2px;
+        font-weight: 200;
+    }
+    .check-text input ~ .checked {
+        display: none;
+    }
+    .check-text input:checked ~ .checked {
+        display: inline-block;
+    }
+    .check-text input:checked ~ .unchecked {
+        display: none;
+    }
+    .check-text input:disabled ~ span {
+        color: #999;
+        cursor: not-allowed;
+    }
+    .pwContainer {
+        psotion: relative;
+        align-items:center;
+    }
+    input {
+        width: 100%;
+        height: 45px;
+        padding: 12px 20px;
+        background: #EFEFEF;
+        border: none;
+    }
+
     /*navbar.css*/
     body {
         background: #F5F7FB;
