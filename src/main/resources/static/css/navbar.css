@@ -17,6 +17,8 @@ nav {
     height: 35px;
     font-size: 14px;
     margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .nav-link.dropdown-toggle {
     margin-left: 20px;
@@ -46,4 +48,13 @@ nav {
 .fa-bars {
     color: #edf0f1;
     font-size: 30px;
+}
+.fa-user {
+    color: white;
+    margin-top:15px;
+    margin-left: 16px;
+    margin-bottom: 15px;
+}
+.fa-user:hover {
+    color: #0056b3;
 }

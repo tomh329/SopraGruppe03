@@ -98,4 +98,10 @@ public class UserService {
         userRepository.save(editedUser);
 
     }
+
+    public void updateUser(User user, String password) {
+
+        user.setPassword(password);
+        userRepository.save(user);
+    }
 }
