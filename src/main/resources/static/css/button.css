@@ -32,6 +32,15 @@
     color: white;
     padding: 0px;
 }
+.btn.btn-primary-remove {
+    border-radius: 17px;
+    border: none;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    color: white;
+    padding: 0px;
+}
 .btn.btn-primary-done {
     background-color: #35b8b4;
     border: none;
@@ -55,6 +64,9 @@
 }
 .btn.btn-primary-add:hover {
     background-color: #298f8a;
+}
+.btn.btn-primary-remove:hover {
+    background-color: DarkRed;
 }
 .btn.btn-primary-done:hover {
     background-color: #298f8a;

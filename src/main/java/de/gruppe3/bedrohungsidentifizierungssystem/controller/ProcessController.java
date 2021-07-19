@@ -42,6 +42,13 @@ public class ProcessController {
         return "redirect:/addComponent";
     }
 
+    @PostMapping("/removeComponentButton/{componentId}")
+    public String removeComponent(@PathVariable String componentId){
+
+        processService.removeComponent(Integer.parseInt(componentId));
+        return "redirect:/process";
+    }
+
     @PostMapping({"/process/{processId}"})
     public String showEditProcess(Model model, @PathVariable String processId) {
         model.addAttribute("editProcess", processService.findProcessWithId(Integer.parseInt(processId)));
