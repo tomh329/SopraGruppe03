@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"/>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,24 +18,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
-
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/button.css">
-    <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/navbar.css">
 
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-        ::placeholder {
-            color: white;
-        }
-    </style>
 
     <title>Components</title>
 
@@ -172,26 +167,32 @@
             <thead>
                 <tr>
                     <th style="background-color: #f7f9fa;">
-                        <div><input class="searchBox" type="text" id="inputZero" onkeyup="myFunctionZero()"></div>
+                        <input class="searchBox" type="text" id="inputZero" onkeyup="myFunctionZero()">
                     </th>
                     <th style="background-color: #f7f9fa;">
                         <div>
-                            <input class="searchBox" type="text" id="inputOne" onkeyup="myFunctionOne()" placeholder="Suche nach Komponente...">
-                        </div>
-                    </th>
-                    <th style="background-color: #f7f9fa;"></th>
-                    <th style="background-color: #f7f9fa;"></th>
-                    <th style="background-color: #f7f9fa;">
-                        <div>
-                            <input class="searchBox" type="text" id="inputFour" onkeyup="myFunctionFour()" placeholder="Suche nach Prozess...">
+                            <input class="searchBox" type="text" id="inputOne" onkeyup="myFunctionOne()">
                         </div>
                     </th>
                     <th style="background-color: #f7f9fa;">
+                        <div><input class="searchBox" type="text" id="inputTwo" onkeyup="myFunctionTwo()"></div>
+                    </th>
+                    <th style="background-color: #f7f9fa;">
+                        <div><input class="searchBox" type="text" id="inputThree" onkeyup="myFunctionThree()"></div>
+                    </th>
+                    <th style="background-color: #f7f9fa;">
                         <div>
-                            <input class="searchBox" type="text" id="inputFive" onkeyup="myFunctionFive()" placeholder="Suche nach Priorität...">
+                            <input class="searchBox" type="text" id="inputFour" onkeyup="myFunctionFour()">
                         </div>
                     </th>
-                    <th style="background-color: #f7f9fa;"></th>
+                    <th style="background-color: #f7f9fa;">
+                        <div>
+                            <input class="searchBox" type="text" id="inputFive" onkeyup="myFunctionFive()">
+                        </div>
+                    </th>
+                    <th style="background-color: #f7f9fa;">
+                        <div><input class="searchBox" type="text" id="inputSix" onkeyup="myFunctionSix()"></div>
+                    </th>
                     <th style="background-color: #f7f9fa;"></th>
                 </tr>
             </thead>
