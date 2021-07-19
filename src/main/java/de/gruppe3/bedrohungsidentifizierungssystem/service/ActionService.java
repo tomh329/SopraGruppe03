@@ -58,10 +58,13 @@ public class ActionService {
         User currentUser = userRepository.findByUsername(username);
 
         for(Action action : actionList){
-            if (!action.getStatus()) {
-                resultActionList.add(action);
+            if(!(action.getComponent()==null)){
+                for(User user : action.getComponent().getUsers()){
+                    if (!action.getStatus()&&user.equals(currentUser)) {
+                        resultActionList.add(action);
+                    }
+                }
             }
-
         }
 
         return resultActionList;
@@ -73,9 +76,14 @@ public class ActionService {
         User currentUser = userRepository.findByUsername(username);
 
         for(Action action : actionList){
-            if (action.getStatus()) {
-                resultActionList.add(action);
+            if(!(action.getComponent()==null)){
+                for(User user : action.getComponent().getUsers()){
+                    if (action.getStatus()&&user.equals(currentUser)) {
+                        resultActionList.add(action);
+                    }
+                }
             }
+
 
         }
 
