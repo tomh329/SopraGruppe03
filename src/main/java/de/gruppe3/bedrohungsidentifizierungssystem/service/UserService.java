@@ -104,4 +104,18 @@ public class UserService {
         user.setPassword(password);
         userRepository.save(user);
     }
+
+
+    public void removeComponent(String username, int componentId){
+
+
+        User user = userRepository.findByUsername(username);
+        Component component = componentRepository.findByComponentId(componentId);
+
+        user.getComponents().remove(component);
+        component.getUsers().remove(user);
+
+        userRepository.save(user);
+        componentRepository.save(component);
+    }
 }

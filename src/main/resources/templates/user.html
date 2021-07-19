@@ -123,6 +123,16 @@
                             </div>
                             <div th:each="component : ${user.getComponents()}">
                                 <span th:text="${component.getComponentName()}"></span>
+                                <form class="edit-delete"
+                                      th:action="@{/removeComponentAndUserButton}"
+                                      method="post">
+                                    <input type="hidden" name="username" th:value="${user.username}"/>
+                                    <input type="hidden" name="componentId" th:value="${component.componentId}"/>
+                                    <button th:type="submit" class="btn btn-primary-remove">
+                                        <i class="fa fa-minus"
+                                           style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </td>

@@ -93,6 +93,18 @@ public class ComponentService {
         componentRepository.save(component);
     }
 
+    public void removeRequirement(int requirementId){
+
+        Requirement requirement = requirementRepository.findByRequirementId(requirementId);
+        Component component = requirement.getComponent();
+
+        requirement.setComponent(null);
+        component.getRequirements().remove(requirement);
+
+        requirementRepository.save(requirement);
+        componentRepository.save(component);
+    }
+
 
 
     public void deleteComponent(Component component) {

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -45,5 +46,14 @@ public class UserController {
     public String add() {
 
         return "redirect:/addUserToComponent";
+    }
+
+
+    @PostMapping("/removeComponentAndUserButton")
+    public String removeComponent(@RequestParam(name = "username") String username,
+                                    @RequestParam(name = "componentId") int componentId){
+
+        userService.removeComponent(username, componentId);
+        return "redirect:/user";
     }
 }
