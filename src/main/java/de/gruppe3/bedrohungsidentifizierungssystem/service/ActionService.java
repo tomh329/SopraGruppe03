@@ -1,14 +1,14 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +19,8 @@ public class ActionService {
     private ActionRepository actionRepository;
     @Autowired
     private ComponentRepository componentRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     RequirementRepository requirementRepository;
 
@@ -48,6 +50,45 @@ public class ActionService {
     public List<Action> findAllActions() {
 
         return actionRepository.findAll();
+    }
+
+    public List<Action> findToDoActionsForUser(String username){
+        List<Action> resultActionList = new ArrayList<>();
+        List<Action> actionList = findAllActions();
+        User currentUser = userRepository.findByUsername(username);
+
+        for(Action action : actionList){
+            if(!(action.getComponent()==null)){
+                for(User user : action.getComponent().getUsers()){
+                    if (!action.getStatus()&&user.equals(currentUser)) {
+                        resultActionList.add(action);
+                    }
+                }
+            }
+        }
+
+        return resultActionList;
+    }
+
+    public List<Action> findDoneActionsForUser(String username){
+        List<Action> resultActionList = new ArrayList<>();
+        List<Action> actionList = findAllActions();
+        User currentUser = userRepository.findByUsername(username);
+
+        for(Action action : actionList){
+            if(!(action.getComponent()==null)){
+                for(User user : action.getComponent().getUsers()){
+                    if (action.getStatus()&&user.equals(currentUser)) {
+                        resultActionList.add(action);
+                    }
+                }
+            }
+
+
+        }
+
+
+        return resultActionList;
     }
 
 
@@ -82,6 +123,20 @@ public class ActionService {
 
     public Action findActionWithId(Integer actionId) {
         return actionRepository.findByActionId(actionId);
+    }
+
+    public void updateAction(int actionId, String actionName, String actionDueDate, int protectionNeeds) {
+
+        List<Action> actionList = findAllActions();
+
+        for(Action action : actionList){
+            if(actionId == action.getActionId()){
+                action.setActionName(actionName);
+                action.setActionDueDate(actionDueDate);
+                action.setProtectionNeeds(protectionNeeds);
+                actionRepository.save(action);
+            }
+        }
     }
 }
 

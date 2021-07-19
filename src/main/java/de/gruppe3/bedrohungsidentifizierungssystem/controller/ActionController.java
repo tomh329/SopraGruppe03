@@ -60,11 +60,23 @@ public class ActionController {
         for(Action action : actionList){
 
             if(id == action.getActionId()){
-                action.setStatus(true);
-                actionRepository.save(action);
+                if(action.getStatus() == false) {
+                    action.setStatus(true);
+                    actionRepository.save(action);
+                } else if (action.getStatus() == true) {
+                    action.setStatus(false);
+                    actionRepository.save(action);
+                }
             }
         }
 
         return "redirect:/action";
+    }
+
+    @PostMapping({"/action/{actionId}"})
+    public String showEditProcess(Model model, @PathVariable String actionId) {
+        model.addAttribute("editAction", actionService.findActionWithId(Integer.parseInt(actionId)));
+        model.addAttribute("action", actionService.findActionWithId(Integer.parseInt(actionId)));
+        return "editAction";
     }
 }

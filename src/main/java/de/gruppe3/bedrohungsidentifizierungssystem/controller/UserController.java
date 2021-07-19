@@ -24,6 +24,7 @@ public class UserController {
     @PostMapping({"/user/{username}"})
     public String showEditUser(Model model, @PathVariable String username) {
         model.addAttribute("editUsersName", userService.findUserWithName(username));
+        model.addAttribute("user", userService.findUserWithName(username));
         return "editUser";
     }
 

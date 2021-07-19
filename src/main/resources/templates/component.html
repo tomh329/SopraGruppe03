@@ -74,22 +74,16 @@
     </div>
 </nav>
 
-<h2>Komponententabelle</h2>
 <!-- Komponententabelle -->
-<div style="float: left">
-    <form class="createButton" th:action="@{/createComponentButton}" method="post">
-        <button th:type="submit" class="btn btn-primary"> Neue Komponente erstellen
-        </button>
-    </form>
+<!--
     <form class="createButton" th:action="@{/addRequirementButton}" method="post">
         <button th:type="submit" class="btn btn-primary"> Anforderung hinzufügen
         </button>
-    </form>
-    <form class="createButton" th:action="@{/addActionButton}" method="post">
+    </form>-->
+ <!--   <form class="createButton" th:action="@{/addActionButton}" method="post">
         <button th:type="submit" class="btn btn-primary"> Maßnahme hinzufügen
         </button>
-    </form>
-</div>
+    </form>-->
 
 <div style="float: right;">
     <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">
@@ -98,88 +92,114 @@
     <br>
     <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
 </div>
+<div class="wrapper">
+    <div class="contentTable">
 
-
-
-<div class="contentTable">
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Komponententabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createComponentButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd" style="width: 170px">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neuer Komponent</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
 
     <!--    <input type="text" id="inputComponent" onkeyup="myFunctionComp()" placeholder="Suche nach Komponente...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">-->
+<div id="pdfBox">
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten ID</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponententitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Letzte Attacke</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Anzahl</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Priorität</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozess</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="component : ${components}">
+                <div class="scrollable">
 
-    <div style="float: end">
-        <button onClick="window.location.href=window.location.href" class="btn btn-primary">Filter entfehrnen</button>
+                <td class="textContent" th:text="${component.componentId}"/>
+                <td class="textContent" th:text="${component.componentName}"/>
+                <td class="textContent" th:text="${component.lastAttack}"/>
+                <td class="textContent" th:text="${component.occurrence}"/>
+                <td class="textContent" th:text="${component.priority}"/>
+                <td class="textContent" th:text="${component.getProcess().processName}"/>
+
+    <!--            <td>-->
+    <!--                <p th:each="process : ${component.getProcess()}">-->
+    <!--                    <span th:text="${process.processName}"></span>-->
+    <!--                </p>-->
+    <!--            </td>-->
+
+                <td class="textContent">
+                    <div>
+                        <div class="addMore" style="margin-right: 10px">
+                            <form class="edit-delete" th:action="@{/addActionButton(componentId=${component.componentId}, actionId=${component.getActions()})}" method="post">
+                                <button th:type="submit" class="btn btn-primary-add">
+                                    <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="addMore">
+                            <div style="vertical-align:middle" th:each="action : ${component.getActions()}">
+                                <span th:text="${action.getActionName()}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                </div>
+                <td class="actionButtons">
+                    <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post">
+                        <button th:type="submit" class="btn btn-primary-edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                    <form class="edit-delete" th:action="@{/deleteComponent/{path}(path=${component.componentId})}"
+                          method="post">
+                        <button th:type="submit" class="btn btn-danger-delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+
+            <tfoot class="text-primary">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
     </div>
-
-    <table id="myTable" class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Komponenten ID</th>
-            <th scope="col">Komponententitel</th>
-            <th scope="col">Letzte Attack</th>
-            <th scope="col">Aufkommen</th>
-            <th scope="col">Priorität</th>
-            <th scope="col">Prozess</th>
-            <th scope="col">Maßnahmen</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="component : ${components}">
-
-            <td th:text="${component.componentId}"/>
-            <td th:text="${component.componentName}"/>
-            <td th:text="${component.lastAttack}"/>
-            <td th:text="${component.occurrence}"/>
-            <td th:text="${component.priority}"/>
-            <td th:text="${component.getProcess().processName}"/>
-
-            <!--            <td>-->
-            <!--                <p th:each="process : ${component.getProcess()}">-->
-            <!--                    <span th:text="${process.processName}"></span>-->
-            <!--                </p>-->
-            <!--            </td>-->
-
-            <td>
-                <p th:each="action : ${component.getActions()}">
-                    <span th:text="${action.getActionName()}"></span>
-                </p>
-            </td>
-
-            <td>
-                <form class="edit-delete" th:action="@{/component/{path}(path=${component.componentId})}" method="post">
-                    <button th:type="submit" class="btn btn-primary-edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteComponent/{path}(path=${component.componentId})}"
-                      method="post">
-                    <button th:type="submit" class="btn btn-danger-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </td>
-
-        </tr>
-        </tbody>
-
-        <tfoot class="text-primary">
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </tfoot>
-    </table>
+    </div>
 </div>
+<p>
+    <input type="button" value="Create PDF"
+           id="btPrint" onclick="createPDF()" />
+</p>
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/exportTable.js"></script>
 </body>
 </html>

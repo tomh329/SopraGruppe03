@@ -64,53 +64,76 @@
     </div>
 </nav>
 
-<h2>Anforderungstabelle</h2>
 
-<form class="createButton" th:action="@{/createRequirementButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neue Anforderung erstellen
-    </button>
-</form>
-<form class="createButton" th:action="@{/addDangerButton}" method="post">
+<!--<form class="createButton" th:action="@{/addDangerButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Gefahr hinzufügen
     </button>
-</form>
-<div class="contentTable">
-    <table id="myTable" class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Anforderungs ID</th>
-            <th scope="col">Anforderungstitel</th>
-            <th scope="col">Komponenten</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="requirement : ${requirements}">
-            <td th:text="${requirement.requirementId}"/>
-            <td th:text="${requirement.requirementName}"/>
-            <td>
-                <p th:each="component : ${requirement.getComponent()}">
-                    <span th:text="${component.getComponentName()}"></span>
-                </p>
-            </td>
-            <td>
-                <form class="edit-delete" th:action="@{/requirement/{path}(path=${requirement.requirementId})}"
-                      method="post">
-                    <button th:type="submit" class="btn btn-primary-edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteRequirement/{path}(path=${requirement.requirementId})}"
-                      method="post">
-                    <button th:type="submit" class="btn btn-danger-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </td>
+</form>-->
+<div class="wrapper">
+    <div class="contentTable">
 
-        </tr>
-        </tbody>
-    </table>
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Anforderungstabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createRequirementButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd" style="width: 170px">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neue Anforderung</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Anforderungs ID</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Anforderungstitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="requirement : ${requirements}">
+                <div class="scrollable">
+                    <td class="textContent" th:text="${requirement.requirementId}"/>
+                    <td class="textContent" th:text="${requirement.requirementName}"/>
+                    <td class="textContent">
+                        <div>
+                            <div class="addMore" style="margin-right: 10px">
+                                <form class="edit-delete" th:action="@{/addRequirementButton(requirementId=${requirement.requirementId}, componentId=${requirement.getComponent()})}" method="post">
+                                    <button th:type="submit" class="btn btn-primary-add">
+                                        <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="addMore">
+                                <div style="vertical-align:middle" th:each="component : ${requirement.getComponent()}">
+                                    <span th:text="${component.getComponentName()}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="actionButtons">
+                        <form class="edit-delete" th:action="@{/requirement/{path}(path=${requirement.requirementId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-primary-edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </form>
+                        <form class="edit-delete" th:action="@{/deleteRequirement/{path}(path=${requirement.requirementId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-danger-delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>

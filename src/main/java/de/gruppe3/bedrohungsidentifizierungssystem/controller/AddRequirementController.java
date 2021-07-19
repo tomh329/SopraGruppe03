@@ -52,13 +52,13 @@ public class AddRequirementController {
 
                         requirement.setComponent(component);
                         requirementService.saveRequirement(requirement);
-                        return "redirect:/component";
+                        return "redirect:/requirement";
                     }
                 }
             }
         }
 
         System.out.println("No Success");
-        return "redirect:/component";
+        return "redirect:/requirement";
     }
 }

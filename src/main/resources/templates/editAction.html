@@ -9,25 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <title>Create Process</title>
 
-    <title>Edit Component</title>
-
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .selectComponent {
-            width: 100px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body style="align-content: center">
@@ -71,65 +60,38 @@
     </div>
 </nav>
 
+
+
+
 <div class="createEntity">
-    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Eine Komponente bearbeiten</h3>
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Eine Maßnahme bearbeiten</h3>
     <div class="formContent">
-        <form th:action="@{/editComponent/{path}(path=${editComponent.componentId})}" method="post">
-
+        <form th:action="@{/editAction/{path}(path=${editAction.actionId})}" method="post">
             <div class="eachLine">
-                <label style="font-size: 14px;"><b>Komponententitel</b></label>
-                <input name="componentName" type="text" th:value="${editComponent.getComponentName()}"/>
-                <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
+                <label style="font-size: 14px;"><b>Maßnahmentitel</b></label>
+                <input name="actionName" type="text" th:value="${editAction.getActionName()}"/>
+                <p th:if="${#fields.hasErrors('action.actionName')}" th:errors="*{action.actionName}" class="text-danger"></p>
             </div>
-
             <div class="eachLine">
-                <label style="font-size: 14px;"><b>Letzte Attacke</b></label>
-                <input name="lastAttack" type="date" th:value="${editComponent.getLastAttack()}"/>
-                <p th:if="${#fields.hasErrors('component.lastAttack')}" th:errors="*{component.lastAttack}" class="text-danger"></p>
+                <label style="font-size: 14px;"><b>Umsetzungsziel</b></label>
+                <input name="actionDueDate" type="date" th:value="${editAction.getActionDueDate()}"/>
+                <p th:if="${#fields.hasErrors('action.actionDueDate')}" th:errors="*{action.actionDueDate}" class="text-danger"></p>
             </div>
-
             <div class="eachLine">
-                <label style="font-size: 14px;"><b>Anzahl</b></label>
-                <select name="occurrence" type = "text" th:value="${editComponent.getOccurrence()}">
-                    <option th:value="${editComponent.getOccurrence()}"></option>
+                <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
+                <select name="protectionNeeds" type = "text" th:value="${editAction.getProtectionNeeds()}">
+                    <option th:value="${editAction.getProtectionNeeds()}"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
                 </select>
-                <p th:if="${#fields.hasErrors('component.occurrence')}" th:errors="*{component.occurrence}" class="text-danger"></p>
+                <p th:if="${#fields.hasErrors('action.protectionNeeds')}" th:errors="*{action.protectionNeeds}" class="text-danger"></p>
             </div>
-
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Priorität</b></label>
-                <select name="priority" type = "text" th:value="${editComponent.getPriority()}">
-                    <option th:value="${editComponent.getPriority()}"></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <p th:if="${#fields.hasErrors('component.priority')}" th:errors="*{component.priority}" class="text-danger"></p>
-            </div>
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Pozess</b></label>
-                <div th:if ="${editComponent.getProcess()} != ${null}">
-                    <div name="processId" type="text"
-                       th:text="${editComponent.getProcess().getProcessName()}"/>
-                </div>
-            </div>
-
             <div class="formButtons">
-
                 <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
                 <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
 
             </div>
 

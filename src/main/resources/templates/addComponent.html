@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
 
@@ -9,6 +10,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -56,23 +58,35 @@
     </div>
 </nav>
 
-<h3>Einen Komponent an einen Prozess anfügen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/addComponent}" method="post">
 
-        <p>Komponent: <select name="componentId" type = "text">
-            <option th:each="component : ${components}"
-                    th:value="${component.componentId}" th:text="${component.componentName}"></option>
-        </select></p>
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einem Prozess eine Komponente zuweisen</h3>
+    <div class="formContent">
+        <form th:action="@{/addComponent}" method="post">
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Prozesstitel</b></label>
+                <select name="processId" type = "text">
+                    <option style="display:none;"></option>
+                    <option th:each="process : ${processes}"
+                            th:value="${process.processId}" th:text="${process.processName}"></option>
+                </select>
+            </div>
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Komponententitel</b></label>
+                <select name="componentId" type = "text">
+                    <option style="display:none;"></option>
+                    <option th:each="component : ${components}"
+                            th:value="${component.componentId}" th:text="${component.componentName}"></option>
+                </select>
+            </div>
+            <div class="formButtons">
 
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
 
-        <p>Prozess: <select name="processId" type = "text">
-            <option th:each="process : ${processes}"
-                    th:value="${process.processId}" th:text="${process.processName}"></option>
-        </select></p>
-
-        <p><input type="submit" value="Komponente hinzufügen"/> <input type="reset" value="Reset"/></p>
-    </form>
+            </div>
+        </form>
+    </div>
 </div>
 
 </body>

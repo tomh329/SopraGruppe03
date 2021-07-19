@@ -9,24 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/createForm.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>Edit Process</title>
+    <title>Create Process</title>
 
-    <style>
-        .processTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .selectComponent {
-            width: 100px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body style="align-content: center">
@@ -71,27 +61,175 @@
 </nav>
 
 
-<h3>Einen Prozess bearbeiten</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-    <form th:action="@{/editProcess/{path}(path=${editProcess.processId})}" method="post">
-        <p>Prozess ID:
-        <p name="processId" type="text" th:text="${editProcess.getProcessId()}"/></p>
-        <p>Prozesstitel: <input name="processName" type="text" th:value="${editProcess.getProcessName()}"/></p>
-        <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
 
-        <p>Schutzbedarf: <select name="protectionLevel" type = "text" th:value="${editProcess.getProtectionLevel()}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select></p>
-        <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
 
-        <p>Komponenten:
-        <p name="componentId" type="text" th:each="component : ${editProcess.getComponents()}"
-           th:text="${component.getComponentName()}"></p>
-        <p><input type="submit" value="Prozess speichern"/> <input type="reset" value="Reset"/></p>
-    </form>
+<div class="createEntity">
+    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Prozess bearbeiten</h3>
+    <div class="formContent">
+        <form th:action="@{/editProcess/{path}(path=${editProcess.processId})}" method="post">
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Prozesstitel</b></label>
+                <input name="processName" type="text" th:value="${editProcess.getProcessName()}"/>
+                <p th:if="${#fields.hasErrors('process.processName')}" th:errors="*{process.processName}" class="text-danger"></p>
+            </div>
+
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
+                <select name="protectionLevel" type = "text" th:value="${editProcess.getProtectionLevel()}">
+                    <option th:value="${editProcess.getProtectionLevel()}"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
+            </div>
+
+            <div class="eachLine">
+                <label style="font-size: 14px;"><b>Komponenten</b></label>
+                <div name="componentId" type="text" th:each="component : ${editProcess.getComponents()}"
+                     th:text="${component.getComponentName()}"></div>
+            </div>
+
+            <div class="formButtons">
+                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+
+            </div>
+
+
+        </form>
+    </div>
 </div>
+
 </body>
 </html>
+<style>
+    /*navbar.css*/
+    body {
+        background: #F5F7FB;
+    }
+    nav {
+        background-color: #337AB7;
+    }
+    .navbar-brand {
+        margin-left: 20px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        color: #edf0f1;
+    }
+    .btn-danger {
+        border-radius: 25px;
+        width: 90px;
+        height: 35px;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    .nav-link.dropdown-toggle {
+        margin-left: 20px;
+        color: #edf0f1;
+    }
+
+    .nav-link {
+        margin-left: 20px;
+        color: #edf0f1;
+    }
+
+    .nav-link:hover {
+        color: #0056b3;
+    }
+
+    .nav-link.dropdown-toggle:hover {
+        color: #0056b3;
+    }
+    .dropdown-menu {
+        border-radius: 0px;
+        margin-top: 16px;
+        margin-left: -9px;
+        border-style: none;
+        padding: 12px;
+        margin-bottom: 25px;
+    }
+    .fa-bars {
+        color: #edf0f1;
+        font-size: 30px;
+    }
+
+
+    /*editForm.css*/
+    .eachLine {
+        margin-bottom: 30px;
+    }
+    .btn-primary-save {
+        width: 120px;
+        margin-left: 12px;
+        border-radius: 25px;
+        background-color: #337AB7;
+        color: white;
+        font-weight: 500;
+        margin-top: 30px;
+    }
+    .btn-primary-reset {
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+    }
+    .btn-primary-save:hover {
+        background-color: #286090;
+    }
+    .formButtons {
+        display: inline-block;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 30px;
+    }
+    select {
+        background-color: transparent;
+        border: solid;
+        padding-left: 12px;
+        width: 100%;
+        border-width: thin;
+        height: 35px;
+        border-radius: 3px;
+    }
+    input {
+        width: 100%;
+        height: 45px;
+        padding: 12px 20px;
+        background: #EFEFEF;
+        border: none;
+    }
+    .createEntity {
+        background-color: white;
+        width: 40%;
+        text-align: center;
+        border-radius: 3px;
+        margin-top: 50px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .formContent {
+        text-align: left;
+        margin-top: 30px;
+        margin-right: 30px;
+        margin-left: 30px;
+
+    }
+
+
+    /*from createForm.css*/
+    .btn-primary-reset {
+        width: 120px;
+        border-radius: 25px;
+        margin-top: 30px;
+        background-color: #ffedba;
+    }
+    .btn-primary-reset:hover {
+        background-color: #fadc87;
+    }
+
+
+</style>

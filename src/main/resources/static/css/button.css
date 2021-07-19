@@ -4,9 +4,36 @@
     color: white;
     cursor: pointer;
     width: 50px;
+    margin: 1.5px;
 }
 .btn.btn-danger-delete{
     background-color: Red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+    margin: 1.5px;
+}
+.btn.btn-primary-newAdd {
+    border-radius: 17px;
+    background-color: #35b8b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+
+}
+.btn.btn-primary-add {
+    border-radius: 17px;
+    border: none;
+    background-color: #35b8b4;
+    height: 30px;
+    width: 30px;
+    color: white;
+    padding: 0px;
+}
+.btn.btn-primary-done {
+    background-color: #35b8b4;
     border: none;
     color: white;
     cursor: pointer;
@@ -22,4 +49,13 @@
 }
 .btn.btn-danger-delete:hover {
     background-color: DarkRed;
+}
+.btn.btn-primary-newAdd:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-add:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-done:hover {
+    background-color: #298f8a;
 }

@@ -19,7 +19,7 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Actions</title>
+    <title>To-Do Liste</title>
 
 </head>
 
@@ -65,20 +65,16 @@
 
 
 <!-- Maßnahmentabelle -->
-
+<div class="topLine">
+    <div>
+        <h2 style="font-weight: 700; font-size: 30px; text-align: left">To-Do Liste</h2>
+    </div>
+</div>
 <div class="wrapper">
     <div class="contentTable">
-
-        <div class="topLine">
-            <div>
-                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Maßnahmentabelle</h2>
-            </div>
-            <div>
-                <form class="createButton" th:action="@{/createActionButton}" method="post">
-                    <button th:type="submit" class="btn btn-primary-newAdd" style="width: 170px">
-                        <i class="fa fa-plus"><span style="font-weight: 500">Neue Maßnahme</span></i>
-                    </button>
-                </form>
+        <div>
+            <div class="topLine">
+                <h4 style="font-weight: 700; font-size: 18px; text-align: left">Zu erledigende Maßnahmen</h4>
             </div>
         </div>
         <table id="myTable" class="table">
@@ -89,13 +85,12 @@
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponente</span></i></th>
-                <th class="actionButtons" scope="col">Aktionen</th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="action : ${actions}">
+            <tr th:each="action : ${toDoActions}">
                 <div class="scrollable">
                     <td class="textContent" th:text="${action.actionId}"/>
                     <td class="textContent" th:text="${action.actionName}"/>
@@ -107,18 +102,6 @@
                         </div>
                     </td>
                 </div>
-                <td class="actionButtons">
-                    <form class="edit-delete" th:action="@{/action/{path}(path=${action.actionId})}" method="post">
-                        <button th:type="submit" class="btn btn-primary-edit">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                    </form>
-                    <form class="edit-delete" th:action="@{/deleteAction/{path}(path=${action.actionId})}" method="post">
-                        <button th:type="submit" class="btn btn-danger-delete">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
                 <div class="scrollable">
                     <td class="textContent">
                         <div th:switch="${action.status}">
@@ -128,7 +111,60 @@
                     </td>
                 </div>
                 <td class="actionButtons">
-                    <form class="edit-delete" th:action="@{/changeStatus/{path}(path=${action.actionId})}" method="post">
+                    <form class="edit-delete" th:action="@{/toDoChangeStatus/{path}(path=${action.actionId})}" method="post">
+                        <button id="done" th:type="submit" class="btn btn-primary-done">
+                            <i class="fa fa-check"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="contentTable">
+        <div>
+            <div class="topLine">
+                <h4 style="font-weight: 700; font-size: 18px; text-align: left">Erledigte Maßnahmen</h4>
+            </div>
+        </div>
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen ID</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmentitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponente</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="action : ${doneActions}">
+                <div class="scrollable">
+                    <td class="textContent" th:text="${action.actionId}"/>
+                    <td class="textContent" th:text="${action.actionName}"/>
+                    <td class="textContent" th:text="${action.actionDueDate}"/>
+                    <td class="textContent" th:text="${action.protectionNeeds}"/>
+                    <td class="textContent">
+                        <div th:each="component : ${action.getComponent()}">
+                            <span th:text="${component.getComponentName()}"></span>
+                        </div>
+                    </td>
+                </div>
+                <div class="scrollable">
+                    <td class="textContent">
+                        <div th:switch="${action.status}">
+                            <div th:case="false" style="color: red"> Nicht Erledigt</div>
+                            <div th:case="true" style="color: #298f8a"> Erledigt</div>
+                        </div>
+                    </td>
+                </div>
+                <td class="actionButtons">
+                    <form class="edit-delete" th:action="@{/toDoChangeStatus/{path}(path=${action.actionId})}" method="post">
                         <button id="done" th:type="submit" class="btn btn-primary-done">
                             <i class="fa fa-check"></i>
                         </button>

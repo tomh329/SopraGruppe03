@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/createForm.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -65,23 +66,39 @@
 </nav>
 
 
-<h3>Eine Maßnahme erstellen</h3>
-<div style="border: 2px solid darkgrey; width: fit-content; align-content: center">
-  <form th:action="@{/createAction}" method="post">
-    <p>Maßnahmentitel: <input name="actionName" type="text"/></p>
-    <p th:if="${#fields.hasErrors('action.actionName')}" th:errors="*{action.actionName}" class="text-danger"></p>
-    <p>Umsetzungsziel: <input name="actionDueDate" type="date"/></p>
-    <p th:if="${#fields.hasErrors('action.actionDueDate')}" th:errors="*{action.actionDueDate}" class="text-danger"></p>
 
-    <p>Schutzbedarf: <select name="protectionNeeds" type = "number">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select></p>
-    <p th:if="${#fields.hasErrors('action.protectionNeeds')}" th:errors="*{action.protectionNeeds}" class="text-danger"></p>
-    <p><input type="submit" value="Maßnahme speichern"/> <input type="reset" value="Reset"/></p>
+<div class="createEntity">
+  <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Anforderung erstellen</h3>
+  <div class="formContent">
+  <form th:action="@{/createAction}" method="post">
+    <div class="eachLine">
+      <label style="font-size: 14px;"><b>Maßnahmentitel</b></label>
+      <input name="actionName" type="text" placeholder="Maßnahmentitel"/>
+      <p th:if="${#fields.hasErrors('action.actionName')}" th:errors="*{action.actionName}" class="text-danger"></p>
+    </div>
+    <div class="eachLine">
+      <label style="font-size: 14px;"><b>Umsetzungsziel</b></label>
+      <input name="actionDueDate" type="date"/>
+      <p th:if="${#fields.hasErrors('action.actionDueDate')}" th:errors="*{action.actionDueDate}" class="text-danger"></p>
+    </div>
+    <div class="eachLine">
+      <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
+      <select class="protectionNeeds" name="protectionNeeds" type = "number">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <p th:if="${#fields.hasErrors('action.protectionNeeds')}" th:errors="*{action.protectionNeeds}" class="text-danger"></p>
+    </div>
+    <div class="formButtons">
+
+      <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+      <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+    </div>
   </form>
+  </div>
 </div>
 
 </body>

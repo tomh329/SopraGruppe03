@@ -1,5 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
+
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,12 @@ import javax.validation.Valid;
 public class EditRequirementController {
 
     @GetMapping("/editRequirement")
-    public String showEditRequirement(Requirement requirement, Requirement editRequirement, BindingResult bindingResult, Model model) {
-        model.addAttribute("requirement", requirement);
+
+    public String showEditRequirement(Requirement editRequirement, Requirement requirement, BindingResult bindingResult, Model model) {
         model.addAttribute("editRequirement", editRequirement);
+        model.addAttribute("requirement", requirement);
         return "editRequirement";
+
     }
 
     @Autowired
