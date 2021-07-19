@@ -1,3 +1,6 @@
+table {
+    table-layout: fixed;
+}
 .light-table-filter {
     margin-left: 50px;
     margin-right: 50px;
@@ -35,6 +38,7 @@
     background-color: #f7f9fa;
     border-style: none;
     vertical-align: middle;
+    overflow: hidden;
 
 }
 td:first-child {
