@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Der Titel könnte falsch sein -->
     <title>Edit requirement</title>
 
@@ -64,6 +66,9 @@
             </li>
         </ul>
         <a class="ml-auto mr-1">
+            <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+                <i class="fa fa-user"></i>
+            </a>
             <form class="log" th:action="@{/logout}" method="post">
                 <button th:type="logout" class="btn btn-danger">Logout</button>
             </form>
@@ -121,6 +126,8 @@
         height: 35px;
         font-size: 14px;
         margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     .nav-link.dropdown-toggle {
         margin-left: 20px;
@@ -150,6 +157,15 @@
     .fa-bars {
         color: #edf0f1;
         font-size: 30px;
+    }
+    .fa-user {
+        color: white;
+        margin-top:15px;
+        margin-left: 16px;
+        margin-bottom: 15px;
+    }
+    .fa-user:hover {
+        color: #0056b3;
     }
 
 

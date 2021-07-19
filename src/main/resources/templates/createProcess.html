@@ -15,6 +15,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Create Process</title>
 
     <style>
@@ -59,6 +61,9 @@
             </li>
         </ul>
         <a class="ml-auto mr-1">
+            <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+                <i class="fa fa-user"></i>
+            </a>
             <form class="log" th:action="@{/logout}" method="post">
                 <button th:type="logout" class="btn btn-danger">Logout</button>
             </form>

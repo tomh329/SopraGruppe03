@@ -56,13 +56,15 @@
             </li>
         </ul>
         <a class="ml-auto mr-1">
+            <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+                <i class="fa fa-user"></i>
+            </a>
             <form class="log" th:action="@{/logout}" method="post">
                 <button th:type="logout" class="btn btn-danger">Logout</button>
             </form>
         </a>
     </div>
 </nav>
-
 
 <!-- Maßnahmentabelle -->
 <div class="topLine">
