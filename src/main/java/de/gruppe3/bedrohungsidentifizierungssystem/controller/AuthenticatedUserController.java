@@ -39,6 +39,15 @@ public class AuthenticatedUserController {
         userService.updateUser(loggedInUser, bCryptPasswordEncoder.encode(password));
         return "redirect:/dashboard";
     }
+
+    @PostMapping("/newPassword/{username}")
+    public String updateUser(@PathVariable String username,
+                             @RequestParam(name = "password") String password) {
+        User user = userRepository.findByUsername(username);
+        userService.updateUser(user, bCryptPasswordEncoder.encode(password));
+
+        return "redirect:/user";
+    }
 }
 
 

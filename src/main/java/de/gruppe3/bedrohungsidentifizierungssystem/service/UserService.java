@@ -86,10 +86,9 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(String username, String password, String firstname, String lastname, int roleId) {
+    public void updateUser(String username, String firstname, String lastname, int roleId) {
 
         User editedUser = findUserWithName(username);
-        editedUser.setPassword(bCryptPasswordEncoder.encode(password));
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
         List<Role> editedUserRole = roleRepository.findAll();

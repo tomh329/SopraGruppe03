@@ -76,63 +76,80 @@
     </div>
 </nav>
 
-<div class="createEntity">
-    <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Benutzer bearbeiten</h3>
-    <div class="formContent">
-        <form th:action="@{/editUser/{path}(path=${editUsersName.username})}" method="post">
+<div class="createEntityContainer">
+    <div class="createEntity" style="margin-right: 20px; margin-left: auto;">
+        <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einen Benutzer bearbeiten</h3>
+        <div class="formContent">
+            <form th:action="@{/editUser/{path}(path=${editUsersName.username})}" method="post">
 
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Passwort</b></label>
-                <div class="pwContainer">
-                    <input type="password" name="password" th:value="${editUsersName.password}" id="myInput">
-                    <div class="eye">
-                        <label class="check-text" style="position:absolute">
-                            <input class="check-text" type="checkbox" onclick="myFunction()">
-                            <span class="fa fa-eye checked"></span>
-                            <span class="fa fa-eye-slash unchecked"></span>
-                            </input>
-                        </label>
+                <div class="eachLine">
+                    <label style="font-size: 14px;"><b>Vorname</b></label>
+                    <input name="firstname" type="text" th:value="${editUsersName.firstname}"/>
+                    <p th:if="${#fields.hasErrors('user.firstname')}" th:errors="*{user.firstname}" class="text-danger"></p>
+                </div>
+                <div class="eachLine">
+                    <label style="font-size: 14px;"><b>Nachname</b></label>
+                    <input name="lastname" type="text" th:value="${editUsersName.lastname}"/>
+                    <p th:if="${#fields.hasErrors('user.lastname')}" th:errors="*{user.lastname}" class="text-danger"></p>
+                </div>
+
+                <div class="eachLine">
+                    <label style="font-size: 14px;"><b>Rolle</b></label>
+                    <select name="roleId" type = "number">
+                        <option th:value="${editUsersName.getRole().getRoleId()}"></option>
+                        <option value="1">Admin</option>
+                        <option value="2">IT Security Officer</option>
+                        <option value="3">Manager</option>
+                        <option value="4">Employee</option>
+                    </select></p>
+                    <p th:if="${#fields.hasErrors('user.role')}" th:errors="*{user.role}" class="text-danger"></p>
+                </div>
+
+                <div class="eachLine">
+                    <label style="font-size: 14px;"><b>Komponenten</b></label>
+                    <div name="componentId" type="text" th:each="component : ${editUsersName.getComponents()}"
+                       th:text="${component.getComponentName()}">
                     </div>
                 </div>
-                <p th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}" class="text-danger"></p>
-            </div>
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Vorname</b></label>
-                <input name="firstname" type="text" th:value="${editUsersName.firstname}"/>
-                <p th:if="${#fields.hasErrors('user.firstname')}" th:errors="*{user.firstname}" class="text-danger"></p>
-            </div>
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Nachname</b></label>
-                <input name="lastname" type="text" th:value="${editUsersName.lastname}"/>
-                <p th:if="${#fields.hasErrors('user.lastname')}" th:errors="*{user.lastname}" class="text-danger"></p>
-            </div>
 
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Rolle</b></label>
-                <select name="roleId" type = "number">
-                    <option th:value="${editUsersName.getRole().getRoleId()}"></option>
-                    <option value="1">Admin</option>
-                    <option value="2">IT Security Officer</option>
-                    <option value="3">Manager</option>
-                    <option value="4">Employee</option>
-                </select></p>
-                <p th:if="${#fields.hasErrors('user.role')}" th:errors="*{user.role}" class="text-danger"></p>
-            </div>
+                <div class="formButtons">
 
-            <div class="eachLine">
-                <label style="font-size: 14px;"><b>Komponenten</b></label>
-                <div name="componentId" type="text" th:each="component : ${editUsersName.getComponents()}"
-                   th:text="${component.getComponentName()}">
+                    <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                    <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
                 </div>
-            </div>
+            </form>
+        </div>
+    </div>
+    <div class="createEntity" style="margin-left: 20px; margin-right: auto;">
+        <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Passwort des Benutzers bearbeiten</h3>
+        <div class="formContent">
+            <form th:action="@{/newPassword/{path}(path=${editUsersName.username})}" method="post">
+                <div class="eachLine">
+                    <label style="font-size: 14px;"><b>Passwort</b></label>
+                    <div class="pwContainer">
+                        <input type="password" name="password" placeholder="Neues Passwort" id="myInput">
+                        <div class="eye">
+                            <label class="check-text" style="position:absolute">
+                                <input class="check-text" type="checkbox" onclick="myFunction()">
+                                <span class="fa fa-eye checked"></span>
+                                <span class="fa fa-eye-slash unchecked"></span>
+                                </input>
+                            </label>
+                        </div>
+                    </div>
+                    <p th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}" class="text-danger"></p>
+                </div>
 
-            <div class="formButtons">
 
-                <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
-                <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+                <div class="formButtons">
 
-            </div>
-        </form>
+                    <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+                    <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -306,8 +323,12 @@
         border-radius: 3px;
         margin-top: 50px;
         padding: 20px;
-        margin-left: auto;
-        margin-right: auto;
+        display: inline-block;
+    }
+    .createEntityContainer {
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
     }
     .formContent {
         text-align: left;
