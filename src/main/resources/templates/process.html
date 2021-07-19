@@ -79,6 +79,10 @@
     <input type="button" value="Create PDF" id="btPrint" onclick="createPDF()" />
 </p>
 
+<div style="display: flex; flex-direction: column; align-items: flex-end">
+    <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+</div>
+
 <!--<form class="createButton" th:action="@{/addComponentButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Komponent hinzufügen
     </button>
@@ -153,5 +157,6 @@
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/exportTable.js"></script>
+<script type="text/javascript" src="js/searchWholeTable.js"></script>
 </body>
 </html>
