@@ -67,35 +67,36 @@
     <h1>Dashboard</h1>
     <p>Willkommen im Bedrohungsidentifizierungssystem, <span sec:authentication="name"></span>.</br>
     </p>
+    <p ></p>
 </div>
 <div class="container">
 
     <div class="row text-center">
         <div class="col">
             <div class="counter">
-                <i class="fa fa-code fa-2x"></i>
-                <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
-                <p class="count-text ">Our Customer</p>
+                <i class="fa fa-tasks fa-2x"></i>
+                    <h2 class="timer count-title count-number" th:attr="data-to=${toDoActions}" data-speed="1500"></h2>
+                <p class="count-text ">Zu erledigende Maßnahmen</p>
             </div>
         </div>
         <div class="col">
             <div class="counter">
-                <i class="fa fa-coffee fa-2x"></i>
-                <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
-                <p class="count-text ">Happy Clients</p>
+                <i class="fa fa-tasks fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${doneActions}" data-speed="1500"></h2>
+                <p class="count-text ">Erledigte Maßnahmen</p>
             </div>
         </div>
         <div class="col">
             <div class="counter">
-                <i class="fa fa-lightbulb-o fa-2x"></i>
-                <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
-                <p class="count-text ">Project Complete</p>
+                <i class="fa fa-microchip fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${countComponents}" data-speed="1500"></h2>
+                <p class="count-text ">Gesamtanzahl Komponenten</p>
             </div></div>
         <div class="col">
             <div class="counter">
-                <i class="fa fa-bug fa-2x"></i>
-                <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
-                <p class="count-text ">Coffee With Clients</p>
+                <i class="fa fa-cog fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${countProcesses}" data-speed="1500"></h2>
+                <p class="count-text ">Gesamtanzahl Prozesse</p>
             </div>
         </div>
     </div>
