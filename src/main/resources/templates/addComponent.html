@@ -73,7 +73,7 @@
                 <select name="processId" type = "text">
                     <option style="display:none;"></option>
                     <option th:each="process : ${processes}"
-                            th:value="${process.processId}" th:text="${process.processName}"></option>
+                            th:if="${process.processId !=0}" th:value="${process.processId}" th:text="${process.processName}"></option>
                 </select>
             </div>
             <div class="eachLine">
