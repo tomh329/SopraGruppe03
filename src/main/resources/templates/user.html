@@ -74,13 +74,19 @@
     <button th:type="submit" class="btn btn-primary"> Benutzer Komponent zuweisen
     </button>
 </form>-->
-<div style="display: flex; flex-direction: column; align-items: flex-end">
-    <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+<div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 30px;">
+    <div style="display: inline-block; vertical-align: middle;">
+
+        <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+        <button type="button" class="btn btn-primary-print" id="btPrint" onclick="createPDF()" style="margin-right: 50px;">
+            <i class="fa fa-print"></i>
+        </button>
+    </div>
 </div>
 
 <div class="wrapper">
     <div class="contentTable">
-
+        <div id="pdfBox">
         <div class="topLine">
             <div>
                 <h2 style="font-weight: 700; font-size: 20px; text-align: left">Benutzertabelle</h2>
@@ -146,10 +152,12 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/searchWholeTable.js"></script>
+<script type="text/javascript" src="js/exportTable.js"></script>
 </body>
 </html>

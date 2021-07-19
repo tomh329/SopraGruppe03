@@ -96,13 +96,19 @@
     <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">
 </div>
 
-<div style="display: flex; flex-direction: column; align-items: flex-end">
-    <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+<div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 30px;">
+    <div style="display: inline-block; vertical-align: middle;">
+
+        <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+        <button type="button" class="btn btn-primary-print" id="btPrint" onclick="createPDF()" style="margin-right: 50px;">
+            <i class="fa fa-print"></i>
+        </button>
+    </div>
 </div>
 
 <div class="wrapper">
     <div class="contentTable">
-
+        <div id="pdfBox">
         <div class="topLine">
             <div>
                 <h2 style="font-weight: 700; font-size: 20px; text-align: left">Komponententabelle</h2>
@@ -121,7 +127,7 @@
     <!--    <input type="text" id="inputProcess" onkeyup="myFunctionProc()" placeholder="Suche nach Prozess...">-->
     <!--    <br>-->
     <!--    <input type="text" id="inputPriority" onkeyup="myFunctionPrio()" placeholder="Suche nach Priorität...">-->
-<div id="pdfBox">
+
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <tr>
@@ -200,10 +206,6 @@
     </div>
     </div>
 </div>
-<p>
-    <input type="button" value="Create PDF"
-           id="btPrint" onclick="createPDF()" />
-</p>
 
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
