@@ -9,9 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AuthenticatedUserController {
@@ -28,23 +30,39 @@ public class AuthenticatedUserController {
 
             User loggedInUser = userRepository.findByUsername(authentication.getName());
             model.addAttribute("loggedInUser", loggedInUser);
+            model.addAttribute("user", loggedInUser);
             return "/newPassword";
     }
 
     @PostMapping("/newPassword")
     public String create(Authentication authentication,
-                         @RequestParam(name = "password") String password) {
-
+                         @RequestParam(name = "password") String password,
+                         @Valid User user, BindingResult bindingResult, Model model) {
         User loggedInUser = userRepository.findByUsername(authentication.getName());
+
+        if(bindingResult.hasFieldErrors("password")){
+            model.addAttribute("user", user);
+            model.addAttribute("loggedInUser", loggedInUser);
+            return "/newPassword";
+        }
+
         userService.updateUser(loggedInUser, bCryptPasswordEncoder.encode(password));
         return "redirect:/dashboard";
     }
 
     @PostMapping("/newPassword/{username}")
     public String updateUser(@PathVariable String username,
-                             @RequestParam(name = "password") String password) {
-        User user = userRepository.findByUsername(username);
-        userService.updateUser(user, bCryptPasswordEncoder.encode(password));
+                             @RequestParam(name = "password") String password,
+                             @Valid User user, BindingResult bindingResult, Model model) {
+        User loggedInUser = userRepository.findByUsername(username);
+
+        if(bindingResult.hasFieldErrors("password")){
+            model.addAttribute("user", user);
+            model.addAttribute("editUsersName", loggedInUser);
+            return "/editUser";
+        }
+
+        userService.updateUser(loggedInUser, bCryptPasswordEncoder.encode(password));
 
         return "redirect:/user";
     }
