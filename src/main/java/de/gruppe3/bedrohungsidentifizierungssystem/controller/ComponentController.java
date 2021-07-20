@@ -1,6 +1,8 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Controller
 public class ComponentController {
@@ -35,7 +41,12 @@ public class ComponentController {
     }
 
     @PostMapping("/addActionButton")
-    public String addAct() {
+    public String addAct(@RequestParam(name = "componentId") String componentId,
+                         Model model, final RedirectAttributes redirectAttributes) {
+
+        Component componentToAdd = componentService.findComponentWithId(Integer.parseInt(componentId));
+        redirectAttributes.addFlashAttribute("componentToAdd", componentToAdd);
+        System.out.println(componentService.findComponentWithId(Integer.parseInt(componentId)).getComponentName());
         return "redirect:/addAction";
     }
 
