@@ -103,11 +103,11 @@
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <tr>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Username</span></i></th>
+                <th class="textContent" scope="col" ><i class="fa fa-sort" aria-hidden="true"><span>Username</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Vorname</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Nachname</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Rolle</span></i></th>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
+                <th class="textContent" scope="col" ><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
                 <th class="actionButtons" scope="col">Aktionen</th>
             </tr>
             </thead>
@@ -157,8 +157,10 @@
                                     </button>
                                 </form>
                             </div>
-                            <div th:each="component : ${user.getComponents()}">
-                                <span th:text="${component.getComponentName()}"></span>
+                            <div class="addMore">
+                                <div th:each="component : ${user.getComponents()}">
+                                    <span th:text="${component.getComponentName()}"></span>
+                                </div>
                             </div>
                         </div>
                     </td>

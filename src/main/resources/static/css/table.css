@@ -11,6 +11,7 @@ table {
     width: 300px;
     border-color:  #f7f9fa;
     border-width: 1px;
+    color: gray();
 }
 .wrapper {
     border-radius: 20px;
