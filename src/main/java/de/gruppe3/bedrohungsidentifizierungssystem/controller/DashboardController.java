@@ -60,14 +60,26 @@ public class DashboardController {
 
         //TrafficLightData
         List<Action> actionsToDo = actionService.findToDoActionsForUser(username);
+        boolean done = false;
+
+        Calendar calender = Calendar.getInstance();
+        Date todayDate = calender.getTime();
+        calender.add(calender.DATE,-7);
+        Date todayDateSevenDays = calender.getTime();
+
         for(Action action : actionsToDo){
             String dueDateString = action.getActionDueDate();
-            Calendar calender = Calendar.getInstance();
             SimpleDateFormat formatter =new SimpleDateFormat("dd-MM-yyyy");
-            Date todayDate = calender.getTime();
             Date dueDate = formatter.parse(dueDateString);
-            System.out.println(todayDate);
-            System.out.println(dueDate);
+            if(todayDate.before(dueDate)&!done){
+                trafficLight=0;
+                done = true;
+            }
+            if(todayDateSevenDays.before(dueDate)&!done){
+                trafficLight=1;
+                done = true;
+            }
+
         }
 
 
@@ -78,6 +90,7 @@ public class DashboardController {
         model.addAttribute("countProcesses", Integer.toString(countProcesses));
         model.addAttribute("usernameList", usernameList);
         model.addAttribute("userDoneTaskList", numberOfDoneTasks);
+        model.addAttribute("trafficLightNumber", trafficLight);
         return "dashboard";
     }
 

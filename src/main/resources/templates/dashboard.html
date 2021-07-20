@@ -119,9 +119,24 @@
             <div class="col" >
                 <h5>Maßnahmenampel:</h5>
                 <div id="traffic-light">
-                    <div id="checked1"></div>
-                    <div id="checked2"></div>
-                    <div id="checked3"></div>
+                    <div th:if="${trafficLightNumber==0}">
+                        <div id="checked1"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==0}">
+                        <div id="color1"></div>
+                    </div>
+                    <div th:if="${trafficLightNumber==1}">
+                        <div id="checked2"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==1}">
+                        <div id="color2"></div>
+                    </div>
+                    <div th:if="${trafficLightNumber==2}">
+                        <div id="checked3"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==2}">
+                        <div id="color3"></div>
+                    </div>
                 </div>
             </div>
             <div class="col" >
