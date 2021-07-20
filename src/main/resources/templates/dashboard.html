@@ -71,6 +71,11 @@
 </div>
 <div class="container">
 
+    <div class="row text-left">
+        <div class="col">
+            <h5>Persönliche Statistik:</h5>
+        </div>
+    </div>
     <div class="row text-center">
         <div class="col">
             <div class="counter">
@@ -100,12 +105,30 @@
             </div>
         </div>
     </div>
-</div>
-<p></p>
-<div class ="container">
+    <div class="row">
+        <div class="col">
+            <p></p>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm">
+            <h5>Anzahl erfüllter Maßnahmen nach Benutzer:</h5>
             <div id="chartdiv"; style="alignment: bottom; margin: auto"></div>
+        </div>
+        <div class="col-sm" style="align-content: center">
+            <div class="col" >
+                <h5>Maßnahmenampel:</h5>
+                <div id="traffic-light">
+                    <div id="checked1"></div>
+                    <div id="checked2"></div>
+                    <div id="checked3"></div>
+                </div>
+            </div>
+            <div class="col" >
+                <p>Rot = Bei mindestens einer unerledigten Maßnahme</br> ist die Frist überschritten. </p>
+                <p>Gelb = Bei mindestens einer unerledigten Maßnahme </br> ist die Frist in weniger als 7 Tagen fällig.</p>
+                <p>Grün = Bei keiner unerledigten Maßnahme endet die Frist </br> in weniger als 7 Tagen oder ist die Frist überschritten. Alles super! :)</p>
+            </div>
         </div>
     </div>
 </div>
@@ -133,15 +156,131 @@
 
 // Add data
 
-        chart.data = [{
-            "name" : usernameList[0],
-            "points" : userDoneTaskList[0],
-            "color" : chart.colors.next()},{
-            "name" : usernameList[1],
-            "points" : userDoneTaskList[1],
-            "color" : chart.colors.next()
 
-        }];
+        switch (usernameList.length) {
+            case 0:
+                chart.data = {
+
+                }
+                break;
+            case 1:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 2:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 3:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 4:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 5:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 6:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[5],
+                    "points":userDoneTaskList[5],
+                    "color":chart.colors.next()
+                }];
+                break;
+            default:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[5],
+                    "points":userDoneTaskList[5],
+                    "color":chart.colors.next()
+                }];
+                break;
+        }
+
 
 
 

@@ -1,5 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -28,11 +33,13 @@ public class DashboardController {
     UserService userService;
 
     @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
+    public String showDashboard(Model model) throws ParseException {
 
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         username = ((UserDetails)principal).getUsername();
+
+        int trafficLight=2;
 
         //Simple numbers
         int toDoActions = actionService.findToDoActionsForUser(username).size();
@@ -49,6 +56,18 @@ public class DashboardController {
         }
         for(int i=0; i<userList.size(); i++){
             numberOfDoneTasks.add(actionService.findDoneActionsForUser(userList.get(i).getUsername()).size());
+        }
+
+        //TrafficLightData
+        List<Action> actionsToDo = actionService.findToDoActionsForUser(username);
+        for(Action action : actionsToDo){
+            String dueDateString = action.getActionDueDate();
+            Calendar calender = Calendar.getInstance();
+            SimpleDateFormat formatter =new SimpleDateFormat("dd-MM-yyyy");
+            Date todayDate = calender.getTime();
+            Date dueDate = formatter.parse(dueDateString);
+            System.out.println(todayDate);
+            System.out.println(dueDate);
         }
 
 
