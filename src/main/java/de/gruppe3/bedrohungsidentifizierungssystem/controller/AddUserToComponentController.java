@@ -54,6 +54,14 @@ public class AddUserToComponentController {
                 for (Component component : componentList) {
                     if (componentId == component.getComponentId()) {
 
+
+                        if(user.getComponents().contains(component)){
+                            userService.saveUser(user);
+                            componentService.saveComponent(component);
+                            return "redirect:/user";
+                        }
+
+
                         component.addUser(user);
                         componentService.saveComponent(component);
 

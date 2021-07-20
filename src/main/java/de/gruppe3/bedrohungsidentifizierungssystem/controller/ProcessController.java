@@ -1,13 +1,13 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProcessController {
@@ -38,7 +38,12 @@ public class ProcessController {
     }
 
     @PostMapping("/addComponentButton")
-    public String add() {
+    public String add(@RequestParam(name = "processId") String processId,
+                      Model model, final RedirectAttributes redirectAttributes) {
+
+        Process processToAdd = processService.findProcessWithId(Integer.parseInt(processId));
+        redirectAttributes.addFlashAttribute("processToAdd", processToAdd);
+        System.out.println(processService.findProcessWithId(Integer.parseInt(processId)).getProcessName());
         return "redirect:/addComponent";
     }
 

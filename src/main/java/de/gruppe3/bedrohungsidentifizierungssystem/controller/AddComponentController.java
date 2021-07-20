@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,8 +22,10 @@ public class AddComponentController {
 
 
     @GetMapping("/addComponent")
-    public String showAddComponent(Model model) {
+    public String showAddComponent(Model model, @ModelAttribute("processToAdd") Process processToAdd) {
 
+        model.addAttribute("processToAdd", processToAdd);
+        System.out.println(processToAdd.getProcessName());
         model.addAttribute("processes", processService.findAllProcesses());
         model.addAttribute("components", componentService.findAllComponents());
         return "addComponent";

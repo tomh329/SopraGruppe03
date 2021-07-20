@@ -122,8 +122,11 @@
                             <div>
                                 <div class="addMore" style="margin-right: 10px">
                                     <form class="edit-delete"
-                                          th:action="@{/addComponentButton(processId=${process.processId}, componentId=${process.getComponents()})}"
+                                          th:action="@{/addComponentButton}"
                                           method="post">
+
+                                        <input type="hidden" name="processId" th:value="${process.processId}"/>
+
                                         <button th:type="submit" class="btn btn-primary-add">
                                             <i class="fa fa-plus"
                                                style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
