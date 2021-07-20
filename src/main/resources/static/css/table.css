@@ -5,13 +5,12 @@ table {
     margin-left: 50px;
     margin-right: 50px;
     border-radius: 24px;
-    padding-left: 14px;
+    padding-left: 20px;
     height: 33px;
     font-weight: 600;
     width: 300px;
-    border-color:  #f7f9fa;
     border-width: 1px;
-    color: gray();
+    border-color: #cccccc;
 }
 .wrapper {
     border-radius: 20px;
@@ -31,7 +30,7 @@ table {
 }
 .table {
     border-collapse: separate;
-    border-spacing: 0 20px;
+    border-spacing: 0 10px;
     max-width: content-box;
 }
 
@@ -126,5 +125,5 @@ i span {
     vertical-align: middle;
 }
 .actionButtons {
-    width: 150px;
+    width: 9%;
 }

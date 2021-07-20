@@ -4,12 +4,18 @@
     /*background-image: url('/css/searchicon.png'); !* Add a search icon to input *!*/
     width: 100%; /* Full-width */
     font-size: 16px; /* Increase font-size */
-    padding: 14px; /* Add some padding */
+    padding-left: 24px; /* Add some padding */
+    padding-right: 10px;
     background-color: white;
-    color: grey;
     height: 30px;
-    border-color:  #f7f9fa;
     border-width: 1px;
-    border-radius: 6px;
+    border-color: #cccccc;
+}
+.fa.fa-search {
+    position: absolute;
+    color: #999c9e;
+    margin-top: 9px;
+    margin-left: 8px;
+    font-size: .75em;
 }
 
