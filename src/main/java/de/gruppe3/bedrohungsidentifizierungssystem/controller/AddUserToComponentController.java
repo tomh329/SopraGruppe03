@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +21,9 @@ import java.util.List;
 public class AddUserToComponentController {
 
     @GetMapping("/addUserToComponent")
-    public String showAddUserToComponent(Model model) {
+    public String showAddUserToComponent(Model model, @ModelAttribute("userToAdd") User userToAdd) {
+
+        model.addAttribute("userToAdd", userToAdd);
 
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("components", componentService.findAllComponents());
