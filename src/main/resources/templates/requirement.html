@@ -105,7 +105,10 @@
                     <td class="textContent">
                         <div>
                             <div class="addMore" style="margin-right: 10px">
-                                <form class="edit-delete" th:action="@{/addRequirementButton(requirementId=${requirement.requirementId}, componentId=${requirement.getComponent()})}" method="post">
+                                <form class="edit-delete" th:action="@{/addRequirementButton}" method="post">
+
+                                    <input type="hidden" name="requirementId" th:value="${requirement.requirementId}"/>
+
                                     <button th:type="submit" class="btn btn-primary-add">
                                         <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
                                     </button>
