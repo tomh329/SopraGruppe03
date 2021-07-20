@@ -46,7 +46,9 @@
 
 #traffic-light {
 
-    position:relative;
+
+    position: relative;
+    margin-left: -50px;
     display:block;
     left: 50%;
     top: 50%;
