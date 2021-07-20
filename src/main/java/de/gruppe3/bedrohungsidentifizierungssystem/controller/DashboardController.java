@@ -60,24 +60,25 @@ public class DashboardController {
 
         //TrafficLightData
         List<Action> actionsToDo = actionService.findToDoActionsForUser(username);
-        boolean done = false;
 
         Calendar calender = Calendar.getInstance();
         Date todayDate = calender.getTime();
-        calender.add(calender.DATE,-7);
+        calender.add(calender.DATE,7);
         Date todayDateSevenDays = calender.getTime();
+        System.out.println(todayDate);
+        System.out.println(todayDateSevenDays);
 
         for(Action action : actionsToDo){
             String dueDateString = action.getActionDueDate();
-            SimpleDateFormat formatter =new SimpleDateFormat("dd-MM-yyyy");
+            System.out.println(dueDateString);
+            SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
             Date dueDate = formatter.parse(dueDateString);
-            if(todayDate.before(dueDate)&!done){
+            System.out.println(dueDate);
+            if(todayDate.after(dueDate)){
                 trafficLight=0;
-                done = true;
             }
-            if(todayDateSevenDays.before(dueDate)&!done){
+            if(todayDateSevenDays.after(dueDate)&&trafficLight==2){
                 trafficLight=1;
-                done = true;
             }
 
         }
