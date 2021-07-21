@@ -65,7 +65,7 @@ public class DashboardController {
         int toDoActions = actionService.findToDoActionsForUser(username).size();
         int doneActions = actionService.findDoneActionsForUser(username).size();
         int countComponents = componentService.findAllComponents().size();
-        int countProcesses = processService.findAllProcesses().size();
+        int countProcesses = (processService.findAllProcesses().size()-1);
 
         //Chart data
         ArrayList<String> usernameListSorted = new ArrayList<>();
