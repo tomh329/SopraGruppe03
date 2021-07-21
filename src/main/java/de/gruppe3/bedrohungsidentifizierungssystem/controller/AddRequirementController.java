@@ -2,7 +2,6 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -62,7 +61,6 @@ public class AddRequirementController {
             }
         }
 
-        System.out.println("No Success");
         return "redirect:/requirement";
     }
 }

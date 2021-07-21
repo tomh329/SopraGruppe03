@@ -43,12 +43,11 @@ public class ProcessController {
 
         Process processToAdd = processService.findProcessWithId(Integer.parseInt(processId));
         redirectAttributes.addFlashAttribute("processToAdd", processToAdd);
-        System.out.println(processService.findProcessWithId(Integer.parseInt(processId)).getProcessName());
         return "redirect:/addComponent";
     }
 
     @PostMapping("/removeComponentButton/{componentId}")
-    public String removeComponent(@PathVariable String componentId){
+    public String removeComponent(@PathVariable String componentId) {
 
         processService.removeComponent(Integer.parseInt(componentId));
         return "redirect:/process";

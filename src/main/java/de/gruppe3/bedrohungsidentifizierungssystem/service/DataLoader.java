@@ -129,7 +129,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Process app1 = new Process("APP.1 Client-Anwendungen", 2);
 
 
-
         //example component
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component compOrg
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.1Organisation", 1, "2021-04-11", 3);
@@ -217,7 +216,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //        testComponent2.setProcess(testProcess1);
 
 
-
         orpOrgPers.addComponent(compOrg);
         orpOrgPers.addComponent(compPers);
         app1.addComponent(app1_1);
@@ -279,7 +277,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //        reqPers13.getDangers().add(missbrauchPersDaten);
 //        reqPers11.getDangers().add(verstoss);
 //        testReq1.addDanger(testDanger1);
-
 
 
         processService.saveProcess(extraProcess);

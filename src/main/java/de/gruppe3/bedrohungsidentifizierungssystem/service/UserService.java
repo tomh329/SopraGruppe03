@@ -24,7 +24,6 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    
     public User saveUser(User user) {
         return userRepository.save(user);
     }
@@ -39,15 +38,14 @@ public class UserService {
     }
 
 
-
-    public User createUser(String username, String password, String firstname, String lastname, int roleId){
+    public User createUser(String username, String password, String firstname, String lastname, int roleId) {
 
 
         User user = new User(username, password, firstname, lastname);
 
         List<Role> roleList = roleRepository.findAll();
 
-        for(Role role : roleList){
+        for (Role role : roleList) {
 
             if (roleId == role.getRoleId()) {
 
@@ -59,18 +57,16 @@ public class UserService {
     }
 
 
-
-    public boolean deleteUser(String userName){
-
+    public boolean deleteUser(String userName) {
 
 
         User userDelete = findUserWithName(userName);
         List<Component> componentList = componentRepository.findAll();
         List<Component> compOfUserList = userDelete.getComponents();
 
-        for(Component componentOfUser : compOfUserList){
-            for(Component component : componentList){
-                if(component == componentOfUser){
+        for (Component componentOfUser : compOfUserList) {
+            for (Component component : componentList) {
+                if (component == componentOfUser) {
 
                     component.removeUser(userDelete);
                 }
@@ -79,7 +75,7 @@ public class UserService {
 
         compOfUserList.clear();
 
-        if(!userDelete.equals(null)) {
+        if (!userDelete.equals(null)) {
             userRepository.delete(userDelete);
             return true;
         }
@@ -92,8 +88,8 @@ public class UserService {
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
         List<Role> editedUserRole = roleRepository.findAll();
-        for(Role editedRole : editedUserRole){
-            if(editedRole.getRoleId() == roleId) {
+        for (Role editedRole : editedUserRole) {
+            if (editedRole.getRoleId() == roleId) {
                 editedUser.setRole(editedRole);
             }
         }
@@ -109,7 +105,7 @@ public class UserService {
     }
 
 
-    public void removeComponent(String username, int componentId){
+    public void removeComponent(String username, int componentId) {
 
 
         User user = userRepository.findByUsername(username);
