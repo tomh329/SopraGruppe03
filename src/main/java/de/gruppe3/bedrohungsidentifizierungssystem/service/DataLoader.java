@@ -114,6 +114,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process extraProcess = new Process("Kein Prozess", 0);
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process orpOrgPers = new Process("ORP: Organisation und Personal", 3);
+        Process app3 = new Process("APP.3 Netzbasierte Dienste", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess1 = new Process("Test1", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess2 = new Process("Test2", 1);
         testProcess1.setProcessName("ÄnderungsTest");
@@ -125,6 +126,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.1Organisation", 1, "2021-04-11", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component compPers
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.2Personal", 3, "2021-02-23", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_1
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.1 Webanwendungen", 5, "2019-10-14", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.2 Webserver", 2, "2020-03-21", 2);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_6
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.6 DNS-Server", 2, "2021-01-26", 4);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
@@ -138,6 +145,17 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Requirement reqPers11 = new Requirement("Einarbeitung neuer Mitarbeiter");
         Requirement reqPers12 = new Requirement("Festlegung von Vertretungsregelungen");
         Requirement reqPers13 = new Requirement("Qualifikation des Personals");
+
+        Requirement reqApp3_1_1 = new Requirement("Autentisierung bei Webanwendung");
+        Requirement reqApp3_1_2 = new Requirement("Schutz vertraulicher Daten");
+        Requirement reqApp3_1_3 = new Requirement("Sichere Anbindung von Hintergrundsystem");
+
+        Requirement reqApp3_2_1 = new Requirement("Sichere Konfiguration eines Webservers");
+        Requirement reqApp3_2_2 = new Requirement("Schutz der Webserver-Dateien");
+
+        Requirement reqApp3_6_1 = new Requirement("Planung des DNS-Einsatzes");
+        Requirement reqApp3_6_2 = new Requirement("Absicherung von dynamischen DNS-Updates");
+        Requirement reqApp3_6_3 = new Requirement("Überwachung von DNS-Server");
 
         Requirement testReq1 = new Requirement("testReq1");
 
@@ -169,6 +187,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         orpOrgPers.addComponent(compOrg);
         orpOrgPers.addComponent(compPers);
+        app3.addComponent(app3_1);
+        app3.addComponent(app3_2);
+        app3.addComponent(app3_6);
         testProcess1.addComponent(testComponent1);
         testProcess1.addComponent(testComponent2);
 
@@ -178,8 +199,18 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         compPers.addRequirement(reqPers11);
         compPers.addRequirement(reqPers12);
         compPers.addRequirement(reqPers13);
+        app3_1.addRequirement(reqApp3_1_1);
+        app3_1.addRequirement(reqApp3_1_2);
+        app3_1.addRequirement(reqApp3_1_3);
+        app3_2.addRequirement(reqApp3_2_1);
+        app3_2.addRequirement(reqApp3_2_2);
+        app3_6.addRequirement(reqApp3_6_1);
+        app3_6.addRequirement(reqApp3_6_2);
+        app3_6.addRequirement(reqApp3_6_3);
         testComponent1.addRequirement(testReq1);
 
+        testAction1.setComponent(testComponent1);
+        testAction2.setComponent(testComponent1);
 
 //        reqOrg11.getDangers().add(spionage);
 //        reqOrg11.getDangers().add(fehlplanung);
@@ -211,11 +242,15 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         processService.saveProcess(extraProcess);
         processService.saveProcess(orpOrgPers);
+        processService.saveProcess(app3);
         processService.saveProcess(testProcess1);
         processService.saveProcess(testProcess2);
 
         componentService.saveComponent(compOrg);
         componentService.saveComponent(compPers);
+        componentService.saveComponent(app3_1);
+        componentService.saveComponent(app3_2);
+        componentService.saveComponent(app3_6);
         componentService.saveComponent(testComponent1);
         componentService.saveComponent(testComponent2);
 
@@ -225,6 +260,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(reqPers11);
         requirementService.saveRequirement(reqPers12);
         requirementService.saveRequirement(reqPers13);
+        requirementService.saveRequirement(reqApp3_1_1);
+        requirementService.saveRequirement(reqApp3_1_2);
+        requirementService.saveRequirement(reqApp3_1_3);
+        requirementService.saveRequirement(reqApp3_2_1);
+        requirementService.saveRequirement(reqApp3_2_2);
+        requirementService.saveRequirement(reqApp3_6_1);
+        requirementService.saveRequirement(reqApp3_6_2);
+        requirementService.saveRequirement(reqApp3_6_3);
         requirementService.saveRequirement(testReq1);
 
         dangerService.saveDanger(spionage);
