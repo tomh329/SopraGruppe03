@@ -205,6 +205,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         //example action
         Action testAction1 = new Action("testMaßnahme1", "2021-08-17", 3);
         Action testAction2 = new Action("testMaßnahme2", "2021-10-23", 1);
+        Action testAction3 = new Action("testMaßnahme3", "2020-10-23", 1);
+        Action testAction4 = new Action("testMaßnahme4", "2021-07-23", 1);
         testAction2.setStatus(true);
 
         /*
@@ -332,5 +334,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         actionService.saveAction(testAction1);
         actionService.saveAction(testAction2);
+        actionService.saveAction(testAction3);
+        actionService.saveAction(testAction4);
     }
 }
