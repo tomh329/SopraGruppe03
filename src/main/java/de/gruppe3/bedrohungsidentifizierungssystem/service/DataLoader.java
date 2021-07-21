@@ -90,6 +90,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User userMax = new User();
         userMax.setUsername("Max");
         userMax.setPassword("12345");
+        userMax.setFirstname("Maximilian");
+        userMax.setLastname("Mustermann");
         userMax.setRole(adminRole);
         userMax.setPassword(bCryptPasswordEncoder.encode(userMax.getPassword()));
         userService.saveUser(userMax);
@@ -98,13 +100,18 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User userPaula = new User();
         userPaula.setUsername("Paula");
         userPaula.setPassword("12345");
+        userPaula.setFirstname("Paula");
+        userPaula.setLastname("Müller");
         userPaula.setPassword(bCryptPasswordEncoder.encode(userPaula.getPassword()));
         userPaula.setRole(adminRole);
+        userService.saveUser(userPaula);
 
         //Creation of user Paule
         User userPaule = new User();
         userPaule.setUsername("Paule");
         userPaule.setPassword("23456");
+        userPaule.setFirstname("Paule");
+        userPaule.setLastname("Müller");
         userPaule.setRole(employeeRole);
         userPaule.setPassword(bCryptPasswordEncoder.encode(userPaule.getPassword()));
         userService.saveUser(userPaule);
