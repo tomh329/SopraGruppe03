@@ -2,14 +2,10 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
-import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +23,6 @@ public class AddActionController {
     public String showAddAction(Model model, @ModelAttribute("componentToAdd") Component componentToAdd) {
 
         model.addAttribute("componentToAdd", componentToAdd);
-        System.out.println(componentToAdd.getComponentName());
 
         model.addAttribute("actions", actionService.findAllActions());
         model.addAttribute("components", componentService.findAllComponents());
@@ -44,7 +39,6 @@ public class AddActionController {
     ComponentRepository componentRepository;
     @Autowired
     ComponentService componentService;
-
 
 
     @PostMapping("/addAction")
@@ -67,7 +61,6 @@ public class AddActionController {
             }
         }
 
-        System.out.println("No Success");
         return "redirect:/component";
     }
 }

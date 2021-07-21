@@ -28,9 +28,7 @@ public class DangerController {
 
     @PostMapping("/deleteDanger/{dangerId}")
     public String deleteProcess(@PathVariable String dangerId) {
-        System.out.println(
-                dangerService.deleteDanger(Integer.parseInt(dangerId))
-        );
+        dangerService.deleteDanger(Integer.parseInt(dangerId));
         return "redirect:/danger";
     }
 
@@ -50,7 +48,7 @@ public class DangerController {
 
     @PostMapping("/removeRequirementAndDangerButton")
     public String removeRequirement(@RequestParam(name = "requirementId") int requirementId,
-                                    @RequestParam(name = "dangerId") int dangerId){
+                                    @RequestParam(name = "dangerId") int dangerId) {
 
         dangerService.removeRequirement(requirementId, dangerId);
         return "redirect:/danger";
