@@ -24,13 +24,12 @@ public class ComponentService {
     ActionRepository actionRepository;
 
 
-
     public void updateComponent(int componentId, String componentName, String lastAttack, int occurrence, int priority) {
 
         List<Component> componentList = componentRepository.findAll();
 
-        for(Component component : componentList){
-            if(componentId == component.getComponentId()){
+        for (Component component : componentList) {
+            if (componentId == component.getComponentId()) {
                 component.setComponentName(componentName);
                 component.setLastAttack(lastAttack);
                 component.setOccurrence(occurrence);
@@ -52,12 +51,12 @@ public class ComponentService {
     }
 
 
-    public Component createComponent(String componentName, int priority, String lastAttack, int occurrence, int requirementId){
+    public Component createComponent(String componentName, int priority, String lastAttack, int occurrence, int requirementId) {
 
         Component component = new Component(componentName, priority, lastAttack, occurrence);
         List<Requirement> requirementList = requirementRepository.findAll();
 
-        for(Requirement requirement : requirementList){
+        for (Requirement requirement : requirementList) {
 
             if (requirementId == requirement.getRequirementId()) {
 
@@ -69,7 +68,7 @@ public class ComponentService {
     }
 
 
-    public Component createComponent(String componentName, int priority, String lastAttack, int occurrence){
+    public Component createComponent(String componentName, int priority, String lastAttack, int occurrence) {
 
         Component component = new Component(componentName, priority, lastAttack, occurrence);
 
@@ -81,7 +80,7 @@ public class ComponentService {
     }
 
 
-    public void removeAction(int actionId){
+    public void removeAction(int actionId) {
 
         Action action = actionRepository.findByActionId(actionId);
         Component component = action.getComponent();
@@ -93,7 +92,7 @@ public class ComponentService {
         componentRepository.save(component);
     }
 
-    public void removeRequirement(int requirementId){
+    public void removeRequirement(int requirementId) {
 
         Requirement requirement = requirementRepository.findByRequirementId(requirementId);
         Component component = requirement.getComponent();
@@ -106,25 +105,24 @@ public class ComponentService {
     }
 
 
-
     public void deleteComponent(Component component) {
 
         componentRepository.delete(component);
     }
 
-    public boolean deleteComponent(int componentId){
+    public boolean deleteComponent(int componentId) {
 
         List<Component> componentList = componentRepository.findAll();
 
-        for(Component component : componentList){
-            if(componentId == component.getComponentId()){
-                for(Requirement requirement : component.getRequirements()){
+        for (Component component : componentList) {
+            if (componentId == component.getComponentId()) {
+                for (Requirement requirement : component.getRequirements()) {
                     requirement.setComponent(null);
                 }
-                for(Action action : component.getActions()){
+                for (Action action : component.getActions()) {
                     action.setComponent(null);
                 }
-                for(User user : component.getUsers()){
+                for (User user : component.getUsers()) {
                     user.removeComponent(component);
                 }
 

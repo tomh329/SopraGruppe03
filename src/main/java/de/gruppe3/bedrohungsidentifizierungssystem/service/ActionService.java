@@ -25,7 +25,6 @@ public class ActionService {
     RequirementRepository requirementRepository;
 
 
-
 //    public void updateComponent(int componentId, String componentName, String lastAttack, int occurrence, int priority) {
 //
 //        List<Component> componentList = componentRepository.findAll();
@@ -52,15 +51,15 @@ public class ActionService {
         return actionRepository.findAll();
     }
 
-    public List<Action> findToDoActionsForUser(String username){
+    public List<Action> findToDoActionsForUser(String username) {
         List<Action> resultActionList = new ArrayList<>();
         List<Action> actionList = findAllActions();
         User currentUser = userRepository.findByUsername(username);
 
-        for(Action action : actionList){
-            if(!(action.getComponent()==null)){
-                for(User user : action.getComponent().getUsers()){
-                    if (!action.getStatus()&&user.equals(currentUser)) {
+        for (Action action : actionList) {
+            if (!(action.getComponent() == null)) {
+                for (User user : action.getComponent().getUsers()) {
+                    if (!action.getStatus() && user.equals(currentUser)) {
                         resultActionList.add(action);
                     }
                 }
@@ -70,15 +69,15 @@ public class ActionService {
         return resultActionList;
     }
 
-    public List<Action> findDoneActionsForUser(String username){
+    public List<Action> findDoneActionsForUser(String username) {
         List<Action> resultActionList = new ArrayList<>();
         List<Action> actionList = findAllActions();
         User currentUser = userRepository.findByUsername(username);
 
-        for(Action action : actionList){
-            if(!(action.getComponent()==null)){
-                for(User user : action.getComponent().getUsers()){
-                    if (action.getStatus()&&user.equals(currentUser)) {
+        for (Action action : actionList) {
+            if (!(action.getComponent() == null)) {
+                for (User user : action.getComponent().getUsers()) {
+                    if (action.getStatus() && user.equals(currentUser)) {
                         resultActionList.add(action);
                     }
                 }
@@ -92,8 +91,7 @@ public class ActionService {
     }
 
 
-
-    public Action createAction(String actionName, String actionDueDate, int protectionNeeds){
+    public Action createAction(String actionName, String actionDueDate, int protectionNeeds) {
 
         Action action = new Action(actionName, actionDueDate, protectionNeeds);
 
@@ -106,12 +104,12 @@ public class ActionService {
         actionRepository.delete(action);
     }
 
-    public boolean deleteAction(int actionId){
+    public boolean deleteAction(int actionId) {
 
         List<Action> actionList = actionRepository.findAll();
 
-        for(Action action : actionList){
-            if(actionId == action.getActionId()){
+        for (Action action : actionList) {
+            if (actionId == action.getActionId()) {
 
                 actionRepository.delete(action);
                 return true;
@@ -129,8 +127,8 @@ public class ActionService {
 
         List<Action> actionList = findAllActions();
 
-        for(Action action : actionList){
-            if(actionId == action.getActionId()){
+        for (Action action : actionList) {
+            if (actionId == action.getActionId()) {
                 action.setActionName(actionName);
                 action.setActionDueDate(actionDueDate);
                 action.setProtectionNeeds(protectionNeeds);

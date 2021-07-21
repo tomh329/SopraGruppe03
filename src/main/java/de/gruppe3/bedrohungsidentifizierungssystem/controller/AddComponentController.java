@@ -61,7 +61,6 @@ public class AddComponentController {
             }
         }
 
-        System.out.println("No Success");
         return "redirect:/process";
     }
 }

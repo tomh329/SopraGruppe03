@@ -32,26 +32,26 @@ public class RequirementService {
 
         List<Requirement> requirementList = requirementRepository.findAll();
 
-        for(Requirement requirement : requirementList){
-            if(requirementId == requirement.getRequirementId()){
+        for (Requirement requirement : requirementList) {
+            if (requirementId == requirement.getRequirementId()) {
                 requirement.setRequirementName(requirementName);
                 requirementRepository.save(requirement);
             }
         }
     }
 
-  
-    public void deleteRequirement(Requirement requirement){
+
+    public void deleteRequirement(Requirement requirement) {
         requirementRepository.delete(requirement);
     }
 
-    public boolean deleteRequirement(int requirementId){
+    public boolean deleteRequirement(int requirementId) {
 
         List<Requirement> requirementList = requirementRepository.findAll();
 
-        for(Requirement requirement : requirementList){
-            if(requirementId == requirement.getRequirementId()){
-                for(Danger danger : requirement.getDangers()){
+        for (Requirement requirement : requirementList) {
+            if (requirementId == requirement.getRequirementId()) {
+                for (Danger danger : requirement.getDangers()) {
 //                    danger.setRequirement(null);
                     danger.getRequirements().remove(requirement);
                 }

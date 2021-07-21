@@ -1,7 +1,5 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.DangerService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.UserService;
@@ -61,7 +59,7 @@ public class UserController {
 
     @PostMapping("/removeComponentAndUserButton")
     public String removeComponent(@RequestParam(name = "username") String username,
-                                    @RequestParam(name = "componentId") int componentId){
+                                  @RequestParam(name = "componentId") int componentId) {
 
         userService.removeComponent(username, componentId);
         return "redirect:/user";

@@ -2,8 +2,6 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.DangerService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Controller
 public class RequirementController {
@@ -58,7 +54,7 @@ public class RequirementController {
     }
 
     @PostMapping("/removeRequirementButton/{requirementId}")
-    public String removeRequirement(@PathVariable String requirementId){
+    public String removeRequirement(@PathVariable String requirementId) {
 
         componentService.removeRequirement(Integer.parseInt(requirementId));
         return "redirect:/requirement";
