@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class EditRequirementController {
     public String updateRequirement(@PathVariable String requirementId,
                                     @RequestParam(name = "requirementName") String requirementName,
                                     @Valid Requirement requirement, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("requirement", requirement);
             model.addAttribute("editRequirement", requirementService.findRequirementWithId(Integer.parseInt(requirementId)));
             return "/editRequirement";

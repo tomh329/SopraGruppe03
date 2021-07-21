@@ -1,9 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.DangerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +33,7 @@ public class EditActionController {
                                   @RequestParam(name = "actionDueDate") String actionDueDate,
                                   @RequestParam(name = "protectionNeeds") int protectionNeeds,
                                   @Valid Action action, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("action", action);
             model.addAttribute("editAction", actionService.findActionWithId(Integer.parseInt(actionId)));
             return "/editAction";

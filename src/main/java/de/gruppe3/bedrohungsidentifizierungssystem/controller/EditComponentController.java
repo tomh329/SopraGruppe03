@@ -35,7 +35,7 @@ public class EditComponentController {
                                   @RequestParam(name = "priority") int priority,
                                   @Valid Component component, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("component", component);
             model.addAttribute("editComponent", componentService.findComponentWithId(Integer.parseInt(componentId)));
             return "/editComponent";
