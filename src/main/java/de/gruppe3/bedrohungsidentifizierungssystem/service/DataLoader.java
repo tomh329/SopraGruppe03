@@ -210,6 +210,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         orpOrgPers.addComponent(compOrg);
         orpOrgPers.addComponent(compPers);
+        app1.addComponent(app1_1);
+        app1.addComponent(app1_2);
+        app1.addComponent(app1_4);
         app3.addComponent(app3_1);
         app3.addComponent(app3_2);
         app3.addComponent(app3_6);
@@ -222,6 +225,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         compPers.addRequirement(reqPers11);
         compPers.addRequirement(reqPers12);
         compPers.addRequirement(reqPers13);
+        app1_1.addRequirement(app_1_1_A2);
+        app1_1.addRequirement(app_1_1_A6);
+        app1_2.addRequirement(app_1_2_A1);
+        app1_2.addRequirement(app_1_2_A3);
+        app1_4.addRequirement(app_1_4_A7);
+        app1_4.addRequirement(app_1_4_A12);
         app3_1.addRequirement(reqApp3_1_1);
         app3_1.addRequirement(reqApp3_1_2);
         app3_1.addRequirement(reqApp3_1_3);
@@ -265,12 +274,16 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         processService.saveProcess(extraProcess);
         processService.saveProcess(orpOrgPers);
+        processService.saveProcess(app1);
         processService.saveProcess(app3);
         processService.saveProcess(testProcess1);
         processService.saveProcess(testProcess2);
 
         componentService.saveComponent(compOrg);
         componentService.saveComponent(compPers);
+        componentService.saveComponent(app1_1);
+        componentService.saveComponent(app1_2);
+        componentService.saveComponent(app1_4);
         componentService.saveComponent(app3_1);
         componentService.saveComponent(app3_2);
         componentService.saveComponent(app3_6);
@@ -283,6 +296,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(reqPers11);
         requirementService.saveRequirement(reqPers12);
         requirementService.saveRequirement(reqPers13);
+        requirementService.saveRequirement(app_1_1_A2);
+        requirementService.saveRequirement(app_1_1_A6);
+        requirementService.saveRequirement(app_1_2_A1);
+        requirementService.saveRequirement(app_1_2_A3);
+        requirementService.saveRequirement(app_1_4_A7);
+        requirementService.saveRequirement(app_1_4_A12);
         requirementService.saveRequirement(reqApp3_1_1);
         requirementService.saveRequirement(reqApp3_1_2);
         requirementService.saveRequirement(reqApp3_1_3);
