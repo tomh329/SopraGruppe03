@@ -3,7 +3,7 @@
     border: none;
     color: white;
     cursor: pointer;
-    width: 50px;
+    width: 40px;
     margin: 1.5px;
 }
 .btn.btn-danger-delete{
@@ -11,7 +11,7 @@
     border: none;
     color: white;
     cursor: pointer;
-    width: 50px;
+    width: 40px;
     margin: 1.5px;
 }
 .btn.btn-primary-newAdd {
@@ -46,7 +46,17 @@
     border: none;
     color: white;
     cursor: pointer;
-    width: 50px;
+    width: 40px;
+}
+.btn.btn-primary-print{
+    background-color: #35b8b4;
+    border-radius: 24px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 1.5px;
 }
 
 /* Darker background on mouse-over */
@@ -69,5 +79,8 @@
     color: DarkRed;
 }
 .btn.btn-primary-done:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-print:hover {
     background-color: #298f8a;
 }

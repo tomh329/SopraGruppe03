@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Controller
 public class EditUserController {
 
@@ -34,9 +36,17 @@ public class EditUserController {
     public String updateUser(@PathVariable String username,
                              @RequestParam(name = "firstname") String firstname,
                              @RequestParam(name = "lastname") String lastname,
-                             @RequestParam(name = "roleId") int roleId) {
-        userService.updateUser(username, firstname, lastname, roleId);
+                             @RequestParam(name = "roleId") int roleId,
+                             @Valid User user, BindingResult bindingResult, Model model) {
 
+        if(bindingResult.hasFieldErrors("firstname") || bindingResult.hasFieldErrors("lastname")|| bindingResult.hasFieldErrors("role")) {
+            model.addAttribute("user", user);
+            model.addAttribute("editUsersName", userService.findUserWithName(username));
+            return "/editUser";
+        }
+
+
+        userService.updateUser(username, firstname, lastname, roleId);
         return "redirect:/user";
     }
 }

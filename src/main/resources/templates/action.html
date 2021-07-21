@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Actions</title>
+    <title>Action</title>
 
 </head>
 
@@ -66,12 +67,20 @@
     </div>
 </nav>
 
+<div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 30px;">
+    <div style="display: inline-block; vertical-align: middle;">
 
+        <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+        <button type="button" class="btn btn-primary-print" id="btPrint" onclick="createPDF()" style="margin-right: 50px;">
+            <i class="fa fa-print"></i>
+        </button>
+    </div>
+</div>
 <!-- Maßnahmentabelle -->
 
 <div class="wrapper">
     <div class="contentTable">
-
+        <div id="pdfBox">
         <div class="topLine">
             <div>
                 <h2 style="font-weight: 700; font-size: 20px; text-align: left">Maßnahmentabelle</h2>
@@ -87,16 +96,47 @@
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <tr>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen ID</span></i></th>
+                <th class="textContent" scope="col" style="width: 12%;"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmen ID</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Maßnahmentitel</span></i></th>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
+                <th class="textContent" scope="col" style="width: 13%;"><i class="fa fa-sort" aria-hidden="true"><span>Umsetzungsziel</span></i></th>
+                <th class="textContent" scope="col" style="width: 12%;"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
                 <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponente</span></i></th>
                 <th class="actionButtons" scope="col">Aktionen</th>
-                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
-                <th></th>
+                <th class="actionButtons" scope="col" style="width: 7%;"><i class="fa fa-sort" aria-hidden="true"><span>Status</span></i></th>
+                <th class="actionButtons" style="width: 7%;"></th>
             </tr>
             </thead>
+
+            <thead>
+            <tr>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputZero" onkeyup="myFunctionZero()"></div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputOne" onkeyup="myFunctionOne()">
+                    </div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputTwo" onkeyup="myFunctionTwo()"></div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputThree" onkeyup="myFunctionThree()"></div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputFour" onkeyup="myFunctionFour()">
+                    </div>
+                </th>
+                <th style="background-color: #f7f9fa;"></th>
+                <th style="background-color: #f7f9fa;"></th>
+                <th style="background-color: #f7f9fa;"></th>
+            </tr>
+            </thead>
+
             <tbody>
             <tr th:each="action : ${actions}">
                 <div class="scrollable">
@@ -141,9 +181,15 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript" src="js/sort.js"></script>
+<script type="text/javascript" src="js/searchWholeTable.js"></script>
+<script type="text/javascript" src="js/exportTable.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
+
+
 </body>
 </html>

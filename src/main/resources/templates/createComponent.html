@@ -69,7 +69,7 @@
     <form th:action="@{/createComponent}" method="post">
 
         <div class="eachLine">
-            <label style="font-size: 14px;"><b>Komponententitel</b></label>
+            <label style="font-size: 14px;"><b>Komponenttitel</b></label>
             <input name="componentName" type="text" placeholder="Komponententitel"/>
             <p th:if="${#fields.hasErrors('component.componentName')}" th:errors="*{component.componentName}" class="text-danger"></p>
         </div>
