@@ -190,7 +190,7 @@
             let objCells = myTab.rows.item(i).cells;
 
             // LOOP THROUGH EACH CELL OF THE CURRENT ROW TO READ CELL VALUES.
-            myArray.push(objCells.item(2).innerHTML);
+            myArray.push(objCells.item(1).innerHTML);
 
 
             $.each(myArray, function(i, el){
@@ -223,20 +223,11 @@
 
         console.log(select.options[1].text);
         let filter;
-        //noch nicht funktional für die options
         let e = document.getElementById("row");
         e.onchange = function() {
             filter = e.options[e.selectedIndex].text;
             console.log(filter);
 
-
-        //console.log(e.options[e.selectedIndex].text);
-
-
-
-        //let filter = document.getElementById("row0").value;
-
-        //if(document.getElementById("row").value == 1) {
 
             // Declare variables
             let table, tr, td, i, txtValue;
@@ -245,7 +236,7 @@
 
             // Loop through all table rows, and hide those who don't match the search query
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -262,6 +253,11 @@
        // }
     }
 
+    function strcmp(a, b) {
+        if (a.toString() < b.toString()) return -1;
+        if (a.toString() > b.toString()) return 1;
+        return 0;
+    }
 
 
 
