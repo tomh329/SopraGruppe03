@@ -76,7 +76,7 @@
 <!-- Prozesstabelle -->
 
 <p>
-    <input type="button" value="Create PDF" id="btPrint" onclick="createPDF()" />
+    <input type="button" value="Create PDF" id="btPrint" onclick="createPDF()"/>
 </p>
 
 <!--<form class="createButton" th:action="@{/addComponentButton}" method="post">
@@ -99,54 +99,73 @@
             </div>
         </div>
         <div id="pdfBox">
-        <table id="myTable" class="table">
-            <thead class="thead-theme">
-            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozess ID</span></i></th>
-            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozesstitel</span></i></th>
-            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Schutzbedarf</span></i></th>
-            <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
-            <th class="actionButtons" scope="col">Aktionen</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="process : ${processes}" th:if="${process.processId} != 0">
-                <div class="scrollable">
-                    <td class="textContent" th:text="${process.processId}"/>
-                    <td class="textContent" th:text="${process.processName}"/>
-                    <td class="textContent" th:text="${process.protectionLevel}"/>
-                    <td class="textContent">
-                        <div>
-                            <div class="addMore" style="margin-right: 10px">
-                                <form class="edit-delete" th:action="@{/addComponentButton(processId=${process.processId}, componentId=${process.getComponents()})}" method="post">
-                                    <button th:type="submit" class="btn btn-primary-add">
-                                        <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="addMore">
-                                <div style="vertical-align:middle" th:each="component : ${process.getComponents()}">
-                                    <span th:text="${component.getComponentName()}"></span>
+            <table id="myTable" class="table">
+                <thead class="thead-theme">
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Prozess ID</span></i>
+                </th>
+                <th class="textContent" scope="col"><i class="fa fa-sort"
+                                                       aria-hidden="true"><span>Prozesstitel</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort"
+                                                       aria-hidden="true"><span>Schutzbedarf</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort"
+                                                       aria-hidden="true"><span>Komponenten</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="process : ${processes}" th:if="${process.processId} != 0">
+                    <div class="scrollable">
+                        <td class="textContent" th:text="${process.processId}"/>
+                        <td class="textContent" th:text="${process.processName}"/>
+                        <td class="textContent" th:text="${process.protectionLevel}"/>
+                        <td class="textContent">
+                            <div>
+                                <div class="addMore" style="margin-right: 10px">
+                                    <form class="edit-delete"
+                                          th:action="@{/addComponentButton}" method="post">
+
+                                        <input type="hidden" name="processId" th:value="${process.processId}"/>
+
+                                        <button th:type="submit" class="btn btn-primary-add">
+                                            <i class="fa fa-plus"
+                                               style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="addMore">
+                                    <div style="vertical-align:middle" th:each="component : ${process.getComponents()}">
+                                        <span th:text="${component.getComponentName()}"></span>
+                                        <form class="edit-delete"
+                                              th:action="@{/removeComponentButton/{path}(path=${component.componentId})}"
+                                              method="post">
+                                            <button th:type="submit" class="btn btn-primary-remove">
+                                                <i class="fa fa-minus"
+                                                   style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </td>
+                    </div>
+                    <td class="actionButtons">
+                        <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-primary-edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </form>
+                        <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-danger-delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
-                </div>
-                <td class="actionButtons">
-                    <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}" method="post">
-                        <button th:type="submit" class="btn btn-primary-edit">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                    </form>
-                    <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post">
-                        <button th:type="submit" class="btn btn-danger-delete">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
 
-            </tr>
-            </tbody>
-        </table>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

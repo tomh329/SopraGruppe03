@@ -71,7 +71,7 @@
                 <label style="font-size: 14px;"><b>Gefahrtitel</b></label>
                 <select name="dangerId" type = "text">
                     <option style="display:none;"></option>
-                    <option th:each="danger : ${dangers}"
+                    <option th:each="danger : ${dangers}" th:selected="${danger.dangerName == dangerToAdd.dangerName}"
                             th:value="${danger.dangerId}" th:text="${danger.dangerName}"></option>
                 </select>
             </div>

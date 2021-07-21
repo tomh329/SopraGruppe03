@@ -90,6 +90,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User userMax = new User();
         userMax.setUsername("Max");
         userMax.setPassword("12345");
+        userMax.setFirstname("Maximilian");
+        userMax.setLastname("Mustermann");
         userMax.setRole(adminRole);
         userMax.setPassword(bCryptPasswordEncoder.encode(userMax.getPassword()));
         userService.saveUser(userMax);
@@ -98,13 +100,18 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         User userPaula = new User();
         userPaula.setUsername("Paula");
         userPaula.setPassword("12345");
+        userPaula.setFirstname("Paula");
+        userPaula.setLastname("Müller");
         userPaula.setPassword(bCryptPasswordEncoder.encode(userPaula.getPassword()));
         userPaula.setRole(adminRole);
+        userService.saveUser(userPaula);
 
         //Creation of user Paule
         User userPaule = new User();
         userPaule.setUsername("Paule");
         userPaule.setPassword("23456");
+        userPaule.setFirstname("Paule");
+        userPaule.setLastname("Müller");
         userPaule.setRole(employeeRole);
         userPaule.setPassword(bCryptPasswordEncoder.encode(userPaule.getPassword()));
         userService.saveUser(userPaule);
@@ -114,10 +121,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process extraProcess = new Process("Kein Prozess", 0);
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process orpOrgPers = new Process("ORP: Organisation und Personal", 3);
+        Process app3 = new Process("APP.3 Netzbasierte Dienste", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess1 = new Process("Test1", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess2 = new Process("Test2", 1);
         testProcess1.setProcessName("ÄnderungsTest");
 //        testProcess1.setProcessId(0);
+        Process app1 = new Process("APP.1 Client-Anwendungen", 2);
+
 
 
         //example component
@@ -125,11 +135,23 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.1Organisation", 1, "2021-04-11", 3);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component compPers
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("ORP.2Personal", 3, "2021-02-23", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_1
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.1 Webanwendungen", 5, "2019-10-14", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.2 Webserver", 2, "2020-03-21", 2);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_6
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.6 DNS-Server", 2, "2021-01-26", 4);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 4, "2021-04-11", 3);
 
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_1
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.1 Office Produkte", 3, "2020-03-07", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.2 Webbrowser", 4, "2007-08-14", 4);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_4
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.4 Mobile Anwendungen(Apps)", 3, "2014-03-17", 9);
         //example requirement
         Requirement reqOrg11 = new Requirement("Festlegung von Verantwortlichkeiten");
         Requirement reqOrg12 = new Requirement("Zuweisung der Zuständigkeiten");
@@ -139,7 +161,34 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Requirement reqPers12 = new Requirement("Festlegung von Vertretungsregelungen");
         Requirement reqPers13 = new Requirement("Qualifikation des Personals");
 
+        Requirement reqApp3_1_1 = new Requirement("Autentisierung bei Webanwendung");
+        Requirement reqApp3_1_2 = new Requirement("Schutz vertraulicher Daten");
+        Requirement reqApp3_1_3 = new Requirement("Sichere Anbindung von Hintergrundsystem");
+
+        Requirement reqApp3_2_1 = new Requirement("Sichere Konfiguration eines Webservers");
+        Requirement reqApp3_2_2 = new Requirement("Schutz der Webserver-Dateien");
+
+        Requirement reqApp3_6_1 = new Requirement("Planung des DNS-Einsatzes");
+        Requirement reqApp3_6_2 = new Requirement("Absicherung von dynamischen DNS-Updates");
+        Requirement reqApp3_6_3 = new Requirement("Überwachung von DNS-Server");
+
+        Requirement app_1_1_A2 = new Requirement("APP.1.1.A2 Einschränken von Aktiven Inhalten");
+        //G 0.19 G 0.22 G. 039
+        Requirement app_1_1_A6 = new Requirement("APP.1.1.A6 Testen neuer Versionen von Office-Produkten");
+        //G 0.18 G 0.20 G 0.28 G 0.45 G0.46
+
+        Requirement app_1_2_A1 = new Requirement("APP.1.2.A1 Verwendung von grundlegenden Sicherheitsmechanismen");
+        //G 0.23 G0.28 G 0.39
+        Requirement app_1_2_A3 = new Requirement("APP.1.2.A3 Verwendung von vertrauenswürdigen Zertifikaten");
+        //G 0.14 G 0.19 G 0.22 G 0.30
+
+        Requirement app_1_4_A7 = new Requirement("APP.1.4.A7 Sichere Speicherung lokaler App-Daten");
+        //G 0.14 G0.16 G 0.17 G 0.19
+        Requirement app_1_4_A12 = new Requirement("APP.1.4.A12 Sichere Deinstallation von Apps");
+        //G 0.14 G 0.15 G 0.16 G 0.17
+
         Requirement testReq1 = new Requirement("testReq1");
+
 
         //example danger
         Danger spionage = new Danger("Spionage", 3);
@@ -171,6 +220,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         orpOrgPers.addComponent(compOrg);
         orpOrgPers.addComponent(compPers);
+        app1.addComponent(app1_1);
+        app1.addComponent(app1_2);
+        app1.addComponent(app1_4);
+        app3.addComponent(app3_1);
+        app3.addComponent(app3_2);
+        app3.addComponent(app3_6);
         testProcess1.addComponent(testComponent1);
         testProcess1.addComponent(testComponent2);
 
@@ -180,8 +235,24 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         compPers.addRequirement(reqPers11);
         compPers.addRequirement(reqPers12);
         compPers.addRequirement(reqPers13);
+        app1_1.addRequirement(app_1_1_A2);
+        app1_1.addRequirement(app_1_1_A6);
+        app1_2.addRequirement(app_1_2_A1);
+        app1_2.addRequirement(app_1_2_A3);
+        app1_4.addRequirement(app_1_4_A7);
+        app1_4.addRequirement(app_1_4_A12);
+        app3_1.addRequirement(reqApp3_1_1);
+        app3_1.addRequirement(reqApp3_1_2);
+        app3_1.addRequirement(reqApp3_1_3);
+        app3_2.addRequirement(reqApp3_2_1);
+        app3_2.addRequirement(reqApp3_2_2);
+        app3_6.addRequirement(reqApp3_6_1);
+        app3_6.addRequirement(reqApp3_6_2);
+        app3_6.addRequirement(reqApp3_6_3);
         testComponent1.addRequirement(testReq1);
 
+        testAction1.setComponent(testComponent1);
+        testAction2.setComponent(testComponent1);
 
 //        reqOrg11.getDangers().add(spionage);
 //        reqOrg11.getDangers().add(fehlplanung);
@@ -213,11 +284,19 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         processService.saveProcess(extraProcess);
         processService.saveProcess(orpOrgPers);
+        processService.saveProcess(app1);
+        processService.saveProcess(app3);
         processService.saveProcess(testProcess1);
         processService.saveProcess(testProcess2);
 
         componentService.saveComponent(compOrg);
         componentService.saveComponent(compPers);
+        componentService.saveComponent(app1_1);
+        componentService.saveComponent(app1_2);
+        componentService.saveComponent(app1_4);
+        componentService.saveComponent(app3_1);
+        componentService.saveComponent(app3_2);
+        componentService.saveComponent(app3_6);
         componentService.saveComponent(testComponent1);
         componentService.saveComponent(testComponent2);
 
@@ -227,6 +306,20 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(reqPers11);
         requirementService.saveRequirement(reqPers12);
         requirementService.saveRequirement(reqPers13);
+        requirementService.saveRequirement(app_1_1_A2);
+        requirementService.saveRequirement(app_1_1_A6);
+        requirementService.saveRequirement(app_1_2_A1);
+        requirementService.saveRequirement(app_1_2_A3);
+        requirementService.saveRequirement(app_1_4_A7);
+        requirementService.saveRequirement(app_1_4_A12);
+        requirementService.saveRequirement(reqApp3_1_1);
+        requirementService.saveRequirement(reqApp3_1_2);
+        requirementService.saveRequirement(reqApp3_1_3);
+        requirementService.saveRequirement(reqApp3_2_1);
+        requirementService.saveRequirement(reqApp3_2_2);
+        requirementService.saveRequirement(reqApp3_6_1);
+        requirementService.saveRequirement(reqApp3_6_2);
+        requirementService.saveRequirement(reqApp3_6_3);
         requirementService.saveRequirement(testReq1);
 
         dangerService.saveDanger(spionage);

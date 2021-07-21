@@ -4,6 +4,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
+import org.apache.tomcat.jni.Proc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,17 @@ public class ProcessService {
         }
     }
 
+    public void removeComponent(int componentId){
 
+        Component component = componentRepository.findByComponentId(componentId);
+        Process process = component.getProcess();
+
+        component.setProcess(processRepository.findByProcessId(0));
+        process.getComponents().remove(component);
+
+        componentRepository.save(component);
+        processRepository.save(process);
+    }
 
 
     public Process saveProcess(Process process) {

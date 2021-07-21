@@ -109,7 +109,10 @@
                     <td class="textContent">
                         <div>
                             <div class="addMore" style="margin-right: 10px">
-                                <form class="edit-delete" th:action="@{/addDangerButton(requirementId=${danger.getRequirements()}, dangerId=${danger.dangerId})}" method="post">
+                                <form class="edit-delete" th:action="@{/addDangerButton}" method="post">
+
+                                    <input type="hidden" name="dangerId" th:value="${danger.dangerId}"/>
+
                                     <button th:type="submit" class="btn btn-primary-add">
                                         <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
                                     </button>
@@ -118,6 +121,16 @@
                             <div class="addMore">
                                 <div style="vertical-align:middle" th:each="requirement : ${danger.getRequirements()}">
                                     <span th:text="${requirement.getRequirementName()}"></span>
+                                    <form class="edit-delete"
+                                          th:action="@{/removeRequirementAndDangerButton}"
+                                          method="post">
+                                        <input type="hidden" name="requirementId" th:value="${requirement.requirementId}"/>
+                                        <input type="hidden" name="dangerId" th:value="${danger.dangerId}"/>
+                                        <button th:type="submit" class="btn btn-primary-remove">
+                                            <i class="fa fa-minus"
+                                               style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

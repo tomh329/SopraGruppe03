@@ -1,10 +1,9 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Severity;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +18,10 @@ public class DangerService {
 
     @Autowired
     private DangerRepository dangerRepository;
+    @Autowired
+    RequirementRepository requirementRepository;
+    @Autowired
+    DangerService dangerService;
 
 
     public Danger saveDanger(Danger danger) {
@@ -46,6 +49,19 @@ public class DangerService {
                 dangerRepository.save(danger);
             }
         }
+    }
+
+
+    public void removeRequirement(int requirementId, int dangerId){
+
+        Requirement requirement = requirementRepository.findByRequirementId(requirementId);
+        Danger danger = dangerRepository.findByDangerId(dangerId);
+
+        requirement.getDangers().remove(danger);
+        danger.getRequirements().remove(requirement);
+
+        requirementRepository.save(requirement);
+        dangerRepository.save(danger);
     }
 
     public void deleteDanger(Danger danger){
