@@ -162,8 +162,91 @@
     </div>
 </div>
 
+
+
+<div id="container"></div>
+<br>
+
+
+
+
+
+
 <script type="text/javascript" src="js/sort.js"></script>
 <script type="text/javascript" src="js/exportTable.js"></script>
 <script type="text/javascript" src="js/searchWholeTable.js"></script>
+
+<script>
+    window.onload = function showTableData() {
+        var myTab = document.getElementById('myTable');
+        let myArray = new Array();
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURRENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < objCells.length - 4; j++) {
+                myArray.push(objCells.item(j).innerHTML);
+            }
+        }
+
+        var select = document.createElement("select");
+        //select.name = "row";
+        select.id = "row"
+        for(var l=0; l<myArray.length; l++) {
+            const val = myArray[l];
+            var option = document.createElement("option");
+            option.id = "row" + [l];
+
+                option.value = val;
+                option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                select.appendChild(option);
+                document.getElementById("container").appendChild(select);
+        }
+
+        let filter;
+        //noch nicht funktional für die options
+        var e = document.getElementById("row");
+        e.onchange = function() {
+            filter = e.options[e.selectedIndex].text;
+            console.log(filter);
+
+
+        //console.log(e.options[e.selectedIndex].text);
+
+
+
+        //let filter = document.getElementById("row0").value;
+
+        //if(document.getElementById("row").value == 1) {
+
+            // Declare variables
+            var table, tr, td, i, txtValue;
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+        };
+
+       // }
+    }
+
+</script>
 </body>
 </html>
