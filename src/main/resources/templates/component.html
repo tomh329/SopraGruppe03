@@ -227,7 +227,10 @@
                 <td class="textContent">
                     <div>
                         <div class="addMore" style="margin-right: 10px">
-                            <form class="edit-delete" th:action="@{/addActionButton(componentId=${component.componentId}, actionId=${component.getActions()})}" method="post">
+                            <form class="edit-delete" th:action="@{/addActionButton}" method="post">
+
+                                <input type="hidden" name="componentId" th:value="${component.componentId}"/>
+
                                 <button th:type="submit" class="btn btn-primary-add">
                                     <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
                                 </button>
@@ -236,6 +239,14 @@
                         <div class="addMore">
                             <div style="vertical-align:middle" th:each="action : ${component.getActions()}">
                                 <span th:text="${action.getActionName()}"></span>
+                                <form class="edit-delete"
+                                      th:action="@{/removeActionButton/{path}(path=${action.actionId})}"
+                                      method="post">
+                                    <button th:type="submit" class="btn btn-primary-remove">
+                                        <i class="fa fa-minus"
+                                           style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

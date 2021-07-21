@@ -18,7 +18,7 @@ public class CreateProcessController {
 
     @GetMapping("/createProcess")
     public String showCreateProcess(Process process, BindingResult bindingResult, Model model) {
-        model.addAttribute("process",process);
+        model.addAttribute("process", process);
         return "createProcess";
     }
 
@@ -32,18 +32,12 @@ public class CreateProcessController {
                          @RequestParam(name = "protectionLevel") String protectionLevel,
                          @Valid Process process, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("process",process);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("process", process);
             return "/createProcess";
 
         }
-
-
         processService.createProcess(processName, Integer.parseInt(protectionLevel));
-
-        System.out.println(processName);
-        System.out.println(protectionLevel);
-
         return "redirect:/process";
     }
 

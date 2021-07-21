@@ -30,8 +30,8 @@ public class CreateRequirementController {
 
     @PostMapping("/createRequirement")
     public String create(@RequestParam(name = "requirementName") String requirementName,
-                         @Valid Requirement requirement, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+                         @Valid Requirement requirement, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("requirement", requirement);
             return "/createRequirement";
         }

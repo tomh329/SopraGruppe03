@@ -71,7 +71,7 @@
                 <label style="font-size: 14px;"><b>Benutzername</b></label>
                 <select name="username" type = "text">
                     <option style="display:none;"></option>
-                    <option th:each="user : ${users}"
+                    <option th:each="user : ${users}" th:selected="${user.username == userToAdd.username}"
                             th:value="${user.username}" th:text="${user.username}"></option>
                 </select>
             </div>

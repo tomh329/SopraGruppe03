@@ -1,6 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,8 +22,9 @@ public class AddDangerController {
 
 
     @GetMapping("/addDanger")
-    public String showAddDanger(Model model) {
+    public String showAddDanger(Model model, @ModelAttribute("dangerToAdd") Danger dangerToAdd) {
 
+        model.addAttribute("dangerToAdd", dangerToAdd);
         model.addAttribute("requirements", requirementService.findAllRequirements());
         model.addAttribute("dangers", dangerService.findAllDangers());
         return "addDanger";

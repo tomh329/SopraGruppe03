@@ -77,7 +77,6 @@
 <!-- Prozesstabelle -->
 
 
-
 <!--<p>
     <input type="button" value="Create PDF" id="btPrint" onclick="createPDF()" />
 </p>-->
@@ -91,6 +90,7 @@
             </button>
    </div>
 </div>
+
 
 <!--<form class="createButton" th:action="@{/addComponentButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Komponent hinzufügen
@@ -111,6 +111,7 @@
                 </form>
             </div>
         </div>
+
         <table id="myTable" class="table">
             <thead class="thead-theme">
             <th class="textContent" scope="col" style="width: 13%;"><i class="fa fa-sort" aria-hidden="true"><span>Prozess ID</span></i></th>
@@ -163,25 +164,26 @@
                                     <span th:text="${component.getComponentName()}"></span>
                                 </div>
                             </div>
-                        </div>
+                        </td>
+                    </div>
+                    <td class="actionButtons">
+                        <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-primary-edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </form>
+                        <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}"
+                              method="post">
+                            <button th:type="submit" class="btn btn-danger-delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
-                </div>
-                <td class="actionButtons">
-                    <form class="edit-delete" th:action="@{/process/{path}(path=${process.processId})}" method="post">
-                        <button th:type="submit" class="btn btn-primary-edit">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                    </form>
-                    <form class="edit-delete" th:action="@{/deleteProcess/{path}(path=${process.processId})}" method="post">
-                        <button th:type="submit" class="btn btn-danger-delete">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-                </td>
 
-            </tr>
-            </tbody>
-        </table>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

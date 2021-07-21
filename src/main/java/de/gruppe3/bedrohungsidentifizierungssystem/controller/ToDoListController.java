@@ -26,21 +26,22 @@ public class ToDoListController {
     public String showComponent(Model model) {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        username = ((UserDetails)principal).getUsername();
+        username = ((UserDetails) principal).getUsername();
 
         model.addAttribute("toDoActions", actionService.findToDoActionsForUser(username));
         model.addAttribute("doneActions", actionService.findDoneActionsForUser(username));
         return "toDoList";
     }
+
     @PostMapping("/toDoChangeStatus/{actionId}")
     public String toDoChangeStatus(@PathVariable String actionId) {
         int id = (Integer.parseInt(actionId));
 
         List<Action> actionList = actionRepository.findAll();
-        for(Action action : actionList){
+        for (Action action : actionList) {
 
-            if(id == action.getActionId()){
-                if(action.getStatus() == false) {
+            if (id == action.getActionId()) {
+                if (action.getStatus() == false) {
                     action.setStatus(true);
                     actionRepository.save(action);
                 } else if (action.getStatus() == true) {

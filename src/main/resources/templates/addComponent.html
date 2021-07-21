@@ -72,7 +72,7 @@
                 <label style="font-size: 14px;"><b>Prozesstitel</b></label>
                 <select name="processId" type = "text">
                     <option style="display:none;"></option>
-                    <option th:each="process : ${processes}"
+                    <option th:each="process : ${processes}" th:selected="${process.processName == processToAdd.processName}"
                             th:if="${process.processId !=0}" th:value="${process.processId}" th:text="${process.processName}"></option>
                 </select>
             </div>

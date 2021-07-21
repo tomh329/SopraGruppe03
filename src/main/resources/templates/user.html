@@ -155,16 +155,27 @@
                     <td class="textContent">
                         <div>
                             <div class="addMore" style="margin-right: 10px">
-                                <form class="edit-delete" th:action="@{/addUserToComponentButton(username=${user.username}, componentId=${user.getComponents()})}" method="post">
+                                <form class="edit-delete" th:action="@{/addUserToComponentButton}" method="post">
+
+                                    <input type="hidden" name="username" th:value="${user.username}"/>
+
                                     <button th:type="submit" class="btn btn-primary-add">
                                         <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
                                     </button>
                                 </form>
                             </div>
-                            <div class="addMore">
-                                <div th:each="component : ${user.getComponents()}">
-                                    <span th:text="${component.getComponentName()}"></span>
-                                </div>
+                            <div th:each="component : ${user.getComponents()}">
+                                <span th:text="${component.getComponentName()}"></span>
+                                <form class="edit-delete"
+                                      th:action="@{/removeComponentAndUserButton}"
+                                      method="post">
+                                    <input type="hidden" name="username" th:value="${user.username}"/>
+                                    <input type="hidden" name="componentId" th:value="${component.componentId}"/>
+                                    <button th:type="submit" class="btn btn-primary-remove">
+                                        <i class="fa fa-minus"
+                                           style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </td>

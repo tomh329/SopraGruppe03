@@ -1,10 +1,7 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,8 +39,6 @@ public class CreateActionController {
         }
 
         actionService.createAction(actionName, actionDueDate, protectionNeeds);
-
-        System.out.println("Success");
 
         return "redirect:/action";
     }

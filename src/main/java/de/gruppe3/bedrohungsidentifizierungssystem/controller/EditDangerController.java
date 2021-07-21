@@ -32,7 +32,7 @@ public class EditDangerController {
                                   @RequestParam(name = "dangerName") String dangerName,
                                   @RequestParam(name = "dangerLevel") String dangerLevel,
                                   @Valid Danger danger, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("danger", danger);
             model.addAttribute("editDanger", dangerService.findProcessWithId(Integer.parseInt(dangerId)));
             return "/editDanger";

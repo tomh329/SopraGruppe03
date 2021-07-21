@@ -136,7 +136,10 @@
                     <td class="textContent">
                         <div>
                             <div class="addMore" style="margin-right: 10px">
-                                <form class="edit-delete" th:action="@{/addRequirementButton(requirementId=${requirement.requirementId}, componentId=${requirement.getComponent()})}" method="post">
+                                <form class="edit-delete" th:action="@{/addRequirementButton}" method="post">
+
+                                    <input type="hidden" name="requirementId" th:value="${requirement.requirementId}"/>
+
                                     <button th:type="submit" class="btn btn-primary-add">
                                         <i class="fa fa-exchange" style="font-size: 1em; vertical-align: middle; margin-bottom: 5px"></i>
                                     </button>
@@ -145,6 +148,14 @@
                             <div class="addMore">
                                 <div style="vertical-align:middle" th:each="component : ${requirement.getComponent()}">
                                     <span th:text="${component.getComponentName()}"></span>
+                                    <form class="edit-delete"
+                                          th:action="@{/removeRequirementButton/{path}(path=${requirement.requirementId})}"
+                                          method="post">
+                                        <button th:type="submit" class="btn btn-primary-remove">
+                                            <i class="fa fa-minus"
+                                               style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
