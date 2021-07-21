@@ -194,7 +194,204 @@ public class DashboardController {
                     dangerService.saveDanger(danger);
                 }
             }
+
+            if(requirement.getRequirementId() == 7){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 3){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    if(danger.getDangerId() == 6){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 8){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 2){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 9){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 2){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 10){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 11){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 12){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 3){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 13){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 14){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 5){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 15){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 16){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 3){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 18){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 1){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    if(danger.getDangerId() == 4){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 19){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 1){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    if(danger.getDangerId() == 2){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+            if(requirement.getRequirementId() == 20){
+                for(Danger danger : dangerList){
+
+                    if(danger.getDangerId() == 1){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    if(danger.getDangerId() == 3){
+
+                        requirement.getDangers().add(danger);
+                        danger.getRequirements().add(requirement);
+                    }
+                    requirementService.saveRequirement(requirement);
+                    dangerService.saveDanger(danger);
+                }
+            }
+
+
         }
+
 
         return "dashboard";
     }

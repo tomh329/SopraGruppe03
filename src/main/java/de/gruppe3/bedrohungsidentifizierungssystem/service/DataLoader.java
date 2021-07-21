@@ -165,8 +165,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Requirement reqApp3_6_2 = new Requirement("Absicherung von dynamischen DNS-Updates");
         Requirement reqApp3_6_3 = new Requirement("Überwachung von DNS-Server");
 
-        Requirement testReq1 = new Requirement("testReq1");
-
         Requirement app_1_1_A2 = new Requirement("APP.1.1.A2 Einschränken von Aktiven Inhalten");
         //G 0.19 G 0.22 G. 039
         Requirement app_1_1_A6 = new Requirement("APP.1.1.A6 Testen neuer Versionen von Office-Produkten");
@@ -181,6 +179,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         //G 0.14 G0.16 G 0.17 G 0.19
         Requirement app_1_4_A12 = new Requirement("APP.1.4.A12 Sichere Deinstallation von Apps");
         //G 0.14 G 0.15 G 0.16 G 0.17
+
+        Requirement testReq1 = new Requirement("testReq1");
+
 
         //example danger
         Danger spionage = new Danger("Spionage", 3);
