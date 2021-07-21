@@ -39,12 +39,12 @@ public class CreateUserController {
                          @RequestParam(name = "lastname") String lastname,
                          @RequestParam(name = "roleId") int roleId,
                          @Valid User user, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("roles", roleService.findAllRoles());
             return "/createUser";
         }
-        if(userService.findUserWithName(username) != null) {
+        if (userService.findUserWithName(username) != null) {
             return "redirect:user";
         }
         userService.createUser(username, bCryptPasswordEncoder.encode(password), firstname, lastname, roleId);

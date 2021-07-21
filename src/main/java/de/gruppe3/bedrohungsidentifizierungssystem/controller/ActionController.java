@@ -3,7 +3,6 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ActionRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ActionService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,9 +43,8 @@ public class ActionController {
 
     @PostMapping("/deleteAction/{actionId}")
     public String deleteAction(@PathVariable String actionId) {
-        System.out.println(
-                actionService.deleteAction(Integer.parseInt(actionId))
-        );
+
+        actionService.deleteAction(Integer.parseInt(actionId));
         return "redirect:/action";
     }
 

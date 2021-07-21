@@ -29,7 +29,7 @@ public class CreateDangerController {
     public String create(@RequestParam(name = "dangerName") String dangerName,
                          @RequestParam(name = "dangerLevel") int dangerLevel,
                          @Valid Danger danger, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("danger", danger);
             return "/createDanger";
         }
