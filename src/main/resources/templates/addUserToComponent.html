@@ -79,7 +79,7 @@
                 <label style="font-size: 14px;"><b>Komponenttitel</b></label>
                 <select name="componentId" type = "text">
                     <option style="display:none;"></option>
-                    <option th:each="component : ${components}"
+                    <option th:each="component : ${components}" th:selected="${component.componentName}"
                             th:value="${component.componentId}" th:text="${component.componentName}"></option>
                 </select>
             </div>

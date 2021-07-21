@@ -79,7 +79,7 @@
                 <label style="font-size: 14px;"><b>Anforderungstitel</b></label>
                 <select name="requirementId" type = "text">
                     <option style="display:none;"></option>
-                    <option th:each="requirement : ${requirements}"
+                    <option th:each="requirement : ${requirements}" th:selected="${requirement.requirementName}"
                             th:value="${requirement.requirementId}" th:text="${requirement.requirementName}"></option>
                 </select>
             </div>

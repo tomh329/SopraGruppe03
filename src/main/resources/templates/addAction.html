@@ -80,7 +80,7 @@
         <label style="font-size: 14px;"><b>Maßnahmentitel</b></label>
         <select name="actionId" type = "text">
           <option style="display:none;"></option>
-          <option th:each="action : ${actions}"
+          <option th:each="action : ${actions}" th:selected="${action.actionName}"
                   th:value="${action.actionId}" th:text="${action.actionName}"></option>
         </select>
       </div>
