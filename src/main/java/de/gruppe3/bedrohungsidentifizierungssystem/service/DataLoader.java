@@ -122,9 +122,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process orpOrgPers = new Process("ORP: Organisation und Personal", 3);
         Process app3 = new Process("APP.3 Netzbasierte Dienste", 3);
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess1 = new Process("Test1", 3);
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess2 = new Process("Test2", 1);
-        testProcess1.setProcessName("ÄnderungsTest");
+
 //        testProcess1.setProcessId(0);
         Process app1 = new Process("APP.1 Client-Anwendungen", 2);
 
@@ -140,10 +138,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.2 Webserver", 2, "2020-03-21", 2);
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app3_6
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.3.6 DNS-Server", 2, "2021-01-26", 4);
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent1
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp1", 2, "2021-03-23", 5);
-        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
-                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 4, "2021-04-11", 3);
+
 
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_1
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.1 Office Produkte", 3, "2020-03-07", 7);
@@ -186,7 +181,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Requirement app_1_4_A12 = new Requirement("Sichere Deinstallation von Apps");
         //G 0.14 G 0.15 G 0.16 G 0.17
 
-        Requirement testReq1 = new Requirement("testReq1");
 
 
         //example danger
@@ -199,14 +193,21 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Danger missbrauchPersDaten = new Danger("Missbrauch personenbezogener Daten", 6);
         Danger verstoss = new Danger("Verstoß gegen Gesetzte/Regeln", 4);
 
-        Danger testDanger1 = new Danger("testDanger1", 3);
 
         //example action
-        Action testAction1 = new Action("testMaßnahme1", "2021-08-17", 3);
-        Action testAction2 = new Action("testMaßnahme2", "2021-10-23", 1);
-        Action testAction3 = new Action("testMaßnahme3", "2020-10-23", 1);
-        Action testAction4 = new Action("testMaßnahme4", "2021-07-23", 1);
-        testAction2.setStatus(true);
+        Action testAction1 = new Action("Update durchführen", "2021-08-17", 3);
+        Action testAction2 = new Action("IZ-Workshop vorbereiten", "2021-10-23", 1);
+        Action trafficRed = new Action("Bewerbungen durchgehen", "2020-10-23", 1);
+        Action trafficYellow = new Action("Server warten", "2021-07-23", 1);
+        testAction1.setStatus(true);
+
+        testAction1.setComponent(app1_1);
+        testAction2.setComponent(compPers);
+        trafficRed.setComponent(compPers);
+        trafficYellow.setComponent(app3_1);
+
+
+
 
         /*
         ether you start with a component and add that to a process you pick
@@ -224,8 +225,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         app3.addComponent(app3_1);
         app3.addComponent(app3_2);
         app3.addComponent(app3_6);
-        testProcess1.addComponent(testComponent1);
-        testProcess1.addComponent(testComponent2);
+
 
         compOrg.addRequirement(reqOrg11);
         compOrg.addRequirement(reqOrg12);
@@ -247,10 +247,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         app3_6.addRequirement(reqApp3_6_1);
         app3_6.addRequirement(reqApp3_6_2);
         app3_6.addRequirement(reqApp3_6_3);
-        testComponent1.addRequirement(testReq1);
 
-        testAction1.setComponent(testComponent1);
-        testAction2.setComponent(testComponent1);
+
 
 //        reqOrg11.getDangers().add(spionage);
 //        reqOrg11.getDangers().add(fehlplanung);
@@ -283,8 +281,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         processService.saveProcess(orpOrgPers);
         processService.saveProcess(app1);
         processService.saveProcess(app3);
-        processService.saveProcess(testProcess1);
-        processService.saveProcess(testProcess2);
+
 
         componentService.saveComponent(compOrg);
         componentService.saveComponent(compPers);
@@ -294,8 +291,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         componentService.saveComponent(app3_1);
         componentService.saveComponent(app3_2);
         componentService.saveComponent(app3_6);
-        componentService.saveComponent(testComponent1);
-        componentService.saveComponent(testComponent2);
+
 
         requirementService.saveRequirement(reqOrg11);
         requirementService.saveRequirement(reqOrg12);
@@ -317,7 +313,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         requirementService.saveRequirement(reqApp3_6_1);
         requirementService.saveRequirement(reqApp3_6_2);
         requirementService.saveRequirement(reqApp3_6_3);
-        requirementService.saveRequirement(testReq1);
 
         dangerService.saveDanger(spionage);
         dangerService.saveDanger(diebstahl);
@@ -327,11 +322,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         dangerService.saveDanger(identitaetsdieebstahl);
         dangerService.saveDanger(missbrauchPersDaten);
         dangerService.saveDanger(verstoss);
-        dangerService.saveDanger(testDanger1);
 
         actionService.saveAction(testAction1);
         actionService.saveAction(testAction2);
-        actionService.saveAction(testAction3);
-        actionService.saveAction(testAction4);
+        actionService.saveAction(trafficRed);
+        actionService.saveAction(trafficYellow);
     }
 }

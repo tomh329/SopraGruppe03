@@ -1,11 +1,10 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Action;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +41,10 @@ public class DashboardController {
     RequirementRepository requirementRepository;
     @Autowired
     RequirementService requirementService;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    ComponentRepository componentRepository;
 
 
     @GetMapping("/dashboard")
@@ -124,6 +127,48 @@ public class DashboardController {
 
         List<Danger> dangerList = dangerRepository.findAll();
         List<Requirement> requirementList = requirementRepository.findAll();
+        List<User> userList = userRepository.findAll();
+        List<Component> componentList = componentRepository.findAll();
+
+        for(User user : userList){
+            if(user.getUsername().equals("Max")){
+                for(Component component : componentList){
+
+                    if(component.getComponentId() == 2){
+
+                        user.getComponents().add(component);
+                        component.getUsers().add(user);
+                    }
+                    if(component.getComponentId() == 3){
+
+                        user.getComponents().add(component);
+                        component.getUsers().add(user);
+                    }
+                    if(component.getComponentId() == 6){
+
+                        user.getComponents().add(component);
+                        component.getUsers().add(user);
+                    }
+                    userService.saveUser(user);
+                    componentService.saveComponent(component);
+                }
+            }
+
+            if(user.getUsername().equals("Paula")){
+                for(Component component : componentList){
+
+                    if(component.getComponentId() == 6){
+
+                        user.getComponents().add(component);
+                        component.getUsers().add(user);
+                    }
+
+                    userService.saveUser(user);
+                    componentService.saveComponent(component);
+                }
+            }
+        }
+
 
         for (Requirement requirement : requirementList) {
 
