@@ -90,11 +90,11 @@
                 <label style="font-size: 14px;"><b>Gefahrenlevel</b></label>
                 <select name="dangerLevel" type = "text" th:value="${editDanger.getDangerLevel()}">
                     <option th:value="${editDanger.getDangerLevel()}"></option>
-                    <option value="1">1</option>
+                    <option value="1">1 (Niedrig)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 (Hoch)</option>
                 </select>
                 <p th:if="${#fields.hasErrors('danger.dangerLevel')}" th:errors="*{danger.dangerLevel}" class="text-danger"></p>
             </div>

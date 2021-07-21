@@ -86,11 +86,11 @@
                 <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
                 <select name="protectionNeeds" type = "text" th:value="${editAction.getProtectionNeeds()}">
                     <option th:value="${editAction.getProtectionNeeds()}"></option>
-                    <option value="1">1</option>
+                    <option value="1">1 (Niedrig)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 (Hoch)</option>
                 </select>
                 <p th:if="${#fields.hasErrors('action.protectionNeeds')}" th:errors="*{action.protectionNeeds}" class="text-danger"></p>
             </div>
