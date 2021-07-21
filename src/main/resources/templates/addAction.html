@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Add Requirement</title>
+
+  <meta content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/createForm.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body style="align-content: center">
+
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/toDoList}">To-Do Liste</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Tabellen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/process}">Prozess</a>
+          <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
+          <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
+          <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
+          <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
+          <a class="dropdown-item" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{/user}">Benutzer</a>
+        </div>
+      </li>
+    </ul>
+    <a class="ml-auto mr-1">
+      <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+        <i class="fa fa-user"></i>
+      </a>
+      <form class="log" th:action="@{/logout}" method="post">
+        <button th:type="logout" class="btn btn-danger">Logout</button>
+      </form>
+    </a>
+  </div>
+</nav>
+
+<div class="createEntity">
+  <h3 style="font-size: 20px; font-weight: 700; margin-top: 20px">Einem Komponent eine Maßnahme zuweisen</h3>
+  <div class="formContent">
+    <form th:action="@{/addAction}" method="post">
+      <div class="eachLine">
+        <label style="font-size: 14px;"><b>Komponenttitel</b></label>
+        <select name="componentId" type = "text">
+          <option style="display:none;"></option>
+          <option th:each="component : ${components}" th:selected="${component.componentName == componentToAdd.componentName}"
+                  th:value="${component.componentId}" th:text="${component.componentName}"></option>
+        </select>
+      </div>
+      <div class="eachLine">
+        <label style="font-size: 14px;"><b>Maßnahmentitel</b></label>
+        <select name="actionId" type = "text">
+          <option style="display:none;"></option>
+          <option th:each="action : ${actions}" th:selected="${action.actionName}"
+                  th:value="${action.actionId}" th:text="${action.actionName}"></option>
+        </select>
+      </div>
+      <div class="formButtons">
+
+        <button class="btn btn-primary-reset" type="reset" value="Reset"/>Reset</button>
+        <button class="btn btn-primary-save" type="submit" value="Speichern"/>Speichern</button>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

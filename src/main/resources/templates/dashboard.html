@@ -1,50 +1,457 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<html xmlns:th="http://www.thymeleaf.org" lang="de"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Dashboard</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Chartscripts -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">BIS</a>
+
+<nav class="navbar navbar-expand-sm">
+    <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Nichts</a>
+                <a class="nav-link" th:href="@{/toDoList}">To-Do Liste</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Tabellen
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:href="@{/process}">Prozess</a>
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
-                    <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
+                    <a class="dropdown-item" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
         </ul>
+        <a class="ml-auto mr-1">
+            <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+                <i class="fa fa-user"></i>
+            </a>
+            <form class="log" th:action="@{/logout}" method="post">
+                <button th:type="logout" class="btn btn-danger">Logout</button>
+            </form>
+        </a>
     </div>
 </nav>
-<h1>Dashboard</h1>
-<p>Hier könnte Ihre Werbung stehen.</p>
-<p>Und hier kommen später Statistiken oder ähnliches hin.</p>
+
+
+<div style="text-align: center; margin-top: 30px; padding: 1px">
+    <h1>Dashboard</h1>
+    <p>Willkommen im Bedrohungsidentifizierungssystem, <span sec:authentication="name"></span>.</br>
+    <form class="log" th:action="@{/setup}" method="post">
+    <div>Mit einem Klick auf diesen Button werden Testdaten geladen:</div><button th:type="submit" class="btn btn-primary" id="myBtn" style="margin-bottom: 30px"> Setup </button>
+    </form>
+    </p>
+</div>
+<div class="container">
+
+    <div class="row text-left">
+        <div class="col">
+            <h5>Persönliche Statistik:</h5>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <div class="counter">
+                <i class="fa fa-tasks fa-2x"></i>
+                    <h2 class="timer count-title count-number" th:attr="data-to=${toDoActions}" data-speed="1500"></h2>
+                <p class="count-text ">Zu erledigende Maßnahmen</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="counter">
+                <i class="fa fa-tasks fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${doneActions}" data-speed="1500"></h2>
+                <p class="count-text ">Erledigte Maßnahmen</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="counter">
+                <i class="fa fa-microchip fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${countComponents}" data-speed="1500"></h2>
+                <p class="count-text ">Gesamtanzahl Komponenten</p>
+            </div></div>
+        <div class="col">
+            <div class="counter">
+                <i class="fa fa-cog fa-2x"></i>
+                <h2 class="timer count-title count-number" th:attr="data-to=${countProcesses}" data-speed="1500"></h2>
+                <p class="count-text ">Gesamtanzahl Prozesse</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <h5>TOP 6 Benutzer nach erfüllten Maßnahmen:</h5>
+            <div id="chartdiv"; style="alignment: bottom; margin: auto"></div>
+        </div>
+        <div class="col-sm" style="align-content: center">
+            <div class="col" >
+                <h5>Maßnahmenampel:</h5>
+                <div id="traffic-light">
+                    <div th:if="${trafficLightNumber==0}">
+                        <div id="checked1"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==0}">
+                        <div id="color1"></div>
+                    </div>
+                    <div th:if="${trafficLightNumber==1}">
+                        <div id="checked2"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==1}">
+                        <div id="color2"></div>
+                    </div>
+                    <div th:if="${trafficLightNumber==2}">
+                        <div id="checked3"></div>
+                    </div>
+                    <div th:unless="${trafficLightNumber==2}">
+                        <div id="color3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >
+                <p>Rot = Bei mindestens einer unerledigten Maßnahme</br> ist die Frist überschritten. </p>
+                <p>Gelb = Bei mindestens einer unerledigten Maßnahme </br> ist die Frist in weniger als 7 Tagen fällig.</p>
+                <p>Grün = Bei keiner unerledigten Maßnahme endet die Frist </br> in weniger als 7 Tagen oder ist die Frist überschritten. Alles super! :)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script th:inline="javascript">
+    am4core.ready(function() {
+
+// Themes begin
+        am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+        /*<![CDATA[*/
+
+        var usernameList = /*[[${usernameList}]]*/ '';
+        var userDoneTaskList = /*[[${userDoneTaskList}]]*/ '';
+
+        /*]]>*/
+
+// Add data
+
+
+        switch (usernameList.length) {
+            case 0:
+                chart.data = {
+
+                }
+                break;
+            case 1:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 2:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 3:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 4:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 5:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()
+                }];
+                break;
+            case 6:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[5],
+                    "points":userDoneTaskList[5],
+                    "color":chart.colors.next()
+                }];
+                break;
+            default:
+                chart.data = [{
+
+                    "name":usernameList[0],
+                    "points":userDoneTaskList[0],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[1],
+                    "points":userDoneTaskList[1],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[2],
+                    "points":userDoneTaskList[2],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[3],
+                    "points":userDoneTaskList[3],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[4],
+                    "points":userDoneTaskList[4],
+                    "color":chart.colors.next()},{
+                    "name":usernameList[5],
+                    "points":userDoneTaskList[5],
+                    "color":chart.colors.next()
+                }];
+                break;
+        }
+
+
+
+
+// Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "name";
+        categoryAxis.renderer.grid.template.disabled = true;
+        categoryAxis.renderer.minGridDistance = 30;
+        categoryAxis.renderer.inside = true;
+        categoryAxis.renderer.labels.template.fill = am4core.color("#fff");
+        categoryAxis.renderer.labels.template.fontSize = 20;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.grid.template.strokeDasharray = "4,4";
+        valueAxis.renderer.labels.template.disabled = true;
+        valueAxis.min = 0;
+
+// Do not crop bullets
+        chart.maskBullets = false;
+
+// Remove padding
+        chart.paddingBottom = 0;
+
+// Create series
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "points";
+        series.dataFields.categoryX = "name";
+        series.columns.template.propertyFields.fill = "color";
+        series.columns.template.propertyFields.stroke = "color";
+        series.columns.template.column.cornerRadiusTopLeft = 15;
+        series.columns.template.column.cornerRadiusTopRight = 15;
+        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/b]";
+
+// Add bullets
+        var bullet = series.bullets.push(new am4charts.Bullet());
+        var image = bullet.createChild(am4core.Image);
+        image.horizontalCenter = "middle";
+        image.verticalCenter = "bottom";
+        image.dy = 20;
+        image.y = am4core.percent(100);
+        image.propertyFields.href = "bullet";
+        image.tooltipText = series.columns.template.tooltipText;
+        image.propertyFields.fill = "color";
+        image.filters.push(new am4core.DropShadowFilter());
+
+    }); // end am4core.ready()
+</script>
+<!-- Chart code -->
+
+    <script>
+        (function ($) {
+            $.fn.countTo = function (options) {
+                options = options || {};
+
+                return $(this).each(function () {
+                    // set options for current element
+                    var settings = $.extend({}, $.fn.countTo.defaults, {
+                        from:            $(this).data('from'),
+                        to:              $(this).data('to'),
+                        speed:           $(this).data('speed'),
+                        refreshInterval: $(this).data('refresh-interval'),
+                        decimals:        $(this).data('decimals')
+                    }, options);
+
+                    // how many times to update the value, and how much to increment the value on each update
+                    var loops = Math.ceil(settings.speed / settings.refreshInterval),
+                        increment = (settings.to - settings.from) / loops;
+
+                    // references & variables that will change with each update
+                    var self = this,
+                        $self = $(this),
+                        loopCount = 0,
+                        value = settings.from,
+                        data = $self.data('countTo') || {};
+
+                    $self.data('countTo', data);
+
+                    // if an existing interval can be found, clear it first
+                    if (data.interval) {
+                        clearInterval(data.interval);
+                    }
+                    data.interval = setInterval(updateTimer, settings.refreshInterval);
+
+                    // initialize the element with the starting value
+                    render(value);
+
+                    function updateTimer() {
+                        value += increment;
+                        loopCount++;
+
+                        render(value);
+
+                        if (typeof(settings.onUpdate) == 'function') {
+                            settings.onUpdate.call(self, value);
+                        }
+
+                        if (loopCount >= loops) {
+                            // remove the interval
+                            $self.removeData('countTo');
+                            clearInterval(data.interval);
+                            value = settings.to;
+
+                            if (typeof(settings.onComplete) == 'function') {
+                                settings.onComplete.call(self, value);
+                            }
+                        }
+                    }
+
+                    function render(value) {
+                        var formattedValue = settings.formatter.call(self, value, settings);
+                        $self.html(formattedValue);
+                    }
+                });
+            };
+
+            $.fn.countTo.defaults = {
+                from: 0,               // the number the element should start at
+                to: 0,                 // the number the element should end at
+                speed: 1000,           // how long it should take to count between the target numbers
+                refreshInterval: 100,  // how often the element should be updated
+                decimals: 0,           // the number of decimal places to show
+                formatter: formatter,  // handler for formatting the value before rendering
+                onUpdate: null,        // callback method for every time the element is updated
+                onComplete: null       // callback method for when the element finishes updating
+            };
+
+            function formatter(value, settings) {
+                return value.toFixed(settings.decimals);
+            }
+        }(jQuery));
+
+        jQuery(function ($) {
+            // custom formatting example
+            $('.count-number').data('countToOptions', {
+                formatter: function (value, options) {
+                    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                }
+            });
+
+            // start all the timers
+            $('.timer').each(count);
+
+            function count(options) {
+                var $this = $(this);
+                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                $this.countTo(options);
+            }
+        });
+    </script>
+
 
 
 </body>

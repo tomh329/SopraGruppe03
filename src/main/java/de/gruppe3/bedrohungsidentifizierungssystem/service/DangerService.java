@@ -1,10 +1,9 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.service;
 
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
+import de.gruppe3.bedrohungsidentifizierungssystem.entity.*;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Severity;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
+import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +18,10 @@ public class DangerService {
 
     @Autowired
     private DangerRepository dangerRepository;
+    @Autowired
+    RequirementRepository requirementRepository;
+    @Autowired
+    DangerService dangerService;
 
 
     public Danger saveDanger(Danger danger) {
@@ -27,9 +30,8 @@ public class DangerService {
     }
 
 
+    public Danger createDanger(String dangerName, int dangerLevel) {
 
-    public Danger createDanger(String dangerName, int dangerLevel){
-      
         Danger danger = new Danger(dangerName, dangerLevel);
         return dangerRepository.save(danger);
     }
@@ -39,8 +41,8 @@ public class DangerService {
 
         List<Danger> dangerList = findAllDangers();
 
-        for(Danger danger : dangerList){
-            if(dangerId == danger.getDangerId()){
+        for (Danger danger : dangerList) {
+            if (dangerId == danger.getDangerId()) {
                 danger.setDangerName(dangerName);
                 danger.setDangerLevel(dangerLevel);
                 dangerRepository.save(danger);
@@ -48,16 +50,35 @@ public class DangerService {
         }
     }
 
-    public void deleteDanger(Danger danger){
+
+    public void removeRequirement(int requirementId, int dangerId) {
+
+        Requirement requirement = requirementRepository.findByRequirementId(requirementId);
+        Danger danger = dangerRepository.findByDangerId(dangerId);
+
+        requirement.getDangers().remove(danger);
+        danger.getRequirements().remove(requirement);
+
+        requirementRepository.save(requirement);
+        dangerRepository.save(danger);
+    }
+
+    public void deleteDanger(Danger danger) {
         dangerRepository.delete(danger);
     }
 
-    public boolean deleteDanger(int dangerId){
+    public boolean deleteDanger(int dangerId) {
 
         List<Danger> dangerList = dangerRepository.findAll();
 
-        for(Danger danger : dangerList){
-            if(dangerId == danger.getDangerId()){
+        for (Danger danger : dangerList) {
+            if (dangerId == danger.getDangerId()) {
+
+                List<Requirement> requirementList = danger.getRequirements();
+                for (Requirement requirement : requirementList) {
+                    requirement.getDangers().remove(danger);
+                }
+
                 dangerRepository.delete(danger);
                 return true;
             }

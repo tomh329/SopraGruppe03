@@ -4,6 +4,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
+import org.apache.tomcat.jni.Proc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class ProcessService {
 
         List<Process> processList = processRepository.findAll();
 
-        for(Process process : processList){
-            if(processId == process.getProcessId()){
+        for (Process process : processList) {
+            if (processId == process.getProcessId()) {
                 process.setProcessName(processName);
                 process.setProtectionLevel(protectionLevel);
                 processRepository.save(process);
@@ -32,7 +33,17 @@ public class ProcessService {
         }
     }
 
+    public void removeComponent(int componentId) {
 
+        Component component = componentRepository.findByComponentId(componentId);
+        Process process = component.getProcess();
+
+        component.setProcess(processRepository.findByProcessId(0));
+        process.getComponents().remove(component);
+
+        componentRepository.save(component);
+        processRepository.save(process);
+    }
 
 
     public Process saveProcess(Process process) {
@@ -41,14 +52,12 @@ public class ProcessService {
     }
 
 
-
-
-    public Process createProcess(String processName, int protectionLevel, int componentId){
+    public Process createProcess(String processName, int protectionLevel, int componentId) {
 
         Process process = new Process(processName, protectionLevel);
         List<Component> compList = componentRepository.findAll();
 
-        for(Component component : compList){
+        for (Component component : compList) {
 
             if (componentId == component.getComponentId()) {
 
@@ -60,8 +69,7 @@ public class ProcessService {
     }
 
 
-
-    public Process createProcess(String processName, int protectionLevel){
+    public Process createProcess(String processName, int protectionLevel) {
 
         Process process = new Process(processName, protectionLevel);
         List<Component> compList = componentRepository.findAll();
@@ -71,15 +79,14 @@ public class ProcessService {
     }
 
 
-
-    public boolean deleteProcess(int processId){
+    public boolean deleteProcess(int processId) {
 
         List<Process> processList = processRepository.findAll();
 
-        for(Process process : processList){
-            if(processId == process.getProcessId()){
+        for (Process process : processList) {
+            if (processId == process.getProcessId()) {
 
-                for(Component component : process.getComponents()){
+                for (Component component : process.getComponents()) {
                     component.setProcess(null);
                 }
                 processRepository.delete(process);
@@ -89,8 +96,8 @@ public class ProcessService {
         return false;
     }
 
-  
-    public void deleteProcess(Process process){
+
+    public void deleteProcess(Process process) {
 
         processRepository.delete(process);
     }

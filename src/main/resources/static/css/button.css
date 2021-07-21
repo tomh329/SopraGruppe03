@@ -1,0 +1,86 @@
+.btn.btn-primary-edit {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    margin: 1.5px;
+}
+.btn.btn-danger-delete{
+    background-color: Red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    margin: 1.5px;
+}
+.btn.btn-primary-newAdd {
+    border-radius: 17px;
+    background-color: #35b8b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+
+}
+.btn.btn-primary-add {
+    border-radius: 17px;
+    border: none;
+    background-color: #35b8b4;
+    height: 30px;
+    width: 30px;
+    color: white;
+    padding: 0px;
+}
+.btn.btn-primary-remove {
+    border-radius: 17px;
+    border: none;
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    color: red;
+    padding: 0px;
+}
+.btn.btn-primary-done {
+    background-color: #35b8b4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+}
+.btn.btn-primary-print{
+    background-color: #35b8b4;
+    border-radius: 24px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 1.5px;
+}
+
+/* Darker background on mouse-over */
+.btn.btn-primary:hover {
+    background-color: RoyalBlue;
+}
+.btn.btn-primary-edit:hover {
+    background-color: RoyalBlue;
+}
+.btn.btn-danger-delete:hover {
+    background-color: DarkRed;
+}
+.btn.btn-primary-newAdd:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-add:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-remove:hover {
+    color: DarkRed;
+}
+.btn.btn-primary-done:hover {
+    background-color: #298f8a;
+}
+.btn.btn-primary-print:hover {
+    background-color: #298f8a;
+}

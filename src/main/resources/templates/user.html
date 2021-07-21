@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,108 +12,200 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/search.css">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>User</title>
 
-    <style>
-        .userTable {
-            margin: 100px;
-            text-align: center;
-        }
-
-        .edit-delete {
-            display: inline;
-        }
-        .createButton {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">BIS</a>
+
+<nav class="navbar navbar-expand-sm">
+    <a class="navbar-brand" th:href="@{/dashboard}">BIS</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Nichts <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Nichts</a>
+                <a class="nav-link" th:href="@{/toDoList}">To-Do Liste</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Tabellen
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:href="@{/process}">Prozess</a>
                     <a class="dropdown-item" th:href="@{/component}">Komponenten</a>
                     <a class="dropdown-item" th:href="@{/requirement}">Anforderungen</a>
                     <a class="dropdown-item" th:href="@{/danger}">Gefahren</a>
-                    <a class="dropdown-item" href="#">Maßnahmen</a>
-                    <a class="dropdown-item" th:href="@{/user}">Benutzer</a>
+                    <a class="dropdown-item" th:href="@{/action}">Maßnahmen</a>
+                    <a class="dropdown-item" sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{/user}">Benutzer</a>
                 </div>
             </li>
         </ul>
+        <a class="ml-auto mr-1">
+            <a th:href="@{/newPassword}" style="margin-right: 30px; font-size: 1.33em">
+                <i class="fa fa-user"></i>
+            </a>
+            <form class="log" th:action="@{/logout}" method="post">
+                <button th:type="logout" class="btn btn-danger">Logout</button>
+            </form>
+        </a>
     </div>
 </nav>
 
-<h2>Benutzertabelle</h2>
+
 <!-- Benutzertabelle -->
-<form class="createButton" th:action="@{/createUserButton}" method="post">
-    <button th:type="submit" class="btn btn-primary"> Neuen Benutzer erstellen
-    </button>
-</form>
-<form class="createButton" th:action="@{/addUserToComponentButton}" method="post">
+
+<!--<form class="createButton" th:action="@{/addUserToComponentButton}" method="post">
     <button th:type="submit" class="btn btn-primary"> Benutzer Komponent zuweisen
     </button>
-</form>
-<div class="userTable">
-    <table class="table">
-        <thead class="thead-theme">
-        <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Vorname</th>
-            <th scope="col">Nachname</th>
-            <th scope="col">Rolle</th>
-            <th scope="col">Komponenten ID</th>
-            <th scope="col">Aktionen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.username}"/>
-            <td th:text="${user.firstname}"/>
-            <td th:text="${user.lastname}"/>
-            <td>
-                <p th:each="role : ${user.getRole()}">
-                    <span th:text="${role.getRole()}"/>
-                </p>
-            </td>
-            <td>
-                <p th:each="component : ${user.getComponents()}">
-                    <span th:text="${component.getComponentId()}"></span>
-                </p>
-            </td>
-            <td>
-                <form class="edit-delete" th:action="@{/user/{path}(path=${user.username})}" method="post">
-                    <button th:type="submit" class="btn btn-primary"> Bearbeiten
-                    </button>
-                </form>
-                <form class="edit-delete" th:action="@{/deleteUser/{path}(path=${user.username})}" method="post">
-                    <button th:type="submit" class="btn btn-primary" style="background: red"> Löschen
-                    </button>
-                </form>
-            </td>
+</form>-->
+<div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 30px;">
+    <div style="display: inline-block; vertical-align: middle;">
 
-        </tr>
-        </tbody>
-    </table>
+        <input type="search" class="light-table-filter" data-table="table" placeholder="Suche">
+        <button type="button" class="btn btn-primary-print" id="btPrint" onclick="createPDF()" style="margin-right: 50px;">
+            <i class="fa fa-print"></i>
+        </button>
+    </div>
 </div>
+
+<div class="wrapper">
+    <div class="contentTable">
+        <div id="pdfBox">
+        <div class="topLine">
+            <div>
+                <h2 style="font-weight: 700; font-size: 20px; text-align: left">Benutzertabelle</h2>
+            </div>
+            <div>
+                <form class="createButton" th:action="@{/createUserButton}" method="post">
+                    <button th:type="submit" class="btn btn-primary-newAdd" style="width: 170px">
+                        <i class="fa fa-plus"><span style="font-weight: 500">Neuer Benutzer</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table id="myTable" class="table">
+            <thead class="thead-theme">
+            <tr>
+                <th class="textContent" scope="col" ><i class="fa fa-sort" aria-hidden="true"><span>Username</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Vorname</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Nachname</span></i></th>
+                <th class="textContent" scope="col"><i class="fa fa-sort" aria-hidden="true"><span>Rolle</span></i></th>
+                <th class="textContent" scope="col" style="width: 30%"><i class="fa fa-sort" aria-hidden="true"><span>Komponenten</span></i></th>
+                <th class="actionButtons" scope="col">Aktionen</th>
+            </tr>
+            </thead>
+
+            <thead>
+            <tr>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputZero" onkeyup="myFunctionZero()">
+                    </div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputOne" onkeyup="myFunctionOne()">
+                    </div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputTwo" onkeyup="myFunctionTwo()"></div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputThree" onkeyup="myFunctionThree()"></div>
+                </th>
+                <th style="background-color: #f7f9fa;">
+                    <div style="position: relative"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input class="searchBox" type="text" id="inputFour" onkeyup="myFunctionFour()">
+                    </div>
+                </th>
+                <th style="background-color: #f7f9fa;"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="user : ${users}">
+                <div class="scrollable">
+                    <td class="textContent" th:text="${user.username}"/>
+                    <td class="textContent" th:text="${user.firstname}"/>
+                    <td class="textContent" th:text="${user.lastname}"/>
+                    <td class="textContent">
+                        <div th:each="role : ${user.getRole()}">
+                            <span th:text="${role.getRole()}"/>
+                        </div>
+                    </td>
+                    <td class="textContent">
+                        <div>
+                            <div class="addMore" style="margin-right: 10px">
+                                <form class="edit-delete" th:action="@{/addUserToComponentButton}" method="post">
+
+                                    <input type="hidden" name="username" th:value="${user.username}"/>
+
+                                    <button th:type="submit" class="btn btn-primary-add">
+                                        <i class="fa fa-plus" style="font-size: .75em; vertical-align: middle; margin-bottom: 3px"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="addMore">
+                                <div style="vertical-align:middle" th:each="component : ${user.getComponents()}">
+                                    <span th:text="${component.getComponentName()}"></span>
+                                    <form class="edit-delete"
+                                          th:action="@{/removeComponentAndUserButton}"
+                                          method="post">
+                                        <input type="hidden" name="username" th:value="${user.username}"/>
+                                        <input type="hidden" name="componentId" th:value="${component.componentId}"/>
+                                        <button th:type="submit" class="btn btn-primary-remove">
+                                            <i class="fa fa-minus"
+                                               style="font-size: .75em; vertical-align: middle; margin-bottom: 10px"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </div>
+                <td class="actionButtons">
+                    <form class="edit-delete" th:action="@{/user/{path}(path=${user.username})}" method="post">
+                        <button th:type="submit" class="btn btn-primary-edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                    <form class="edit-delete" th:action="@{/deleteUser/{path}(path=${user.username})}" method="post">
+                        <button th:type="submit" class="btn btn-danger-delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/sort.js"></script>
+<script type="text/javascript" src="js/searchWholeTable.js"></script>
+<script type="text/javascript" src="js/exportTable.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
+
 </body>
 </html>

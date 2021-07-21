@@ -18,7 +18,7 @@ public class RoleService {
         return roleRepository.save(role);
     }
 
-    public List<Role> findAllProcesses() {
+    public List<Role> findAllRoles() {
         return roleRepository.findAll();
     }
 }

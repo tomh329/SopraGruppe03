@@ -18,8 +18,9 @@ import javax.validation.Valid;
 public class EditProcessController {
 
     @GetMapping("/editProcess")
-    public String showEditProcess(Process process, BindingResult bindingResult, Model model) {
-        model.addAttribute("editProcess",process);
+    public String showEditProcess(Process editProcess, Process process, BindingResult bindingResult, Model model) {
+        model.addAttribute("editProcess", editProcess);
+        model.addAttribute("process", process);
         return "editProcess";
     }
 
@@ -33,10 +34,11 @@ public class EditProcessController {
     public String updateProcess(@PathVariable String processId,
                                 @RequestParam(name = "processName") String processName,
                                 @RequestParam(name = "protectionLevel") int protectionLevel,
-                                @Valid Process process, BindingResult bindingResult, Model model){
+                                @Valid Process process, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("editProcess",process);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("editProcess", processService.findProcessWithId(Integer.parseInt(processId)));
+            model.addAttribute("process", process);
             return "/editProcess";
         }
 

@@ -6,6 +6,7 @@ import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepositor
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RoleRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,10 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    
     public User saveUser(User user) {
         return userRepository.save(user);
     }
@@ -36,15 +38,14 @@ public class UserService {
     }
 
 
-
-    public User createUser(String username, String password, String firstname, String lastname, int roleId){
+    public User createUser(String username, String password, String firstname, String lastname, int roleId) {
 
 
         User user = new User(username, password, firstname, lastname);
 
         List<Role> roleList = roleRepository.findAll();
 
-        for(Role role : roleList){
+        for (Role role : roleList) {
 
             if (roleId == role.getRoleId()) {
 
@@ -56,18 +57,16 @@ public class UserService {
     }
 
 
-
-    public boolean deleteUser(String userName){
-
+    public boolean deleteUser(String userName) {
 
 
         User userDelete = findUserWithName(userName);
         List<Component> componentList = componentRepository.findAll();
         List<Component> compOfUserList = userDelete.getComponents();
 
-        for(Component componentOfUser : compOfUserList){
-            for(Component component : componentList){
-                if(component == componentOfUser){
+        for (Component componentOfUser : compOfUserList) {
+            for (Component component : componentList) {
+                if (component == componentOfUser) {
 
                     component.removeUser(userDelete);
                 }
@@ -76,7 +75,7 @@ public class UserService {
 
         compOfUserList.clear();
 
-        if(!userDelete.equals(null)) {
+        if (!userDelete.equals(null)) {
             userRepository.delete(userDelete);
             return true;
         }
@@ -89,13 +88,33 @@ public class UserService {
         editedUser.setFirstname(firstname);
         editedUser.setLastname(lastname);
         List<Role> editedUserRole = roleRepository.findAll();
-        for(Role editedRole : editedUserRole){
-            if(editedRole.getRoleId() == roleId) {
+        for (Role editedRole : editedUserRole) {
+            if (editedRole.getRoleId() == roleId) {
                 editedUser.setRole(editedRole);
             }
         }
 
         userRepository.save(editedUser);
 
+    }
+
+    public void updateUser(User user, String password) {
+
+        user.setPassword(password);
+        userRepository.save(user);
+    }
+
+
+    public void removeComponent(String username, int componentId) {
+
+
+        User user = userRepository.findByUsername(username);
+        Component component = componentRepository.findByComponentId(componentId);
+
+        user.getComponents().remove(component);
+        component.getUsers().remove(user);
+
+        userRepository.save(user);
+        componentRepository.save(component);
     }
 }

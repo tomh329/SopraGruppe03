@@ -6,9 +6,12 @@ import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ProcessRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
+import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +22,11 @@ public class AddComponentController {
 
 
     @GetMapping("/addComponent")
-    public String showAddComponent() {
+    public String showAddComponent(Model model, @ModelAttribute("processToAdd") Process processToAdd) {
+
+        model.addAttribute("processToAdd", processToAdd);
+        model.addAttribute("processes", processService.findAllProcesses());
+        model.addAttribute("components", componentService.findAllComponents());
         return "addComponent";
     }
 
@@ -31,6 +38,8 @@ public class AddComponentController {
 
     @Autowired
     ProcessRepository processRepository;
+    @Autowired
+    ProcessService processService;
 
     @PostMapping("/addComponent")
     public String add(@RequestParam(name = "processId") int processId,
@@ -51,7 +60,6 @@ public class AddComponentController {
             }
         }
 
-        System.out.println("No Success");
         return "redirect:/process";
     }
 }

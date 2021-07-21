@@ -1,0 +1,129 @@
+table {
+    table-layout: fixed;
+}
+.light-table-filter {
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 24px;
+    padding-left: 20px;
+    height: 33px;
+    font-weight: 600;
+    width: 300px;
+    border-width: 1px;
+    border-color: #cccccc;
+}
+.wrapper {
+    border-radius: 20px;
+    background-color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.contentTable {
+    padding-top: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+}
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    max-width: content-box;
+}
+
+.table td {
+    background-color: #f7f9fa;
+    border-style: none;
+    vertical-align: middle;
+    overflow: hidden;
+
+}
+td:first-child {
+
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+td:last-child {
+
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+}
+table th:first-child{
+    border-radius:12px 0 0 12px;
+}
+
+table th:last-child{
+    border-radius:0 12px 12px 0;
+}
+
+.table th {
+    cursor: pointer;
+    background-color: #357bb8;
+    font-weight: 600;
+    border-style: none;
+}
+
+
+/*div.scrollable{
+    overflow-y: auto;
+    max-height: 80px;
+}
+
+.table .th-sort-asc::after {
+    content: "\25b4";
+}
+
+.table .th-sort-desc::after {
+    content: "\25be";
+}
+
+.table .th-sort-asc::after,
+.table .th-sort-desc::after {
+    margin-left: 5px;
+}*/
+
+.table .th-sort-asc,
+.table .th-sort-desc {
+    background-color: #2b6392;
+}
+
+.table thead tr {
+    color: #ffffff;
+}
+
+.edit-delete {
+    display: inline;
+}
+
+.createButton {
+    margin: 10px;
+}
+td.actionButtons, th.actionButtons {
+    text-align: center;
+}
+td.textContent, th.textContent {
+    text-align: left;
+    padding-left: 30px;
+}
+.topLine {
+    display: flex;
+    justify-content: space-between;
+
+}
+i span {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 700;
+}
+.addMore {
+    display: inline-block;
+    vertical-align: middle;
+}
+.actionButtons {
+    width: 9%;
+}
