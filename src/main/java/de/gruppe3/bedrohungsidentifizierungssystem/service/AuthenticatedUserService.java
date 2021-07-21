@@ -32,17 +32,14 @@ public class AuthenticatedUserService implements UserDetailsService {
         AuthenticatedUser authenticatedUser = new AuthenticatedUser(user);
         authenticatedUser.getAuthorities();
 
-        System.out.println(authenticatedUser.getAuthorities().toString());
-        System.out.println(authenticatedUser.getUsername());
-        System.out.println(authenticatedUser.getPassword());
         return new AuthenticatedUser(user);
     }
 
 
-    private List<GrantedAuthority> getAuthorities(User user){
+    private List<GrantedAuthority> getAuthorities(User user) {
         Set<Role> userRoles = (Set<Role>) user.getRole();
         List<GrantedAuthority> authorities = new ArrayList<>(userRoles.size());
-        for(Role userRole : userRoles){
+        for (Role userRole : userRoles) {
             authorities.add(new SimpleGrantedAuthority(userRole.getRole()));
         }
 

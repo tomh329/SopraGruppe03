@@ -30,9 +30,8 @@ public class DangerService {
     }
 
 
+    public Danger createDanger(String dangerName, int dangerLevel) {
 
-    public Danger createDanger(String dangerName, int dangerLevel){
-      
         Danger danger = new Danger(dangerName, dangerLevel);
         return dangerRepository.save(danger);
     }
@@ -42,8 +41,8 @@ public class DangerService {
 
         List<Danger> dangerList = findAllDangers();
 
-        for(Danger danger : dangerList){
-            if(dangerId == danger.getDangerId()){
+        for (Danger danger : dangerList) {
+            if (dangerId == danger.getDangerId()) {
                 danger.setDangerName(dangerName);
                 danger.setDangerLevel(dangerLevel);
                 dangerRepository.save(danger);
@@ -52,7 +51,7 @@ public class DangerService {
     }
 
 
-    public void removeRequirement(int requirementId, int dangerId){
+    public void removeRequirement(int requirementId, int dangerId) {
 
         Requirement requirement = requirementRepository.findByRequirementId(requirementId);
         Danger danger = dangerRepository.findByDangerId(dangerId);
@@ -64,19 +63,19 @@ public class DangerService {
         dangerRepository.save(danger);
     }
 
-    public void deleteDanger(Danger danger){
+    public void deleteDanger(Danger danger) {
         dangerRepository.delete(danger);
     }
 
-    public boolean deleteDanger(int dangerId){
+    public boolean deleteDanger(int dangerId) {
 
         List<Danger> dangerList = dangerRepository.findAll();
 
-        for(Danger danger : dangerList){
-            if(dangerId == danger.getDangerId()){
+        for (Danger danger : dangerList) {
+            if (dangerId == danger.getDangerId()) {
 
                 List<Requirement> requirementList = danger.getRequirements();
-                for(Requirement requirement : requirementList){
+                for (Requirement requirement : requirementList) {
                     requirement.getDangers().remove(danger);
                 }
 
