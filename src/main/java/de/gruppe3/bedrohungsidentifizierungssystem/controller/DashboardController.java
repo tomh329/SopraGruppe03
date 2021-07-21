@@ -65,15 +65,11 @@ public class DashboardController {
         Date todayDate = calender.getTime();
         calender.add(calender.DATE,7);
         Date todayDateSevenDays = calender.getTime();
-        System.out.println(todayDate);
-        System.out.println(todayDateSevenDays);
 
         for(Action action : actionsToDo){
             String dueDateString = action.getActionDueDate();
-            System.out.println(dueDateString);
             SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
             Date dueDate = formatter.parse(dueDateString);
-            System.out.println(dueDate);
             if(todayDate.after(dueDate)){
                 trafficLight=0;
             }
