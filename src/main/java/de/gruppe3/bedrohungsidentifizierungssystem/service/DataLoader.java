@@ -118,6 +118,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Process testProcess2 = new Process("Test2", 1);
         testProcess1.setProcessName("ÄnderungsTest");
 //        testProcess1.setProcessId(0);
+        Process app1 = new Process("APP.1 Client-Anwendungen", 2);
+
 
 
         //example component
@@ -130,6 +132,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         de.gruppe3.bedrohungsidentifizierungssystem.entity.Component testComponent2
                 = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("testComp2", 4, "2021-04-11", 3);
 
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_1
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.1 Office Produkte", 3, "2020-03-07", 7);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_2
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.2 Webbrowser", 4, "2007-08-14", 4);
+        de.gruppe3.bedrohungsidentifizierungssystem.entity.Component app1_4
+                = new de.gruppe3.bedrohungsidentifizierungssystem.entity.Component("APP.1.4 Mobile Anwendungen(Apps)", 3, "2014-03-17", 9);
         //example requirement
         Requirement reqOrg11 = new Requirement("Festlegung von Verantwortlichkeiten");
         Requirement reqOrg12 = new Requirement("Zuweisung der Zuständigkeiten");
@@ -140,6 +148,21 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Requirement reqPers13 = new Requirement("Qualifikation des Personals");
 
         Requirement testReq1 = new Requirement("testReq1");
+
+        Requirement app_1_1_A2 = new Requirement("APP.1.1.A2 Einschränken von Aktiven Inhalten");
+        //G 0.19 G 0.22 G. 039
+        Requirement app_1_1_A6 = new Requirement("APP.1.1.A6 Testen neuer Versionen von Office-Produkten");
+        //G 0.18 G 0.20 G 0.28 G 0.45 G0.46
+
+        Requirement app_1_2_A1 = new Requirement("APP.1.2.A1 Verwendung von grundlegenden Sicherheitsmechanismen");
+        //G 0.23 G0.28 G 0.39
+        Requirement app_1_2_A3 = new Requirement("APP.1.2.A3 Verwendung von vertrauenswürdigen Zertifikaten");
+        //G 0.14 G 0.19 G 0.22 G 0.30
+
+        Requirement app_1_4_A7 = new Requirement("APP.1.4.A7 Sichere Speicherung lokaler App-Daten");
+        //G 0.14 G0.16 G 0.17 G 0.19
+        Requirement app_1_4_A12 = new Requirement("APP.1.4.A12 Sichere Deinstallation von Apps");
+        //G 0.14 G 0.15 G 0.16 G 0.17
 
         //example danger
         Danger spionage = new Danger("Spionage", 3);
