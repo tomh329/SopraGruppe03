@@ -26,9 +26,7 @@ public class ProcessController {
 
     @PostMapping("/deleteProcess/{processId}")
     public String deleteProcess(@PathVariable String processId) {
-        System.out.println(
-                processService.deleteProcess(Integer.parseInt(processId))
-        );
+        processService.deleteProcess(Integer.parseInt(processId));
         return "redirect:/process";
     }
 
