@@ -239,8 +239,12 @@
                 td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
-                    if (strcmp(txtValue, filter) == 0) {
-                        console.log(strcmp(txtValue, filter));
+                    if (filter === "Filter") {
+                        for (i=0; i<tr.length; i++) {
+                            tr[i].style.display = "";
+                        }
+                    }
+                    else if (strcmp(txtValue, filter) == 0) {
                         tr[i].style.display = "";
                     } else {
                         tr[i].style.display = "none";
@@ -255,6 +259,9 @@
     }
 
     function strcmp(a, b) {
+        if (a.toString() == null || b.toString() == null) {
+            return -1;
+        }
         if (a.toString() != b.toString()) {
             return -1
         } else {
