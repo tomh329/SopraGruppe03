@@ -25,7 +25,6 @@ public class AddComponentController {
     public String showAddComponent(Model model, @ModelAttribute("processToAdd") Process processToAdd) {
 
         model.addAttribute("processToAdd", processToAdd);
-        System.out.println(processToAdd.getProcessName());
         model.addAttribute("processes", processService.findAllProcesses());
         model.addAttribute("components", componentService.findAllComponents());
         return "addComponent";
