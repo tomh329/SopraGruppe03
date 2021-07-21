@@ -87,11 +87,11 @@
             <div class="eachLine">
                 <label style="font-size: 14px;"><b>Schutzbedarf</b></label>
                 <select class="protectionLevel" name="protectionLevel" type = "text">
-                    <option value="1">1</option>
+                    <option value="1">1 (Niedrig)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 (Hoch)</option>
                 </select>
                 <p th:if="${#fields.hasErrors('process.protectionLevel')}" th:errors="*{process.protectionLevel}" class="text-danger"></p>
             <!--        <p>Komponenten ID: <input name="componentId" type="text"/></p>-->
