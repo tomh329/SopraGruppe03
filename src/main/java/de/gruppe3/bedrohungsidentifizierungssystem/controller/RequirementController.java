@@ -33,9 +33,8 @@ public class RequirementController {
 
     @PostMapping("/deleteRequirement/{requirementId}")
     public String deleteRequirement(@PathVariable String requirementId) {
-        System.out.println(
-                requirementService.deleteRequirement(Integer.parseInt(requirementId))
-        );
+
+        requirementService.deleteRequirement(Integer.parseInt(requirementId));
         return "redirect:/requirement";
     }
 

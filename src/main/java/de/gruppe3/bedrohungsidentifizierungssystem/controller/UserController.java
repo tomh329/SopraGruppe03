@@ -36,9 +36,8 @@ public class UserController {
 
     @PostMapping("/deleteUser/{username}")
     public String deleteProcess(@PathVariable String username) {
-        System.out.println(
-                userService.deleteUser(username)
-        );
+
+        userService.deleteUser(username);
         return "redirect:/user";
     }
 
