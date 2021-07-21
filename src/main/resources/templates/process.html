@@ -199,12 +199,6 @@
 
             uniqueNames.sort();
 
-          /*  for (i=0; i< myArray.length; i++) {
-
-                if(myArray[i] !== objCells.item(2).innerHTML) {
-                    myArray.push(objCells.item(2).innerHTML);
-                }
-            }*/
         }
 
         let select = document.createElement("select");
@@ -226,8 +220,6 @@
         let e = document.getElementById("row");
         e.onchange = function() {
             filter = e.options[e.selectedIndex].text;
-            console.log(filter);
-
 
             // Declare variables
             let table, tr, td, i, txtValue;
@@ -251,11 +243,7 @@
                     }
                 }
             }
-
-
         };
-
-       // }
     }
 
     function strcmp(a, b) {
