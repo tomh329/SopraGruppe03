@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.User;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.ComponentRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.UserRepository;
@@ -59,7 +58,7 @@ public class AddUserToComponentController {
                     if (componentId == component.getComponentId()) {
 
 
-                        if(user.getComponents().contains(component)){
+                        if (user.getComponents().contains(component)) {
                             userService.saveUser(user);
                             componentService.saveComponent(component);
                             return "redirect:/user";
@@ -78,8 +77,6 @@ public class AddUserToComponentController {
             }
         }
 
-
-        System.out.println("No Success");
         return "redirect:/user";
     }
 }

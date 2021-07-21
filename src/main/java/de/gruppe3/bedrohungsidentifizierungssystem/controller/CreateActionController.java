@@ -18,7 +18,7 @@ public class CreateActionController {
 
     @GetMapping("/createAction")
     public String showCreateAction(Action action, BindingResult bindingResult, Model model) {
-        model.addAttribute("action",action);
+        model.addAttribute("action", action);
         return "createAction";
     }
 
@@ -32,8 +32,8 @@ public class CreateActionController {
                          @RequestParam(name = "protectionNeeds") int protectionNeeds,
                          @Valid Action action, BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("action",action);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("action", action);
             return "/createAction";
 
         }

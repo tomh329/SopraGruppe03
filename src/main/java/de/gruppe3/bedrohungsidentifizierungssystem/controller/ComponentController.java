@@ -2,10 +2,8 @@ package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Component;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.ComponentService;
-import de.gruppe3.bedrohungsidentifizierungssystem.service.ProcessService;
 import de.gruppe3.bedrohungsidentifizierungssystem.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Controller
 public class ComponentController {
@@ -55,17 +51,15 @@ public class ComponentController {
 
         Component componentToAdd = componentService.findComponentWithId(Integer.parseInt(componentId));
         redirectAttributes.addFlashAttribute("componentToAdd", componentToAdd);
-        System.out.println(componentService.findComponentWithId(Integer.parseInt(componentId)).getComponentName());
         return "redirect:/addAction";
     }
 
     @PostMapping("/removeActionButton/{actionId}")
-    public String removeAction(@PathVariable String actionId){
+    public String removeAction(@PathVariable String actionId) {
 
         componentService.removeAction(Integer.parseInt(actionId));
         return "redirect:/component";
     }
-
 
 
     @PostMapping({"/component/{componentId}"})
@@ -77,9 +71,8 @@ public class ComponentController {
 
     @PostMapping("/deleteComponent/{componentId}")
     public String deleteComponent(@PathVariable String componentId) {
-        System.out.println(
-                componentService.deleteComponent(Integer.parseInt(componentId))
-        );
+
+        componentService.deleteComponent(Integer.parseInt(componentId));
         return "redirect:/component";
     }
 }

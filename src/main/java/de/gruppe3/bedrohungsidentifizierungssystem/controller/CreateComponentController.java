@@ -36,7 +36,7 @@ public class CreateComponentController {
                          @RequestParam(name = "occurrence") int occurrence,
                          @RequestParam(name = "priority") int priority,
                          @Valid Component component, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("component", component);
             return "/createComponent";
         }

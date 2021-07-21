@@ -1,7 +1,6 @@
 package de.gruppe3.bedrohungsidentifizierungssystem.controller;
 
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Danger;
-import de.gruppe3.bedrohungsidentifizierungssystem.entity.Process;
 import de.gruppe3.bedrohungsidentifizierungssystem.entity.Requirement;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.DangerRepository;
 import de.gruppe3.bedrohungsidentifizierungssystem.repository.RequirementRepository;
@@ -69,7 +68,6 @@ public class AddDangerController {
             }
         }
 
-        System.out.println("No Success");
         return "redirect:/danger";
     }
 }
