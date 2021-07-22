@@ -189,8 +189,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         Danger fehlplanung = new Danger("Fehlplanung", 2);
         Danger manipulation = new Danger("Manipulation", 4);
         Danger ausfall = new Danger("Ausfall von Geräten/System", 1);
-        Danger identitaetsdieebstahl = new Danger("Identitätsdieebstahl", 6);
-        Danger missbrauchPersDaten = new Danger("Missbrauch personenbezogener Daten", 6);
+        Danger identitaetsdieebstahl = new Danger("Identitätsdieebstahl", 5);
+        Danger missbrauchPersDaten = new Danger("Missbrauch personenbezogener Daten", 5);
         Danger verstoss = new Danger("Verstoß gegen Gesetzte/Regeln", 4);
 
 
